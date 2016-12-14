@@ -1,2 +1,5 @@
+platforms/android/.gradle/
 node_modules/
 .idea/
+platforms/android/assets/www/specs/
+platforms/ios/www/specs/
