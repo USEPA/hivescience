@@ -1,0 +1,23 @@
+{
+  "name": "buzz_buzz",
+  "version": "0.0.1",
+  "description": "Survey App for EPA",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "expect.js": "^0.3.1",
+    "ghostjs": "^1.7.1"
+  },
+  "scripts": {
+      "test-full": "./run_tests",
+      "test-unit": "ghostjs www/specs/unit/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "author": "EPA",
+  "license": "ISC"
+}
