@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 
-lsof -i :3333 > /dev/null 2>&1
-if [ $? -eq 0 ]
-  then echo "Running tests" && ghostjs www/specs/**/*.js
-  else echo 'Please run `cordova run browser -- --port=3333`'
-fi
+echo "Running tests"
+./node_modules/.bin/ghostjs www/specs/**/*.js
