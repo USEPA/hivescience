@@ -1,10 +1,5 @@
 node_modules/
 .idea/
-platforms/ios/
-platforms/ios/www/
-platforms/browser/www/
-platforms/android/
-platforms/android/assets/www/
-platforms/android/.gradle/
+platforms/*
+plugins/*
 www/dist/bundle.js
-platforms/ios/Show Me the Honey.xcodeproj/project.xcworkspace/xcuserdata/
