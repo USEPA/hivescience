@@ -16,48 +16,46 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var title;
-var counter = 0;
+import $ from 'jquery';
+import Handlebars from 'handlebars';
+import DB from './db';
+
+let db;
+let profileFormTemplate;
+let profileViewTemplate;
+
 var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+  initialize: function () {
+    profileFormTemplate = Handlebars.compile($('#profile-form-template').html());
+    profileViewTemplate = Handlebars.compile($('#profile-view-template').html());
+    console.log('in app init');
+    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+  },
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-        console.log("on device ready")
+  onDeviceReady: function () {
+    this.receivedEvent('deviceready');
+    console.log('on device ready');
+    db = new DB(window.sqlitePlugin);
+    db.initialize();
+    db.createTables();
 
-        title = document.createElement("h1");
-        title.innerText = "foo";
-        console.log(title)
-        var body = document.getElementsByTagName("body");
-        console.log(body[0])
-        body[0].appendChild(title)
-        document.addEventListener("click", function(event) {
-            console.log('document clicked')
-            counter += 1
-            title.innerText = "foo count: " + counter
-        })
-        $(selector)
-        document.querySelectorAll()
-    },
+    this.renderProfileForm();
+  },
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+  receivedEvent: function (id) {
+    let parentElement = document.getElementById(id);
+    let listeningElement = parentElement.querySelector('.listening');
+    let receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    listeningElement.setAttribute('style', 'display:none;');
+    receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-    }
+    console.log('Received Event: ' + id);
+  },
+
+  renderProfileForm: () => {
+    $('body').html(profileFormTemplate());
+  }
 };
 
 app.initialize();

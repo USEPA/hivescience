@@ -3,7 +3,7 @@ import expect from 'expect.js'
 
 describe('Home page', () => {
   it('loads when the device is ready', async () => {
-    expect(1).to.be.ok();
+    DB.expects("createTables").toHaveBeenCalled();
     await ghost.open('http://localhost:3000');
     let pageTitle = await ghost.pageTitle();
     expect(pageTitle).to.equal('Hello World');
