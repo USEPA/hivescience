@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 echo "Running tests"
-./node_modules/.bin/ghostjs www/specs/**/*.js
+npm run test-unit

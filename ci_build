@@ -1,9 +1,4 @@
 npm install
-cd platforms/browser
-phonegap serve > /dev/null &
-server_pid=$!
-cd ../..
 ./run_tests
 build_status=$?
-kill -INT $server_pid
 exit $build_status
