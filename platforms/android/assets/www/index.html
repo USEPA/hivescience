@@ -23,15 +23,16 @@
 
     <script id="profile-form-template" type="text/template">
         Create Profile
-        <form action="/profile">
+        <form action="/profile" id="profile-form">
             <label for="email">Email address:</label>
-            <input id="email" type="email"/>
+            <input id="email" type="email" name="email" />
             <input type="submit" value="Submit"/>
         </form>
     </script>
 
     <script id="profile-view-template" type="text/template">
         <h1>Hello</h1>
+        <p><strong>Email:</strong> {{email}}</p>
     </script>
 
     <h2>Whats up</h2>

@@ -25,4 +25,5 @@
     </platform>
     <plugin name="cordova-sqlite-storage" spec="~2.0.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
+    <engine name="ios" spec="~4.3.1" />
 </widget>

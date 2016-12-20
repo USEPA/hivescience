@@ -14,12 +14,17 @@ export default class DB {
       "CREATE TABLE IF NOT EXISTS profiles" +
       "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100));",
       [],
-      () => {
-        console.log('create profiles table success');
-      },
-      () => {
-        console.log('create tables FAILURE');
-      }
+      () => { console.log('create profiles table successful') },
+      () => { console.log('create tables failed') }
+    );
+  }
+
+  createProfile(attributes) {
+    this.connection.executeSql(
+      "INSERT INTO profiles (email) VALUES (?);",
+      [attributes.email],
+      () => { console.log('profile insert successful') },
+      () => { console.log('profile insert failed') }
     );
   }
 }

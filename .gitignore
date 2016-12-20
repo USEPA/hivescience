@@ -1,5 +1,7 @@
-platforms/android/.gradle/
 node_modules/
 .idea/
-platforms/android/assets/www/specs/
-platforms/ios/www/specs/
+platforms/ios/www/
+platforms/android/assets/www/
+platforms/android/.gradle/
+www/dist/bundle.js
+platforms/ios/Show Me the Honey.xcodeproj/project.xcworkspace/xcuserdata/
