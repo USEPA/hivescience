@@ -1,6 +1,9 @@
 node_modules/
 .idea/
+platforms/ios/
 platforms/ios/www/
+platforms/browser/www/
+platforms/android/
 platforms/android/assets/www/
 platforms/android/.gradle/
 www/dist/bundle.js

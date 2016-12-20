@@ -20,6 +20,10 @@
     "xcode": "^0.9.0"
   },
   "scripts": {
+    "build": "browserify -e www/js/index.js -o www/dist/bundle.js -t [babelify]",
+    "clean": "rm -r www/dist/*",
+    "ios": "npm run build && cordova run ios",
+    "android": "npm run build && cordova run android",
     "test-full": "./run_tests",
     "test-unit": "ghostjs www/specs/unit/**/*.js"
   },
