@@ -23,21 +23,35 @@
 <body>
 <div id="main-container" class="app">
     <script id="profile-form-template" type="text/template">
-        <h1>Tell us about yourself</h1>
         <form action="/profile" id="profile-form">
-            <p>
-                <label for="name">Name:</label>
-                <input id="name" type="text" name="fullName" placeholder="Full name" />
-            </p>
-            <p>
-                <label for="email">Email address:</label>
-                <input id="email" type="email" name="email" placeholder="Enter email address"/>
-            </p>
-            <p>
-                <label for="zip-code">Zip code:</label>
-                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary" />
-            </p>
-            <p><input type="submit" value="Next"/></p>
+            <div id="profile-form-page-1">
+                <h1>Tell us about yourself</h1>
+                <p>
+                    <label for="name">Name:</label>
+                    <input id="name" type="text" name="fullName" placeholder="Full name"/>
+                </p>
+                <p>
+                    <label for="email">Email address:</label>
+                    <input id="email" type="email" name="email" placeholder="Enter email address"/>
+                </p>
+                <p>
+                    <label for="zip-code">Zip code:</label>
+                    <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>
+                </p>
+                <p>
+                    <button id="profile-form-next-button" type="button">Next</button>
+                </p>
+            </div>
+            <div id="profile-form-page-2" class="hidden">
+                <h1>Tell us about your bees</h1>
+                <p>
+                    <label for="number-of-colonies">Number of colonies in your apiary:</label>
+                    <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
+                </p>
+                <p>
+                    <input type="submit" value="Next"/>
+                </p>
+            </div>
         </form>
     </script>
 
@@ -45,6 +59,7 @@
         <p><strong>Name:</strong> {{fullName}}</p>
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
+        <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
     </script>
 </div>
 

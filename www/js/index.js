@@ -9,27 +9,31 @@ let profileViewTemplate;
 
 var app = {
   initialize: function() {
-    profileFormTemplate = Handlebars.compile($('#profile-form-template').html());
-    profileViewTemplate = Handlebars.compile($('#profile-view-template').html());
-    console.log('in app init');
-    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
+    profileViewTemplate = Handlebars.compile($("#profile-view-template").html());
+    document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
   onDeviceReady: function() {
-    console.log('on device ready');
     this.setupDatabase();
     this.renderProfileForm();
   },
 
   renderProfileForm: function() {
-    $('#main-container').html(profileFormTemplate());
-    const form = $('#profile-form');
-    form.on('submit', (event) => {
+    $("#main-container").html(profileFormTemplate());
+
+    $("#profile-form-next-button").on("click", () => {
+      $("#profile-form-page-1").hide();
+      $("#profile-form-page-2").show();
+    });
+
+    const form = $("#profile-form");
+    form.on("submit", (event) => {
       event.preventDefault();
       const profileAttributes = formatAttributes(form.serializeArray());
       db.createProfile(profileAttributes);
       $("#profile-form-template").hide();
-      $('#main-container').html(profileViewTemplate(profileAttributes));
+      $("#main-container").html(profileViewTemplate(profileAttributes));
     });
   },
 

@@ -29,6 +29,7 @@
     "clean": "rm -r www/dist/*",
     "ios": "npm run build && cordova run ios",
     "android": "npm run build && cordova run android",
+    "browser": "npm run build && cordova run browser",
     "test-full": "./run_tests",
     "test-unit": "ghostjs www/specs/unit/**/*.js"
   },
