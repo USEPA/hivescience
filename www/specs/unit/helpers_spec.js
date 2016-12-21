@@ -16,5 +16,16 @@ describe("Helpers", () => {
         zipCode: "12345"
       });
     });
+
+    it("concatenates the values for pairs that have the same key", () => {
+      const attributes = [
+        {name: "monitorMethods", value: "Powdered sugar roll"},
+        {name: "monitorMethods", value: "Alcohol wash"}
+      ];
+
+      expect(formatAttributes(attributes)).to.eql({
+        monitorMethods: "Powdered sugar roll, Alcohol wash",
+      });
+    });
   });
 });

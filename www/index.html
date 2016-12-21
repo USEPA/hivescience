@@ -64,9 +64,29 @@
                     <input id="monitor-varroa-mites-no" type="radio" name="monitorVarroaMites" value="N"/>
                 </p>
                 <p>
-                    <label for="monitor-varroa-mites-count">How many times have you monitored for mites in the last year?</label>
-                    <input id="monitor-varroa-mites-count" type="number" name="monitorVarroaMitesCount" />
+                    <label for="monitor-varroa-mites-count">How many times have you monitored for mites in the last
+                        year?</label>
+                    <input id="monitor-varroa-mites-count" type="number" name="monitorVarroaMitesCount"/>
                 </p>
+                <fieldset>
+                    <legend>What methods do you use for counting Varroa mites?</legend>
+                    <p>
+                        <label for="screen-bottom-board">Screen bottom board</label>
+                        <input id="screen-bottom-board" type="checkbox" name="monitorMethods" value="Screen bottom board"/>
+                    </p>
+                    <p>
+                        <label for="powdered-sugar-roll">Powdered sugar roll</label>
+                        <input id="powdered-sugar-roll" type="checkbox" name="monitorMethods" value="Powdered sugar roll"/>
+                    </p>
+                    <p>
+                        <label for="alcohol-wash">Alcohol wash</label>
+                        <input id="alcohol-wash" type="checkbox" name="monitorMethods" value="Alcohol wash"/>
+                    </p>
+                    <p>
+                        <label for="other">Other</label>
+                        <input id="other" type="checkbox" name="monitorMethods" value="Other"/>
+                    </p>
+                </fieldset>
                 <p>
                     <input type="submit" value="Done"/>
                 </p>
@@ -81,6 +101,7 @@
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
+        <p><strong>What method do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
     </script>
 </div>
 
