@@ -57,14 +57,18 @@
             <div id="profile-form-page-3" class="hidden">
                 <h1>Colony Health</h1>
                 <p>
-                    Do you actively monitor for Varroa mites?<br />
+                    Do you actively monitor for Varroa mites?<br/>
                     <label for="monitor-varroa-mites-yes">Yes</label>
-                    <input id="monitor-varroa-mites-yes" type="radio" name="monitorVarroaMites" value="Y" />
+                    <input id="monitor-varroa-mites-yes" type="radio" name="monitorVarroaMites" value="Y"/>
                     <label for="monitor-varroa-mites-no">No</label>
-                    <input id="monitor-varroa-mites-no" type="radio" name="monitorVarroaMites" value="N" />
+                    <input id="monitor-varroa-mites-no" type="radio" name="monitorVarroaMites" value="N"/>
                 </p>
                 <p>
-                    <input type="submit" value="Next" />
+                    <label for="monitor-varroa-mites-count">How many times have you monitored for mites in the last year?</label>
+                    <input id="monitor-varroa-mites-count" type="number" name="monitorVarroaMitesCount" />
+                </p>
+                <p>
+                    <input type="submit" value="Done"/>
                 </p>
             </div>
         </form>
@@ -76,6 +80,7 @@
         <p><strong>Zip code:</strong> {{zipCode}}</p>
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
+        <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
     </script>
 </div>
 
