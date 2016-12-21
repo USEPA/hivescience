@@ -1,39 +1,44 @@
 import $ from "jquery";
 import Handlebars from "handlebars";
 import DB from "./db";
-import { formatAttributes } from "./helpers"
+import {formatAttributes} from "./helpers"
 
 let db;
 let profileFormTemplate;
-let  profileViewTemplate;
+let profileViewTemplate;
 
 var app = {
-  initialize: function () {
+  initialize: () => {
     profileFormTemplate = Handlebars.compile($('#profile-form-template').html());
     profileViewTemplate = Handlebars.compile($('#profile-view-template').html());
     console.log('in app init');
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
   },
 
-  onDeviceReady: function () {
+  onDeviceReady: () => {
     console.log('on device ready');
-    db = new DB(window.sqlitePlugin);
-    db.initialize();
-    db.createTables();
-
+    this.setupDatabase();
     this.renderProfileForm();
   },
 
   renderProfileForm: () => {
-    $('body').html(profileFormTemplate());
+    $('#main-container').html(profileFormTemplate());
     const form = $('#profile-form');
     form.on('submit', (event) => {
       event.preventDefault();
       const profileAttributes = formatAttributes(form.serializeArray());
       db.createProfile(profileAttributes);
       $("#profile-form-template").hide();
-      $('body').html(profileViewTemplate(profileAttributes));
+      $('#main-container').html(profileViewTemplate(profileAttributes));
     });
+  },
+
+  // "private" methods
+
+  setupDatabase: () => {
+    db = new DB(window.sqlitePlugin);
+    db.initialize();
+    db.createTables();
   }
 };
 
