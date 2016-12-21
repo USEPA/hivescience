@@ -5,7 +5,7 @@ import { formatAttributes } from "./helpers"
 
 let db;
 let profileFormTemplate;
-let profileViewTemplate;
+let  profileViewTemplate;
 
 var app = {
   initialize: function () {

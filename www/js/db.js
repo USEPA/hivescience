@@ -12,7 +12,7 @@ export default class DB {
   createTables() {
     this.connection.executeSql(
       "CREATE TABLE IF NOT EXISTS profiles" +
-      "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100));",
+      "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), full_name VARCHAR(100));",
       [],
       () => { console.log('create profiles table successful') },
       () => { console.log('create tables failed') }
@@ -21,8 +21,8 @@ export default class DB {
 
   createProfile(attributes) {
     this.connection.executeSql(
-      "INSERT INTO profiles (email) VALUES (?);",
-      [attributes.email],
+      "INSERT INTO profiles (email, full_name) VALUES (?, ?);",
+      [attributes.email, attributes.fullName],
       () => { console.log('profile insert successful') },
       () => { console.log('profile insert failed') }
     );

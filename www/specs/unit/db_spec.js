@@ -38,17 +38,22 @@ describe("DB", () => {
     it("creates the necessary tables for this app", () => {
       db.createTables();
       let sqlStatement = "CREATE TABLE IF NOT EXISTS profiles" +
-        "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100));";
+        "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), " +
+        "full_name VARCHAR(100));";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
 
   describe("createProfile", () => {
     it("persists a profile record with the provided attributes", () => {
-      const attributes = {email: "belinda@beekeepers.us"};
+      const attributes = {
+        email: "belinda@beekeepers.us",
+        fullName: "Belinda Bees"
+      };
       db.createProfile(attributes);
-      const sqlStatement = "INSERT INTO profiles (email) VALUES (?);";
-      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, [attributes.email]);
+      const sqlStatement = "INSERT INTO profiles (email, full_name) VALUES (?, ?);";
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
+        [attributes.email, attributes.fullName]);
     });
   });
 });

@@ -10,26 +10,35 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Hello World</title>
 </head>
+
 <body>
 <div class="app">
-    <h1>Show me the honey</h1>
     <script id="profile-form-template" type="text/template">
-        Create Profile
+        <h1>Tell us about yourself</h1>
         <form action="/profile" id="profile-form">
-            <label for="email">Email address:</label>
-            <input id="email" type="email" name="email" />
-            <input type="submit" value="Submit"/>
+            <p>
+                <label for="name">Name:</label>
+                <input id="name" type="text" name="fullName" placeholder="Full name" />
+            </p>
+            <p>
+                <label for="email">Email address:</label>
+                <input id="email" type="email" name="email" placeholder="Enter email address"/>
+            </p>
+            <p><input type="submit" value="Next"/></p>
         </form>
     </script>
 
     <script id="profile-view-template" type="text/template">
+        <p><strong>Name:</strong> {{fullName}}</p>
         <p><strong>Email:</strong> {{email}}</p>
     </script>
 </div>
