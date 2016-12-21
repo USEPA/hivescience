@@ -83,8 +83,35 @@
                         <input id="alcohol-wash" type="checkbox" name="monitorMethods" value="Alcohol wash"/>
                     </p>
                     <p>
-                        <label for="other">Other</label>
-                        <input id="other" type="checkbox" name="monitorMethods" value="Other"/>
+                        <label for="other-monitor-methods">Other</label>
+                        <input id="other-monitor-methods" type="checkbox" name="monitorMethods" value="Other"/>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>What methods do you use for treating Varroa mites?</legend>
+                    <p>
+                        <label for="requeening">Requeening with resistant stock</label>
+                        <input id="requeening" type="checkbox" name="treatmentMethods" value="Requeening with resistant stock"/>
+                    </p>
+                    <p>
+                        <label for="drone-brood-removal">Drone brood removal</label>
+                        <input id="drone-brood-removal" type="checkbox" name="treatmentMethods" value="Drone brood removal"/>
+                    </p>
+                    <p>
+                        <label for="brood-interruption">Brood interruption</label>
+                        <input id="brood-interruption" type="checkbox" name="treatmentMethods" value="Brood interruption"/>
+                    </p>
+                    <p>
+                        <label for="chemical-control-products">Chemical control products</label>
+                        <input id="chemical-control-products" type="checkbox" name="treatmentMethods" value="Chemical control products"/>
+                    </p>
+                    <p>
+                        <label for="treatment-free">Treatment-free</label>
+                        <input id="treatment-free" type="checkbox" name="treatmentMethods" value="Treatment-free"/>
+                    </p>
+                    <p>
+                        <label for="other-treatment-methods">Other</label>
+                        <input id="other-treatment-methods" type="checkbox" name="treatmentMethods" value="Other"/>
                     </p>
                 </fieldset>
                 <p>
@@ -101,7 +128,8 @@
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
-        <p><strong>What method do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
+        <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
+        <p><strong>What methods do you use for treating Varroa mites?</strong> {{treatmentMethods}}</p>
     </script>
 </div>
 
