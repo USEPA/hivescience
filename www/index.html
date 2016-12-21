@@ -39,9 +39,10 @@
                     <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>
                 </p>
                 <p>
-                    <button id="profile-form-next-button" type="button">Next</button>
+                    <button class="profile-form-next-button" type="button" data-next-page="2">Next</button>
                 </p>
             </div>
+
             <div id="profile-form-page-2" class="hidden">
                 <h1>Tell us about your bees</h1>
                 <p>
@@ -49,7 +50,21 @@
                     <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
                 </p>
                 <p>
-                    <input type="submit" value="Next"/>
+                    <button class="profile-form-next-button" type="button" data-next-page="3">Next</button>
+                </p>
+            </div>
+
+            <div id="profile-form-page-3" class="hidden">
+                <h1>Colony Health</h1>
+                <p>
+                    Do you actively monitor for Varroa mites?<br />
+                    <label for="monitor-varroa-mites-yes">Yes</label>
+                    <input id="monitor-varroa-mites-yes" type="radio" name="monitorVarroaMites" value="Y" />
+                    <label for="monitor-varroa-mites-no">No</label>
+                    <input id="monitor-varroa-mites-no" type="radio" name="monitorVarroaMites" value="N" />
+                </p>
+                <p>
+                    <input type="submit" value="Next" />
                 </p>
             </div>
         </form>
@@ -60,6 +75,7 @@
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
+        <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
     </script>
 </div>
 

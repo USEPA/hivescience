@@ -22,9 +22,10 @@ var app = {
   renderProfileForm: function() {
     $("#main-container").html(profileFormTemplate());
 
-    $("#profile-form-next-button").on("click", () => {
-      $("#profile-form-page-1").hide();
-      $("#profile-form-page-2").show();
+    $(".profile-form-next-button").on("click", (event) => {
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      $(`#profile-form-page-${pageNumber - 1}`).hide();
+      $(`#profile-form-page-${pageNumber}`).show();
     });
 
     const form = $("#profile-form");

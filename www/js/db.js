@@ -14,7 +14,7 @@ export default class DB {
       "CREATE TABLE IF NOT EXISTS profiles" +
       "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), " +
       "full_name VARCHAR(100), zip_code VARCHAR(20), " +
-      "number_of_colonies INTEGER);",
+      "number_of_colonies INTEGER, monitor_varroa_mites VARCHAR(1));",
       [],
       () => {
         console.log('create profiles table successful')
@@ -27,11 +27,12 @@ export default class DB {
 
   createProfile(attributes) {
     const values = [attributes.email, attributes.fullName, attributes.zipCode,
-      attributes.numberOfColonies];
+      attributes.numberOfColonies, attributes.monitorVarroaMites];
 
     this.connection.executeSql(
-      "INSERT INTO profiles (email, full_name, zip_code, number_of_colonies) " +
-      "VALUES (?, ?, ?, ?);",
+      "INSERT INTO profiles " +
+      "(email, full_name, zip_code, number_of_colonies, monitor_varroa_mites) " +
+      "VALUES (?, ?, ?, ?, ?);",
       values,
       () => {
         console.log('profile insert successful')
