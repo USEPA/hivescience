@@ -33,6 +33,10 @@
                 <label for="email">Email address:</label>
                 <input id="email" type="email" name="email" placeholder="Enter email address"/>
             </p>
+            <p>
+                <label for="zip-code">Zip code:</label>
+                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary" />
+            </p>
             <p><input type="submit" value="Next"/></p>
         </form>
     </script>
@@ -40,6 +44,7 @@
     <script id="profile-view-template" type="text/template">
         <p><strong>Name:</strong> {{fullName}}</p>
         <p><strong>Email:</strong> {{email}}</p>
+        <p><strong>Zip code:</strong> {{zipCode}}</p>
     </script>
 </div>
 

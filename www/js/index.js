@@ -8,20 +8,20 @@ let profileFormTemplate;
 let profileViewTemplate;
 
 var app = {
-  initialize: () => {
+  initialize: function() {
     profileFormTemplate = Handlebars.compile($('#profile-form-template').html());
     profileViewTemplate = Handlebars.compile($('#profile-view-template').html());
     console.log('in app init');
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
   },
 
-  onDeviceReady: () => {
+  onDeviceReady: function() {
     console.log('on device ready');
     this.setupDatabase();
     this.renderProfileForm();
   },
 
-  renderProfileForm: () => {
+  renderProfileForm: function() {
     $('#main-container').html(profileFormTemplate());
     const form = $('#profile-form');
     form.on('submit', (event) => {
@@ -35,7 +35,7 @@ var app = {
 
   // "private" methods
 
-  setupDatabase: () => {
+  setupDatabase: function() {
     db = new DB(window.sqlitePlugin);
     db.initialize();
     db.createTables();

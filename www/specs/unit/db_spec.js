@@ -39,7 +39,8 @@ describe("DB", () => {
       db.createTables();
       let sqlStatement = "CREATE TABLE IF NOT EXISTS profiles" +
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), " +
-        "full_name VARCHAR(100));";
+        "full_name VARCHAR(100), " +
+        "zip_code VARCHAR(20));";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -48,12 +49,13 @@ describe("DB", () => {
     it("persists a profile record with the provided attributes", () => {
       const attributes = {
         email: "belinda@beekeepers.us",
-        fullName: "Belinda Bees"
+        fullName: "Belinda Bees",
+        zipCode: "12345-5555"
       };
       db.createProfile(attributes);
-      const sqlStatement = "INSERT INTO profiles (email, full_name) VALUES (?, ?);";
+      const sqlStatement = "INSERT INTO profiles (email, full_name, zip_code) VALUES (?, ?, ?);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
-        [attributes.email, attributes.fullName]);
+        [attributes.email, attributes.fullName, attributes.zipCode]);
     });
   });
 });
