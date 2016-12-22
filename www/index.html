@@ -239,6 +239,16 @@
                           aria-label="Describe the bee kill you are experiencing"
                           placeholder="Add your description here"></textarea>
             </p>
+
+            <h2>Honey</h2>
+            <p>
+                Are honey supers on?
+                <label for="honey-supers-on-yes">Yes</label>
+                <input id="honey-supers-on-yes" type="radio" name="honeySupersOn" value="Y"/>
+                <label for="honey-supers-on-no">No</label>
+                <input id="honey-supers-on-no" type="radio" name="honeySupersOn" value="N"/>
+            </p>
+
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -262,6 +272,7 @@
         <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
         <p><strong>Are you experiencing a bee kill?</strong> {{beeKill}}</p>
         <p><strong>Bee kill description</strong> {{beeKillDescription}}</p>
+        <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
     </script>
 </div>
 

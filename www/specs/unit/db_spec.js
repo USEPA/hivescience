@@ -52,7 +52,8 @@ describe("DB", () => {
       const sqlStatement = "CREATE TABLE IF NOT EXISTS surveys" +
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
         "queen_drone_laying VARCHAR(1), queen_age INTEGER, " +
-        "diseases TEXT, bee_kill VARCHAR(1), bee_kill_description TEXT);";
+        "diseases TEXT, bee_kill VARCHAR(1), bee_kill_description TEXT," +
+        "honey_supers_on VARCHAR(1));";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -94,18 +95,20 @@ describe("DB", () => {
         queenAge: 3,
         diseases: "Abnormal cappings, Other",
         beeKill: "Y",
-        beeKillDescription: "All the bees are exploding!"
+        beeKillDescription: "All the bees are exploding!",
+        honeySupersOn: "Y"
       };
 
       db.createSurvey(attributes);
 
       const sqlStatement = "INSERT INTO surveys " +
-        "(queen_right, queen_drone_laying, queen_age, diseases, bee_kill, bee_kill_description) " +
-        "VALUES (?, ?, ?, ?, ?, ?);";
+        "(queen_right, queen_drone_laying, queen_age, diseases, bee_kill, bee_kill_description," +
+        "honey_supers_on) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
         [attributes.queenRight, attributes.queenDroneLaying,
           attributes.queenAge, attributes.diseases, attributes.beeKill,
-          attributes.beeKillDescription]);
+          attributes.beeKillDescription, attributes.honeySupersOn]);
     });
   });
 });
