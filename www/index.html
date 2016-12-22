@@ -166,6 +166,65 @@
                 <label for="queen-age">What is the age of your queen?</label>
                 <input id="queen-age" type="number" name="queenAge" placeholder="Enter age"/>
             </p>
+            <h2>Disease Presence</h2>
+            <fieldset>
+                <legend>Did you observe any disease in your hive?</legend>
+                <p>
+                    <label for="hive-beatles">Hive beatles</label>
+                    <input id="hive-beatles" type="checkbox" name="diseases"
+                           value="Hive beatles"/>
+                </p>
+                <p>
+                    <label for="wax-moths">Wax moths</label>
+                    <input id="wax-moths" type="checkbox" name="diseases"
+                           value="Wax moths"/>
+                </p>
+                <p>
+                    <label for="deformed-wings">Deformed wings</label>
+                    <input id="deformed-wings" type="checkbox" name="diseases"
+                           value="Deformed wings"/>
+                </p>
+                <p>
+                    <label for="black-shiny-bees">Black shiny bees</label>
+                    <input id="black-shiny-bees" type="checkbox" name="diseases"
+                           value="Black shiny bees"/>
+                </p>
+                <p>
+                    <label for="america-foul-brood">American foul brood</label>
+                    <input id="america-foul-brood" type="checkbox" name="diseases"
+                           value="American foul brood"/>
+                </p>
+                <p>
+                    <label for="european-foul-brood">European foul brood</label>
+                    <input id="european-foul-brood" type="checkbox" name="diseases"
+                           value="European foul brood"/>
+                </p>
+                <p>
+                    <label for="chalk-brood">Chalk brood</label>
+                    <input id="chalk-brood" type="checkbox" name="diseases"
+                           value="Chalk brood"/>
+                </p>
+                <p>
+                    <label for="parasitic-mite-syndrome">Parasitic mite syndrome</label>
+                    <input id="parasitic-mite-syndrome" type="checkbox" name="diseases"
+                           value="Parasitic mite syndrome"/>
+                </p>
+                <p>
+                    <label for="abnormal-cappings">Abnormal cappings</label>
+                    <input id="abnormal-cappings" type="checkbox" name="diseases"
+                           value="Abnormal cappings"/>
+                </p>
+                <p>
+                    <label for="dried-remains">Dried remains of larvae/pulpae</label>
+                    <input id="dried-remains" type="checkbox" name="diseases"
+                           value="Dried remains of larvae/pulpae"/>
+                </p>
+                <p>
+                    <label for="other-diseases">Other</label>
+                    <input id="other-diseases" type="checkbox" name="diseases"
+                           value="Other"/>
+                </p>
+            </fieldset>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -186,6 +245,7 @@
         <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
         <p><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</p>
         <p><strong>What is the age of your queen?</strong> {{queenAge}}</p>
+        <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
     </script>
 </div>
 

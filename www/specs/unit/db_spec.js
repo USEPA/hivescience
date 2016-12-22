@@ -51,7 +51,8 @@ describe("DB", () => {
       db.createTables();
       const sqlStatement = "CREATE TABLE IF NOT EXISTS surveys" +
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
-        "queen_drone_laying VARCHAR(1), queen_age INTEGER);";
+        "queen_drone_laying VARCHAR(1), queen_age INTEGER, " +
+        "diseases TEXT);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -90,16 +91,18 @@ describe("DB", () => {
       const attributes = {
         queenRight: "Y",
         queenDroneLaying: "N",
-        queenAge: 3
+        queenAge: 3,
+        diseases: "Abnormal cappings, Other"
       };
 
       db.createSurvey(attributes);
 
       const sqlStatement = "INSERT INTO surveys " +
-        "(queen_right, queen_drone_laying, queen_age) " +
-        "VALUES (?, ?, ?);";
+        "(queen_right, queen_drone_laying, queen_age, diseases) " +
+        "VALUES (?, ?, ?, ?);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
-        [attributes.queenRight, attributes.queenDroneLaying, attributes.queenAge]);
+        [attributes.queenRight, attributes.queenDroneLaying,
+          attributes.queenAge, attributes.diseases]);
     });
   });
 });
