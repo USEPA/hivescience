@@ -28,7 +28,6 @@ var app = {
     $("#main-container").html(profileFormTemplate());
 
     $(".profile-form-back-button").on("click", (event) => {
-      console.log(event);
       const pageNumber = parseInt($(event.target).data("next-page"), 10);
       $(`#profile-form-page-${pageNumber + 1}`).hide();
       $(`#profile-form-page-${pageNumber}`).show();
