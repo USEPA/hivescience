@@ -31,7 +31,8 @@ export default class DB {
   createSurveysTable() {
     this.connection.executeSql(
       "CREATE TABLE IF NOT EXISTS surveys" +
-      "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1));",
+      "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
+      "queen_drone_laying VARCHAR(1), queen_age INTEGER);",
       [],
       () => console.log('create surveys table successful'),
       () => console.log('create surveys table failed')
@@ -57,11 +58,12 @@ export default class DB {
   }
 
   createSurvey(attributes) {
-    const values = [attributes.queenRight];
+    const values = [attributes.queenRight, attributes.queenDroneLaying,
+      attributes.queenAge];
     this.connection.executeSql(
       "INSERT INTO surveys " +
-      "(queen_right) " +
-      "VALUES (?);",
+      "(queen_right, queen_drone_laying, queen_age) " +
+      "VALUES (?, ?, ?);",
       values,
       () => console.log('survey insert successful'),
       (error) => console.log('survey insert failed', error)

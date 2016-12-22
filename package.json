@@ -30,7 +30,7 @@
     "ios": "npm run build && cordova run ios",
     "android": "npm run build && cordova run android",
     "browser": "npm run build && cordova run browser",
-    "test-full": "./run_tests",
+    "test-all": "./run_tests",
     "test-unit": "ghostjs www/specs/unit/**/*.js",
     "test-int": "ghostjs www/specs/integration/**/*.js"
   },

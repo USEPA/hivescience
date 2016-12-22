@@ -155,6 +155,17 @@
                 <label for="queen-right-no">No</label>
                 <input id="queen-right-no" type="radio" name="queenRight" value="N"/>
             </p>
+            <p>
+                Is your queen drone laying?
+                <label for="queen-drone-laying-yes">Yes</label>
+                <input id="queen-drone-laying-yes" type="radio" name="queenDroneLaying" value="Y"/>
+                <label for="queen-drone-laying-no">No</label>
+                <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N"/>
+            </p>
+            <p>
+                <label for="queen-age">What is the age of your queen?</label>
+                <input id="queen-age" type="number" name="queenAge" placeholder="Enter age"/>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -173,6 +184,8 @@
 
         <h1>Survey:</h1>
         <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
+        <p><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</p>
+        <p><strong>What is the age of your queen?</strong> {{queenAge}}</p>
     </script>
 </div>
 

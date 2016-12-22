@@ -50,7 +50,8 @@ describe("DB", () => {
     it("creates the survey table for this app", () => {
       db.createTables();
       const sqlStatement = "CREATE TABLE IF NOT EXISTS surveys" +
-        "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1));";
+        "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
+        "queen_drone_laying VARCHAR(1), queen_age INTEGER);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -87,15 +88,18 @@ describe("DB", () => {
   describe("createSurvey", () => {
     it("persists a survey record with the provided attributes", () => {
       const attributes = {
-        queenRight: "Y"
+        queenRight: "Y",
+        queenDroneLaying: "N",
+        queenAge: 3
       };
 
       db.createSurvey(attributes);
 
       const sqlStatement = "INSERT INTO surveys " +
-        "(queen_right) " +
-        "VALUES (?);";
-      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, [attributes.queenRight]);
+        "(queen_right, queen_drone_laying, queen_age) " +
+        "VALUES (?, ?, ?);";
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
+        [attributes.queenRight, attributes.queenDroneLaying, attributes.queenAge]);
     });
   });
 });
