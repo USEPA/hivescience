@@ -248,6 +248,13 @@
                 <label for="honey-supers-on-no">No</label>
                 <input id="honey-supers-on-no" type="radio" name="honeySupersOn" value="N"/>
             </p>
+            <p>
+                Honey collected from sealed honey cells?
+                <label for="honey-from-sealed-cells-yes">Yes</label>
+                <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>
+                <label for="honey-from-sealed-cells-no">No</label>
+                <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>
+            </p>
 
             <input type="submit" value="Submit Report"/>
         </form>
@@ -273,6 +280,7 @@
         <p><strong>Are you experiencing a bee kill?</strong> {{beeKill}}</p>
         <p><strong>Bee kill description</strong> {{beeKillDescription}}</p>
         <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
+        <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
     </script>
 </div>
 

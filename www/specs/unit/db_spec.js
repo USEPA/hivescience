@@ -53,7 +53,7 @@ describe("DB", () => {
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
         "queen_drone_laying VARCHAR(1), queen_age INTEGER, " +
         "diseases TEXT, bee_kill VARCHAR(1), bee_kill_description TEXT," +
-        "honey_supers_on VARCHAR(1));";
+        "honey_supers_on VARCHAR(1), honey_from_sealed_cells VARCHAR(1));";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -96,19 +96,21 @@ describe("DB", () => {
         diseases: "Abnormal cappings, Other",
         beeKill: "Y",
         beeKillDescription: "All the bees are exploding!",
-        honeySupersOn: "Y"
+        honeySupersOn: "Y",
+        honeyFromSealedCells: "N"
       };
 
       db.createSurvey(attributes);
 
       const sqlStatement = "INSERT INTO surveys " +
         "(queen_right, queen_drone_laying, queen_age, diseases, bee_kill, bee_kill_description," +
-        "honey_supers_on) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?);";
+        "honey_supers_on, honey_from_sealed_cells) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement,
         [attributes.queenRight, attributes.queenDroneLaying,
           attributes.queenAge, attributes.diseases, attributes.beeKill,
-          attributes.beeKillDescription, attributes.honeySupersOn]);
+          attributes.beeKillDescription, attributes.honeySupersOn,
+          attributes.honeyFromSealedCells]);
     });
   });
 });
