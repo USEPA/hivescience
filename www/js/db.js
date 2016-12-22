@@ -21,7 +21,7 @@ export default class DB {
       "full_name VARCHAR(100), zip_code VARCHAR(20), " +
       "number_of_colonies INTEGER, monitor_varroa_mites VARCHAR(1), " +
       "monitor_varroa_mites_count INTEGER, monitor_methods VARCHAR(255), " +
-      "treatment_methods VARCHAR(255));",
+      "treatment_methods VARCHAR(255), why_beekeep TEXT);",
       [],
       () => console.log('create profiles table successful'),
       () => console.log('create profiles table failed')
@@ -42,13 +42,14 @@ export default class DB {
     const values = [attributes.email, attributes.fullName, attributes.zipCode,
       attributes.numberOfColonies, attributes.monitorVarroaMites,
       attributes.monitorVarroaMitesCount, attributes.monitorMethods,
-      attributes.treatmentMethods];
+      attributes.treatmentMethods, attributes.whyBeekeep];
 
     this.connection.executeSql(
       "INSERT INTO profiles " +
       "(email, full_name, zip_code, number_of_colonies, monitor_varroa_mites, " +
-      "monitor_varroa_mites_count, monitor_methods, treatment_methods) " +
-      "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+      "monitor_varroa_mites_count, monitor_methods, treatment_methods, " +
+      "why_beekeep) " +
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
       values,
       () => console.log('profile insert successful'),
       (error) => console.log('profile insert failed', error)

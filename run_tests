@@ -2,4 +2,4 @@
 
 echo "Running tests"
 npm run build
-ghostjs www/specs/integration/**/*.js
+ghostjs www/specs/**/*.js

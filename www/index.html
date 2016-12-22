@@ -53,6 +53,10 @@
                     <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
                 </p>
                 <p>
+                    <label for="why-beekeep">What is your motivation for beekeeping?</label>
+                    <textarea id="why-beekeep" name="whyBeekeep"></textarea>
+                </p>
+                <p>
                     <button class="profile-form-back-button" type="button" data-next-page="1"
                             aria-label="Go back to the previous page">
                         Back
@@ -161,6 +165,7 @@
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
+        <p><strong>What is your motivation for beekeeping?</strong> {{whyBeekeep}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
