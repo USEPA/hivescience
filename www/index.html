@@ -225,6 +225,13 @@
                            value="Other"/>
                 </p>
             </fieldset>
+            <p>
+                Are you experiencing a bee kill?
+                <label for="bee-kill-yes">Yes</label>
+                <input id="bee-kill-yes" type="radio" name="beeKill" value="Y"/>
+                <label for="bee-kill-no">No</label>
+                <input id="bee-kill-no" type="radio" name="beeKill" value="N"/>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -246,6 +253,7 @@
         <p><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</p>
         <p><strong>What is the age of your queen?</strong> {{queenAge}}</p>
         <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
+        <p><strong>Are you experiencing a bee kill?</strong> {{beeKill}}</p>
     </script>
 </div>
 
