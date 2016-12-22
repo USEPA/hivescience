@@ -232,6 +232,13 @@
                 <label for="bee-kill-no">No</label>
                 <input id="bee-kill-no" type="radio" name="beeKill" value="N"/>
             </p>
+            <p>
+                <label for="bee-kill-description">If yes, describe:</label>
+                <textarea id="bee-kill-description"
+                          name="beeKillDescription"
+                          aria-label="Describe the bee kill you are experiencing"
+                          placeholder="Add your description here"></textarea>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -254,6 +261,7 @@
         <p><strong>What is the age of your queen?</strong> {{queenAge}}</p>
         <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
         <p><strong>Are you experiencing a bee kill?</strong> {{beeKill}}</p>
+        <p><strong>Bee kill description</strong> {{beeKillDescription}}</p>
     </script>
 </div>
 
