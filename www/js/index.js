@@ -1,5 +1,5 @@
-import $ from "jquery";
 import _ from "underscore";
+import $ from "jquery";
 import Handlebars from "handlebars";
 import DB from "./db";
 import {formatAttributes} from "./helpers"
@@ -26,6 +26,13 @@ var app = {
 
   renderProfileForm: function() {
     $("#main-container").html(profileFormTemplate());
+
+    $(".profile-form-back-button").on("click", (event) => {
+      console.log(event);
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      $(`#profile-form-page-${pageNumber + 1}`).hide();
+      $(`#profile-form-page-${pageNumber}`).show();
+    });
 
     $(".profile-form-next-button").on("click", (event) => {
       const pageNumber = parseInt($(event.target).data("next-page"), 10);

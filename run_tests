@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 echo "Running tests"
-npm run test-unit
+npm run build
+ghostjs www/specs/integration/**/*.js
