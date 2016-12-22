@@ -10,6 +10,11 @@ export default class DB {
   }
 
   createTables() {
+    this.createProfilesTable();
+    this.createSurveysTable();
+  }
+
+  createProfilesTable() {
     this.connection.executeSql(
       "CREATE TABLE IF NOT EXISTS profiles" +
       "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), " +
@@ -18,12 +23,18 @@ export default class DB {
       "monitor_varroa_mites_count INTEGER, monitor_methods VARCHAR(255), " +
       "treatment_methods VARCHAR(255));",
       [],
-      () => {
-        console.log('create profiles table successful')
-      },
-      () => {
-        console.log('create tables failed')
-      }
+      () => console.log('create profiles table successful'),
+      () => console.log('create profiles table failed')
+    );
+  }
+
+  createSurveysTable() {
+    this.connection.executeSql(
+      "CREATE TABLE IF NOT EXISTS surveys" +
+      "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1));",
+      [],
+      () => console.log('create surveys table successful'),
+      () => console.log('create surveys table failed')
     );
   }
 
@@ -39,12 +50,20 @@ export default class DB {
       "monitor_varroa_mites_count, monitor_methods, treatment_methods) " +
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
       values,
-      () => {
-        console.log('profile insert successful')
-      },
-      (error) => {
-        console.log('profile insert failed', error)
-      }
+      () => console.log('profile insert successful'),
+      (error) => console.log('profile insert failed', error)
+    );
+  }
+
+  createSurvey(attributes) {
+    const values = [attributes.queenRight];
+    this.connection.executeSql(
+      "INSERT INTO surveys " +
+      "(queen_right) " +
+      "VALUES (?);",
+      values,
+      () => console.log('survey insert successful'),
+      (error) => console.log('survey insert failed', error)
     );
   }
 }

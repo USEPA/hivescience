@@ -39,7 +39,8 @@
                     <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>
                 </p>
                 <p>
-                    <button class="profile-form-next-button" type="button" data-next-page="2" aria-label="Go to the next page">
+                    <button class="profile-form-next-button" type="button" data-next-page="2"
+                            aria-label="Go to the next page">
                         Next
                     </button>
                 </p>
@@ -52,7 +53,8 @@
                     <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
                 </p>
                 <p>
-                    <button class="profile-form-next-button" type="button" data-next-page="3" aria-label="Go to the next page">
+                    <button class="profile-form-next-button" type="button" data-next-page="3"
+                            aria-label="Go to the next page">
                         Next
                     </button>
                 </p>
@@ -76,11 +78,13 @@
                     <legend>What methods do you use for counting Varroa mites?</legend>
                     <p>
                         <label for="screen-bottom-board">Screen bottom board</label>
-                        <input id="screen-bottom-board" type="checkbox" name="monitorMethods" value="Screen bottom board"/>
+                        <input id="screen-bottom-board" type="checkbox" name="monitorMethods"
+                               value="Screen bottom board"/>
                     </p>
                     <p>
                         <label for="powdered-sugar-roll">Powdered sugar roll</label>
-                        <input id="powdered-sugar-roll" type="checkbox" name="monitorMethods" value="Powdered sugar roll"/>
+                        <input id="powdered-sugar-roll" type="checkbox" name="monitorMethods"
+                               value="Powdered sugar roll"/>
                     </p>
                     <p>
                         <label for="alcohol-wash">Alcohol wash</label>
@@ -95,19 +99,23 @@
                     <legend>What methods do you use for treating Varroa mites?</legend>
                     <p>
                         <label for="requeening">Requeening with resistant stock</label>
-                        <input id="requeening" type="checkbox" name="treatmentMethods" value="Requeening with resistant stock"/>
+                        <input id="requeening" type="checkbox" name="treatmentMethods"
+                               value="Requeening with resistant stock"/>
                     </p>
                     <p>
                         <label for="drone-brood-removal">Drone brood removal</label>
-                        <input id="drone-brood-removal" type="checkbox" name="treatmentMethods" value="Drone brood removal"/>
+                        <input id="drone-brood-removal" type="checkbox" name="treatmentMethods"
+                               value="Drone brood removal"/>
                     </p>
                     <p>
                         <label for="brood-interruption">Brood interruption</label>
-                        <input id="brood-interruption" type="checkbox" name="treatmentMethods" value="Brood interruption"/>
+                        <input id="brood-interruption" type="checkbox" name="treatmentMethods"
+                               value="Brood interruption"/>
                     </p>
                     <p>
                         <label for="chemical-control-products">Chemical control products</label>
-                        <input id="chemical-control-products" type="checkbox" name="treatmentMethods" value="Chemical control products"/>
+                        <input id="chemical-control-products" type="checkbox" name="treatmentMethods"
+                               value="Chemical control products"/>
                     </p>
                     <p>
                         <label for="treatment-free">Treatment-free</label>
@@ -125,7 +133,22 @@
         </form>
     </script>
 
-    <script id="profile-view-template" type="text/template">
+    <script id="survey-form-template" type="text/template">
+        <form action="#" id="survey-form">
+            <h2>The Queen</h2>
+            <p>
+                Is your hive queen right?
+                <label for="queen-right-yes">Yes</label>
+                <input id="queen-right-yes" type="radio" name="queenRight" value="Y"/>
+                <label for="queen-right-no">No</label>
+                <input id="queen-right-no" type="radio" name="queenRight" value="N"/>
+            </p>
+            <input type="submit" value="Submit Report"/>
+        </form>
+    </script>
+
+    <script id="data-view-template" type="text/template">
+        <h1>Profile:</h1>
         <p><strong>Name:</strong> {{fullName}}</p>
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
@@ -134,6 +157,9 @@
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
         <p><strong>What methods do you use for treating Varroa mites?</strong> {{treatmentMethods}}</p>
+
+        <h1>Survey:</h1>
+        <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
     </script>
 </div>
 

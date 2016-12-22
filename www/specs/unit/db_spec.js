@@ -36,14 +36,21 @@ describe("DB", () => {
       });
     });
 
-    it("creates the necessary tables for this app", () => {
+    it("creates the profile table for this app", () => {
       db.createTables();
-      let sqlStatement = "CREATE TABLE IF NOT EXISTS profiles" +
+      const sqlStatement = "CREATE TABLE IF NOT EXISTS profiles" +
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(100), " +
         "full_name VARCHAR(100), zip_code VARCHAR(20), " +
         "number_of_colonies INTEGER, monitor_varroa_mites VARCHAR(1), " +
         "monitor_varroa_mites_count INTEGER, monitor_methods VARCHAR(255), " +
         "treatment_methods VARCHAR(255));";
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
+    });
+
+    it("creates the survey table for this app", () => {
+      db.createTables();
+      const sqlStatement = "CREATE TABLE IF NOT EXISTS surveys" +
+        "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1));";
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -72,6 +79,21 @@ describe("DB", () => {
           attributes.numberOfColonies, attributes.monitorVarroaMites,
           attributes.monitorVarroaMitesCount, attributes.monitorMethods,
           attributes.treatmentMethods]);
+    });
+  });
+
+  describe("createSurvey", () => {
+    it("persists a survey record with the provided attributes", () => {
+      const attributes = {
+        queenRight: "Y"
+      };
+
+      db.createSurvey(attributes);
+
+      const sqlStatement = "INSERT INTO surveys " +
+        "(queen_right) " +
+        "VALUES (?);";
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, [attributes.queenRight]);
     });
   });
 });

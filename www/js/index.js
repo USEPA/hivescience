@@ -1,16 +1,21 @@
 import $ from "jquery";
+import _ from "underscore";
 import Handlebars from "handlebars";
 import DB from "./db";
 import {formatAttributes} from "./helpers"
 
 let db;
 let profileFormTemplate;
-let profileViewTemplate;
+let surveyFormTemplate;
+let dataViewTemplate;
+let profileAttributes;
+let surveyAttributes;
 
 var app = {
   initialize: function() {
     profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
-    profileViewTemplate = Handlebars.compile($("#profile-view-template").html());
+    surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
+    dataViewTemplate = Handlebars.compile($("#data-view-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
@@ -31,11 +36,29 @@ var app = {
     const form = $("#profile-form");
     form.on("submit", (event) => {
       event.preventDefault();
-      const profileAttributes = formatAttributes(form.serializeArray());
+      profileAttributes = formatAttributes(form.serializeArray());
       db.createProfile(profileAttributes);
       $("#profile-form-template").hide();
-      $("#main-container").html(profileViewTemplate(profileAttributes));
+      this.renderSurveyForm();
     });
+  },
+
+  renderSurveyForm: function() {
+    $("#main-container").html(surveyFormTemplate());
+
+    const form = $("#survey-form");
+    form.on("submit", (event) => {
+      event.preventDefault();
+      surveyAttributes = formatAttributes(form.serializeArray());
+      db.createSurvey(surveyAttributes);
+      $("#survey-form-template").hide();
+      this.renderDataView();
+    });
+  },
+
+  renderDataView: function() {
+    const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
+    $("#main-container").html(dataViewTemplate(allAttributes));
   },
 
   // "private" methods
