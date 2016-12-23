@@ -33,8 +33,9 @@ export default class DB {
       "CREATE TABLE IF NOT EXISTS surveys" +
       "(id INTEGER PRIMARY KEY AUTOINCREMENT, queen_right VARCHAR(1), " +
       "queen_drone_laying VARCHAR(1), queen_age INTEGER, " +
-      "diseases TEXT, bee_kill VARCHAR(1), bee_kill_description TEXT," +
-      "honey_supers_on VARCHAR(1), honey_from_sealed_cells VARCHAR(1));",
+      "diseases TEXT, bee_kill VARCHAR(1), bee_kill_description TEXT, " +
+      "honey_supers_on VARCHAR(1), honey_from_sealed_cells VARCHAR(1), " +
+      "honey_from_brood VARCHAR(1));",
       [],
       () => console.log('create surveys table successful'),
       () => console.log('create surveys table failed')
@@ -63,12 +64,12 @@ export default class DB {
     const values = [attributes.queenRight, attributes.queenDroneLaying,
       attributes.queenAge, attributes.diseases, attributes.beeKill,
       attributes.beeKillDescription, attributes.honeySupersOn,
-      attributes.honeyFromSealedCells];
+      attributes.honeyFromSealedCells, attributes.honeyFromBrood];
     this.connection.executeSql(
       "INSERT INTO surveys " +
       "(queen_right, queen_drone_laying, queen_age, diseases, bee_kill, bee_kill_description," +
-      "honey_supers_on, honey_from_sealed_cells) " +
-      "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+      "honey_supers_on, honey_from_sealed_cells, honey_from_brood) " +
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
       values,
       () => console.log('survey insert successful'),
       (error) => console.log('survey insert failed', error)

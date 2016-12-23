@@ -255,7 +255,13 @@
                 <label for="honey-from-sealed-cells-no">No</label>
                 <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>
             </p>
-
+            <p>
+                Honey collected from brood nest?
+                <label for="honey-from-brood-yes">Yes</label>
+                <input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>
+                <label for="honey-from-brood-no">No</label>
+                <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -281,6 +287,7 @@
         <p><strong>Bee kill description</strong> {{beeKillDescription}}</p>
         <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
         <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
+        <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>
     </script>
 </div>
 
