@@ -262,6 +262,13 @@
                 <label for="honey-from-brood-no">No</label>
                 <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>
             </p>
+            <p>
+                Did you split or combine the colony after sampling?
+                <label for="split-or-combine-yes">Yes</label>
+                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>
+                <label for="split-or-combine-no">No</label>
+                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -288,6 +295,7 @@
         <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
         <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
         <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>
+        <p><strong>Did you split or combine the colony after sampling?</strong> {{splitOrCombine}}</p>
     </script>
 </div>
 
