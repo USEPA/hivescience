@@ -269,6 +269,14 @@
                 <label for="split-or-combine-no">No</label>
                 <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>
             </p>
+            <p>
+                <label for="sample-tube-code">Honey sample collection tube code:</label>
+                <input id="sample-tube-code"
+                       aria-label="Enter the honey sample collection tube code"
+                       placeholder="Enter number"
+                       type="number"
+                       name="sampleTubeCode"/>
+            </p>
             <input type="submit" value="Submit Report"/>
         </form>
     </script>
@@ -296,6 +304,7 @@
         <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
         <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>
         <p><strong>Did you split or combine the colony after sampling?</strong> {{splitOrCombine}}</p>
+        <p><strong>Honey sample collection tube code:</strong> {{sampleTubeCode}}</p>
     </script>
 </div>
 
