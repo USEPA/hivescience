@@ -81,8 +81,8 @@
                 <fieldset>
                     <legend>What methods do you use for counting Varroa mites?</legend>
                     <p>
-                        <label for="screen-bottom-board">Screen bottom board</label>
-                        <input id="screen-bottom-board" type="checkbox" name="monitorMethods"
+                        <label for="screen-bottom-board-count">Screen bottom board</label>
+                        <input id="screen-bottom-board-count" type="checkbox" name="monitorMethods"
                                value="Screen bottom board"/>
                     </p>
                     <p>
@@ -102,6 +102,14 @@
                 <fieldset>
                     <legend>What methods do you use for treating Varroa mites?</legend>
                     <p>
+                        <label for="no-treatment">No treatment</label>
+                        <input id="no-treatment" type="checkbox" name="treatmentMethods" value="No treatment"/>
+                    </p>
+                    <p>
+                        <label for="screen-bottom-board-treatment">Screen bottom board</label>
+                        <input id="screen-bottom-board-treatment" type="checkbox" name="treatmentMethods" value="Screen bottom board"/>
+                    </p>
+                    <p>
                         <label for="requeening">Requeening with resistant stock</label>
                         <input id="requeening" type="checkbox" name="treatmentMethods"
                                value="Requeening with resistant stock"/>
@@ -117,17 +125,8 @@
                                value="Brood interruption"/>
                     </p>
                     <p>
-                        <label for="chemical-control-products">Chemical control products</label>
-                        <input id="chemical-control-products" type="checkbox" name="treatmentMethods"
-                               value="Chemical control products"/>
-                    </p>
-                    <p>
-                        <label for="treatment-free">Treatment-free</label>
-                        <input id="treatment-free" type="checkbox" name="treatmentMethods" value="Treatment-free"/>
-                    </p>
-                    <p>
-                        <label for="other-treatment-methods">Other</label>
-                        <input id="other-treatment-methods" type="checkbox" name="treatmentMethods" value="Other"/>
+                        <label for="mite-treatment-applied">Mite treatment applied</label>
+                        <input id="mite-treatment-applied" type="checkbox" name="treatmentMethods" value="Mite treatment applied"/>
                     </p>
                 </fieldset>
                 <div class="navigation-footer">
