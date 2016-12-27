@@ -52,10 +52,6 @@
                     <label for="number-of-colonies">Number of colonies in your apiary:</label>
                     <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
                 </p>
-                <p>
-                    <label for="why-beekeep">What is your motivation for beekeeping?</label>
-                    <textarea id="why-beekeep" name="whyBeekeep"></textarea>
-                </p>
                 <div class="navigation-footer">
                     <button class="profile-form-back-button" type="button" data-next-page="1"
                             aria-label="Go back to the previous page">
@@ -162,10 +158,6 @@
                 <label for="queen-drone-laying-no">No</label>
                 <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N"/>
             </p>
-            <p>
-                <label for="queen-age">What is the age of your queen?</label>
-                <input id="queen-age" type="number" name="queenAge" placeholder="Enter age"/>
-            </p>
             <h2>Disease Presence</h2>
             <fieldset>
                 <legend>Did you observe any disease in your hive?</legend>
@@ -225,20 +217,6 @@
                            value="Other"/>
                 </p>
             </fieldset>
-            <p>
-                Are you experiencing a bee kill?
-                <label for="bee-kill-yes">Yes</label>
-                <input id="bee-kill-yes" type="radio" name="beeKill" value="Y"/>
-                <label for="bee-kill-no">No</label>
-                <input id="bee-kill-no" type="radio" name="beeKill" value="N"/>
-            </p>
-            <p>
-                <label for="bee-kill-description">If yes, describe:</label>
-                <textarea id="bee-kill-description"
-                          name="beeKillDescription"
-                          aria-label="Describe the bee kill you are experiencing"
-                          placeholder="Add your description here"></textarea>
-            </p>
 
             <h2>Honey</h2>
             <p>
@@ -289,7 +267,6 @@
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
-        <p><strong>What is your motivation for beekeeping?</strong> {{whyBeekeep}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
@@ -298,10 +275,7 @@
         <h1>Survey:</h1>
         <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
         <p><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</p>
-        <p><strong>What is the age of your queen?</strong> {{queenAge}}</p>
         <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
-        <p><strong>Are you experiencing a bee kill?</strong> {{beeKill}}</p>
-        <p><strong>Bee kill description</strong> {{beeKillDescription}}</p>
         <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
         <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
         <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>

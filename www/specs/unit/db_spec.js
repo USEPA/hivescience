@@ -48,8 +48,7 @@ describe("DB", () => {
         monitor_varroa_mites VARCHAR(1),
         monitor_varroa_mites_count INTEGER,
         monitor_methods VARCHAR(255),
-        treatment_methods VARCHAR(255),
-        why_beekeep TEXT
+        treatment_methods VARCHAR(255)
       );`;
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -87,10 +86,9 @@ describe("DB", () => {
           monitor_varroa_mites,
           monitor_varroa_mites_count,
           monitor_methods,
-          treatment_methods,
-          why_beekeep
+          treatment_methods
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
         const attributes = {
           email: "belinda@beekeepers.us",
@@ -100,8 +98,7 @@ describe("DB", () => {
           monitorVarroaMites: "N",
           monitorVarroaMitesCount: 345,
           monitorMethods: "Alcohol Wash, Other",
-          treatmentMethods: "Requeening with resistant stock, Other",
-          whyBeekeep: "To save the bees"
+          treatmentMethods: "Requeening with resistant stock, Other"
         };
 
         db.createProfile(attributes);
@@ -114,8 +111,7 @@ describe("DB", () => {
           attributes.monitorVarroaMites,
           attributes.monitorVarroaMitesCount,
           attributes.monitorMethods,
-          attributes.treatmentMethods,
-          attributes.whyBeekeep
+          attributes.treatmentMethods
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
@@ -128,25 +124,19 @@ describe("DB", () => {
         INSERT INTO surveys (
           queen_right,
           queen_drone_laying,
-          queen_age,
           diseases,
-          bee_kill,
-          bee_kill_description,
           honey_supers_on,
           honey_from_sealed_cells,
           honey_from_brood,
           split_or_combine,
           sample_tube_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
         const attributes = {
           queenRight: "Y",
           queenDroneLaying: "N",
-          queenAge: 3,
           diseases: "Abnormal cappings, Other",
-          beeKill: "Y",
-          beeKillDescription: "All the bees are exploding!",
           honeySupersOn: "Y",
           honeyFromSealedCells: "N",
           honeyFromBrood: "Y",
@@ -159,10 +149,7 @@ describe("DB", () => {
         const expectedAttributes = [
           attributes.queenRight,
           attributes.queenDroneLaying,
-          attributes.queenAge,
           attributes.diseases,
-          attributes.beeKill,
-          attributes.beeKillDescription,
           attributes.honeySupersOn,
           attributes.honeyFromSealedCells,
           attributes.honeyFromBrood,

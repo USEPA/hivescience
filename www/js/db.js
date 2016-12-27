@@ -26,8 +26,7 @@ export default class DB {
         monitor_varroa_mites VARCHAR(1),
         monitor_varroa_mites_count INTEGER,
         monitor_methods VARCHAR(255),
-        treatment_methods VARCHAR(255),
-        why_beekeep TEXT
+        treatment_methods VARCHAR(255)
       );`;
     this.connection.executeSql(
       sqlStatement,
@@ -71,10 +70,9 @@ export default class DB {
           monitor_varroa_mites,
           monitor_varroa_mites_count,
           monitor_methods,
-          treatment_methods,
-          why_beekeep
+          treatment_methods
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
     const values = [
       attributes.email,
       attributes.fullName,
@@ -83,8 +81,7 @@ export default class DB {
       attributes.monitorVarroaMites,
       attributes.monitorVarroaMitesCount,
       attributes.monitorMethods,
-      attributes.treatmentMethods,
-      attributes.whyBeekeep
+      attributes.treatmentMethods
     ];
     this.connection.executeSql(
       sqlStatement,
@@ -99,24 +96,18 @@ export default class DB {
         INSERT INTO surveys (
           queen_right,
           queen_drone_laying,
-          queen_age,
           diseases,
-          bee_kill,
-          bee_kill_description,
           honey_supers_on,
           honey_from_sealed_cells,
           honey_from_brood,
           split_or_combine,
           sample_tube_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
     const values = [
       attributes.queenRight,
       attributes.queenDroneLaying,
-      attributes.queenAge,
       attributes.diseases,
-      attributes.beeKill,
-      attributes.beeKillDescription,
       attributes.honeySupersOn,
       attributes.honeyFromSealedCells,
       attributes.honeyFromBrood,
