@@ -31,12 +31,7 @@ export default class DB {
         last_treatment_date TEXT,
         lost_colonies_over_winter VARCHAR(1)
       );`;
-    this.connection.executeSql(
-      sqlStatement,
-      [],
-      () => console.log('create profiles table successful'),
-      () => console.log('create profiles table failed')
-    );
+    this.executeSql(sqlStatement);
   }
 
   createSurveysTable() {
@@ -57,12 +52,7 @@ export default class DB {
         split_or_combine VARCHAR(1),
         sample_tube_code INTEGER
       );`;
-    this.connection.executeSql(
-      sqlStatement,
-      [],
-      () => console.log('create surveys table successful'),
-      () => console.log('create surveys table failed')
-    );
+    this.executeSql(sqlStatement);
   }
 
   createProfile(attributes) {
@@ -94,12 +84,7 @@ export default class DB {
       attributes.lastTreatmentDate,
       attributes.lostColoniesOverWinter
     ];
-    this.connection.executeSql(
-      sqlStatement,
-      values,
-      () => console.log('profile insert successful'),
-      (error) => console.log('profile insert failed', error)
-    );
+    this.executeSql(sqlStatement, values);
   }
 
   createSurvey(attributes) {
@@ -129,11 +114,16 @@ export default class DB {
       attributes.splitOrCombine,
       attributes.sampleTubeCode
     ];
+    this.executeSql(sqlStatement, values);
+  }
+
+  executeSql(sqlStatement, sqlVariables=[]) {
+    let action = sqlStatement.split("(")[0].trim();
     this.connection.executeSql(
       sqlStatement,
-      values,
-      () => console.log('survey insert successful'),
-      (error) => console.log('survey insert failed', error)
+      sqlVariables,
+      () => console.log(`${action} successful`),
+      (error) => console.log(`${action} failed`, error)
     );
   }
 }
