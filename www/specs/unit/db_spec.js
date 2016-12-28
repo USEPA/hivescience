@@ -53,7 +53,7 @@ describe("DB", () => {
         last_treatment_date TEXT,
         lost_colonies_over_winter VARCHAR(1)
       );`;
-      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement.replace(/\s+/g, " "));
     });
 
     it("creates the survey table for this app", () => {

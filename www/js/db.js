@@ -15,23 +15,36 @@ export default class DB {
     this.createSurveysTable();
   }
 
+  profileColumns() {
+    return [
+      ["email", "VARCHAR(100)"],
+      ["full_name", "VARCHAR(100)"],
+      ["zip_code", "VARCHAR(20)"],
+      ["number_of_colonies", "INTEGER"],
+      ["race_of_bees", "TEXT"],
+      ["monitor_varroa_mites", "VARCHAR(1)"],
+      ["monitor_varroa_mites_count", "INTEGER"],
+      ["monitor_methods", "VARCHAR(255)"],
+      ["treatment_methods", "VARCHAR(255)"],
+      ["last_treatment_date", "TEXT"],
+      ["lost_colonies_over_winter", "VARCHAR(1)"]
+    ];
+  };
+
+  profileColumnsForInsert() {
+    let joinedColumns = this.profileColumns().reduce(
+      (memo, elem) => memo.concat(elem.join(" ") + ", "),
+      "");
+    return joinedColumns.slice(0, -2);
+  }
+
   createProfilesTable() {
     const sqlStatement = `
       CREATE TABLE IF NOT EXISTS profiles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email VARCHAR(100),
-        full_name VARCHAR(100),
-        zip_code VARCHAR(20),
-        number_of_colonies INTEGER,
-        race_of_bees TEXT,
-        monitor_varroa_mites VARCHAR(1),
-        monitor_varroa_mites_count INTEGER,
-        monitor_methods VARCHAR(255),
-        treatment_methods VARCHAR(255),
-        last_treatment_date TEXT,
-        lost_colonies_over_winter VARCHAR(1)
+        ${this.profileColumnsForInsert()}
       );`;
-    this.executeSql(sqlStatement);
+    this.executeSql(sqlStatement.replace(/\s+/g, " "));
   }
 
   createSurveysTable() {
