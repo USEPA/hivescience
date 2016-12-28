@@ -27,7 +27,8 @@ export default class DB {
         monitor_varroa_mites VARCHAR(1),
         monitor_varroa_mites_count INTEGER,
         monitor_methods VARCHAR(255),
-        treatment_methods VARCHAR(255)
+        treatment_methods VARCHAR(255),
+        last_treatment_date TEXT
       );`;
     this.connection.executeSql(
       sqlStatement,
@@ -72,9 +73,10 @@ export default class DB {
           monitor_varroa_mites,
           monitor_varroa_mites_count,
           monitor_methods,
-          treatment_methods
+          treatment_methods,
+          last_treatment_date
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
     const values = [
       attributes.email,
       attributes.fullName,
@@ -84,7 +86,8 @@ export default class DB {
       attributes.monitorVarroaMites,
       attributes.monitorVarroaMitesCount,
       attributes.monitorMethods,
-      attributes.treatmentMethods
+      attributes.treatmentMethods,
+      attributes.lastTreatmentDate
     ];
     this.connection.executeSql(
       sqlStatement,

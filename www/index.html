@@ -171,6 +171,10 @@
                         <input id="mite-treatment-applied" type="checkbox" name="treatmentMethods" value="Mite treatment applied"/>
                     </p>
                 </fieldset>
+                <p>
+                    <label for="last-treatment-date">When was the hive last treated for Varroa mites?</label>
+                    <input id="last-treatment-date" type="date" name="lastTreatmentDate" value=""/>
+                </p>
                 <div class="navigation-footer">
                     <button class="profile-form-back-button" type="button" data-next-page="2"
                             aria-label="Go back to the previous page">
@@ -323,6 +327,7 @@
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
         <p><strong>What methods do you use for treating Varroa mites?</strong> {{treatmentMethods}}</p>
+        <p><strong>When was the hive last treated for Varroa mites?</strong> {{lastTreatmentDate}}</p>
 
         <h1>Survey:</h1>
         <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
