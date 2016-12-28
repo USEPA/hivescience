@@ -296,6 +296,13 @@
                 <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>
             </p>
             <p>
+                Are you feeding your bees supplementary sugar?<br/>
+                <label for="feeding-supplementary-sugar-yes">Yes</label>
+                <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>
+                <label for="feeding-supplementary-sugar-no">No</label>
+                <input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>
+            </p>
+            <p>
                 Honey collected from sealed honey cells?
                 <label for="honey-from-sealed-cells-yes">Yes</label>
                 <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>
@@ -350,6 +357,7 @@
         <p><strong>Did you observe any disease in your hive?</strong> {{diseases}}</p>
         <p><strong>Are honey supers on?</strong> {{honeySupersOn}}</p>
         <p><strong>Honey collected after supers removed?</strong> {{honeySupersRemoved}}</p>
+        <p><strong>Are you feeding your bees supplementary sugar?</strong> {{feedingSupplementarySugar}}</p>
         <p><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</p>
         <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>
         <p><strong>Did you split/combine the colony after sampling in the fall?</strong> {{splitOrCombine}}</p>

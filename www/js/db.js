@@ -51,6 +51,7 @@ export default class DB {
         bee_kill_description TEXT,
         honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
+        feeding_supplementary_sugar VARCHAR(1),
         honey_from_sealed_cells VARCHAR(1),
         honey_from_brood VARCHAR(1),
         split_or_combine VARCHAR(1),
@@ -109,18 +110,20 @@ export default class DB {
           diseases,
           honey_supers_on,
           honey_supers_removed,
+          feeding_supplementary_sugar,
           honey_from_sealed_cells,
           honey_from_brood,
           split_or_combine,
           sample_tube_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
     const values = [
       attributes.queenRight,
       attributes.queenDroneLaying,
       attributes.diseases,
       attributes.honeySupersOn,
       attributes.honeySupersRemoved,
+      attributes.feedingSupplementarySugar,
       attributes.honeyFromSealedCells,
       attributes.honeyFromBrood,
       attributes.splitOrCombine,
