@@ -1,3 +1,6 @@
+import _ from "underscore"
+import { toCamelCase } from "./helpers"
+
 export default class DB {
   constructor(sqlitePlugin) {
     this.sqlitePlugin = sqlitePlugin;
@@ -17,6 +20,8 @@ export default class DB {
 
   profileColumns() {
     return [
+      // Note the specific ordering, this is critical for the sql
+      // queries to work.
       ["email", "VARCHAR(100)"],
       ["full_name", "VARCHAR(100)"],
       ["zip_code", "VARCHAR(20)"],
@@ -30,6 +35,23 @@ export default class DB {
       ["lost_colonies_over_winter", "VARCHAR(1)"]
     ];
   };
+
+  extractProfileValuesFromAttributes(attributes) {
+    const columnNames = this.profileColumns()
+      .map((column_pair) => toCamelCase(column_pair[0]));
+    return columnNames.map((column_name) => attributes[column_name]);
+  }
+
+  profileColumnNames() {
+    return this.profileColumns()
+      .map((column_pair) => column_pair[0]).join(", ");
+  }
+
+  profileUpdatePreparedStatement() {
+    let statement = "";
+    _.times(this.profileColumns().length, () => statement += "?, ");
+    return statement.slice(0, -2);
+  }
 
   profileColumnsForInsert() {
     let joinedColumns = this.profileColumns().reduce(
@@ -70,34 +92,10 @@ export default class DB {
 
   createProfile(attributes) {
     const sqlStatement = `
-        INSERT INTO profiles (
-          email,
-          full_name,
-          zip_code,
-          number_of_colonies,
-          race_of_bees,
-          monitor_varroa_mites,
-          monitor_varroa_mites_count,
-          monitor_methods,
-          treatment_methods,
-          last_treatment_date,
-          lost_colonies_over_winter
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
-    const values = [
-      attributes.email,
-      attributes.fullName,
-      attributes.zipCode,
-      attributes.numberOfColonies,
-      attributes.raceOfBees,
-      attributes.monitorVarroaMites,
-      attributes.monitorVarroaMitesCount,
-      attributes.monitorMethods,
-      attributes.treatmentMethods,
-      attributes.lastTreatmentDate,
-      attributes.lostColoniesOverWinter
-    ];
-    this.executeSql(sqlStatement, values);
+      INSERT INTO profiles ( ${this.profileColumnNames()} )
+      VALUES (${this.profileUpdatePreparedStatement()});`;
+    const values = this.extractProfileValuesFromAttributes(attributes);
+    this.executeSql(sqlStatement.replace(/\s+/g, " "), values);
   }
 
   createSurvey(attributes) {
@@ -130,7 +128,7 @@ export default class DB {
     this.executeSql(sqlStatement, values);
   }
 
-  executeSql(sqlStatement, sqlVariables=[]) {
+  executeSql(sqlStatement, sqlVariables = []) {
     let action = sqlStatement.split("(")[0].trim();
     this.connection.executeSql(
       sqlStatement,

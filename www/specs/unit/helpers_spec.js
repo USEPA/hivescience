@@ -1,4 +1,5 @@
 import { formatAttributes } from "../../js/helpers"
+import { toCamelCase } from "../../js/helpers"
 import expect from "expect.js"
 
 describe("Helpers", () => {
@@ -28,4 +29,12 @@ describe("Helpers", () => {
       });
     });
   });
+
+  describe("toCamelCase", () => {
+    it("removes underscores and capitalizes subsequent words", () => {
+      const string = "lost_colonies_over_winter";
+      expect(toCamelCase(string)).to.eql("lostColoniesOverWinter");
+    });
+  });
+
 });

@@ -52,8 +52,8 @@ describe("DB", () => {
         treatment_methods VARCHAR(255),
         last_treatment_date TEXT,
         lost_colonies_over_winter VARCHAR(1)
-      );`;
-      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement.replace(/\s+/g, " "));
+      );`.replace(/\s+/g, " ");
+      sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
 
     it("creates the survey table for this app", () => {
@@ -96,7 +96,7 @@ describe("DB", () => {
           last_treatment_date,
           lost_colonies_over_winter
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           email: "belinda@beekeepers.us",

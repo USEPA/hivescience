@@ -10,3 +10,8 @@ export const formatAttributes = (attributes) => {
     return acc;
   }, {});
 };
+
+export const toCamelCase = (string) => {
+  const upperCaseMatcher = (match) => match[1].toUpperCase();
+  return string.replace(/(\_\w)/g, upperCaseMatcher);
+};
