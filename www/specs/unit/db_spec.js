@@ -63,10 +63,7 @@ describe("DB", () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         queen_right VARCHAR(1),
         queen_drone_laying VARCHAR(1),
-        queen_age INTEGER,
         diseases TEXT,
-        bee_kill VARCHAR(1),
-        bee_kill_description TEXT,
         honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
         feeding_supplementary_sugar VARCHAR(1),
@@ -74,7 +71,7 @@ describe("DB", () => {
         honey_from_brood VARCHAR(1),
         split_or_combine VARCHAR(1),
         sample_tube_code INTEGER
-      );`;
+      );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
   });
@@ -147,7 +144,7 @@ describe("DB", () => {
           split_or_combine,
           sample_tube_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
