@@ -22,6 +22,20 @@ var app = {
   onDeviceReady: function() {
     this.setupDatabase();
     this.renderProfileForm();
+    this.showRaceOfBeesOption();
+
+  },
+
+  showRaceOfBeesOption: function() {
+    $("#other-race-of-bees").on("click", () => {
+      if($("#other-race-of-bees").is(':checked')){
+        $("#input-race").show();
+      }
+      else{
+        $("#input-race-of-bees").val("");
+        $("#input-race").hide();
+      }
+    });
   },
 
   renderProfileForm: function() {

@@ -45,6 +45,7 @@ describe("DB", () => {
         full_name VARCHAR(100),
         zip_code VARCHAR(20),
         number_of_colonies INTEGER,
+        race_of_bees TEXT,
         monitor_varroa_mites VARCHAR(1),
         monitor_varroa_mites_count INTEGER,
         monitor_methods VARCHAR(255),
@@ -83,18 +84,20 @@ describe("DB", () => {
           full_name,
           zip_code,
           number_of_colonies,
+          race_of_bees,
           monitor_varroa_mites,
           monitor_varroa_mites_count,
           monitor_methods,
           treatment_methods
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`;
 
         const attributes = {
           email: "belinda@beekeepers.us",
           fullName: "Belinda Bees",
           zipCode: "12345-5555",
           numberOfColonies: 111,
+          raceOfBees: "Unknown, Italian, Other",
           monitorVarroaMites: "N",
           monitorVarroaMitesCount: 345,
           monitorMethods: "Alcohol Wash, Other",
@@ -108,6 +111,7 @@ describe("DB", () => {
           attributes.fullName,
           attributes.zipCode,
           attributes.numberOfColonies,
+          attributes.raceOfBees,
           attributes.monitorVarroaMites,
           attributes.monitorVarroaMitesCount,
           attributes.monitorMethods,

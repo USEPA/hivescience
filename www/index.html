@@ -52,6 +52,48 @@
                     <label for="number-of-colonies">Number of colonies in your apiary:</label>
                     <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
                 </p>
+                <fieldset>
+                    <legend>Race of bees in monitored hive:</legend>
+                    <p>
+                        <label for="unknown">Unknown</label>
+                        <input id="unknown" type="checkbox" name="raceOfBees" value="Unknown"/>
+                    </p>
+                    <p>
+                        <label for="italian">Italian</label>
+                        <input id="italian" type="checkbox" name="raceOfBees" value="Italian"/>
+                    </p>
+                    <p>
+                        <label for="carnolian">Carnolian</label>
+                        <input id="carnolian" type="checkbox" name="raceOfBees"
+                               value="Carnolian"/>
+                    </p>
+                    <p>
+                        <label for="caucasian">Caucasian</label>
+                        <input id="caucasian" type="checkbox" name="raceOfBees"
+                               value="Caucasian"/>
+                    </p>
+                    <p>
+                        <label for="german-black-bees">German Black Bees</label>
+                        <input id="german-black-bees" type="checkbox" name="raceOfBees"
+                               value="German Black Bees"/>
+                    </p>
+                    <p>
+                        <label for="russian">Russian</label>
+                        <input id="russian" type="checkbox" name="raceOfBees" value="Russian"/>
+                    </p>
+                    <p>
+                        <label for="buckfast">Buckfast</label>
+                        <input id="buckfast" type="checkbox" name="raceOfBees" value="Buckfast"/>
+                    </p>
+                    <p>
+                        <label for="other-race-of-bees">Other</label>
+                        <input id="other-race-of-bees" type="checkbox" name="raceOfBees" value="Other"/>
+                    </p>
+                    <p id="input-race" class="hidden">
+                        <label for="input-race-of-bees">Other race</label>
+                        <input id="input-race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees"/>
+                    </p>
+                </fieldset>
                 <div class="navigation-footer">
                     <button class="profile-form-back-button" type="button" data-next-page="1"
                             aria-label="Go back to the previous page">
@@ -276,6 +318,7 @@
         <p><strong>Email:</strong> {{email}}</p>
         <p><strong>Zip code:</strong> {{zipCode}}</p>
         <p><strong>Number of Colonies:</strong> {{numberOfColonies}}</p>
+        <p><strong>Race of bees in monitored hive:</strong> {{raceOfBees}}</p>
         <p><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</p>
         <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}</p>
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
