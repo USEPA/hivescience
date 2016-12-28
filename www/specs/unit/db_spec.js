@@ -50,7 +50,8 @@ describe("DB", () => {
         monitor_varroa_mites_count INTEGER,
         monitor_methods VARCHAR(255),
         treatment_methods VARCHAR(255),
-        last_treatment_date TEXT
+        last_treatment_date TEXT,
+        lost_colonies_over_winter VARCHAR(1)
       );`;
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -90,9 +91,10 @@ describe("DB", () => {
           monitor_varroa_mites_count,
           monitor_methods,
           treatment_methods,
-          last_treatment_date
+          last_treatment_date,
+          lost_colonies_over_winter
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
 
         const attributes = {
           email: "belinda@beekeepers.us",
@@ -104,7 +106,8 @@ describe("DB", () => {
           monitorVarroaMitesCount: 345,
           monitorMethods: "Alcohol Wash, Other",
           treatmentMethods: "Requeening with resistant stock, Other",
-          lastTreatmentDate: "2016-03-20"
+          lastTreatmentDate: "2016-03-20",
+          lostColoniesOverWinter: "Y"
         };
 
         db.createProfile(attributes);
@@ -119,7 +122,8 @@ describe("DB", () => {
           attributes.monitorVarroaMitesCount,
           attributes.monitorMethods,
           attributes.treatmentMethods,
-          attributes.lastTreatmentDate
+          attributes.lastTreatmentDate,
+          attributes.lostColoniesOverWinter
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

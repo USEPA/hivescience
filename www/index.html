@@ -175,6 +175,13 @@
                     <label for="last-treatment-date">When was the hive last treated for Varroa mites?</label>
                     <input id="last-treatment-date" type="date" name="lastTreatmentDate" value=""/>
                 </p>
+                <p>
+                    Have you lost any colonies in your apiary over winter?<br/>
+                    <label for="lost-colonies-over-winter-yes">Yes</label>
+                    <input id="lost-colonies-over-winter-yes" type="radio" name="lostColoniesOverWinter" value="Y"/>
+                    <label for="lost-colonies-over-winter-no">No</label>
+                    <input id="lost-colonies-over-winter-no" type="radio" name="lostColoniesOverWinter" value="N"/>
+                </p>
                 <div class="navigation-footer">
                     <button class="profile-form-back-button" type="button" data-next-page="2"
                             aria-label="Go back to the previous page">
@@ -328,6 +335,7 @@
         <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</p>
         <p><strong>What methods do you use for treating Varroa mites?</strong> {{treatmentMethods}}</p>
         <p><strong>When was the hive last treated for Varroa mites?</strong> {{lastTreatmentDate}}</p>
+        <p><strong>Have you lost any colonies in your apiary over winter?</strong> {{lostColoniesOverWinter}}</p>
 
         <h1>Survey:</h1>
         <p><strong>Is the hive Queen right?</strong> {{queenRight}}</p>
