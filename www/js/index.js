@@ -22,11 +22,11 @@ var app = {
   onDeviceReady: function() {
     this.setupDatabase();
     this.renderProfileForm();
-    this.showRaceOfBeesOption();
+    this.showOption();
 
   },
 
-  showRaceOfBeesOption: function() {
+  showOption: function() {
     $("#other-race-of-bees").on("click", () => {
       if($("#other-race-of-bees").is(':checked')){
         $("#input-race").show();
@@ -36,6 +36,37 @@ var app = {
         $("#input-race").hide();
       }
     });
+
+    $("#other-monitor-methods").on("click", () => {
+      if($("#other-monitor-methods").is(':checked')){
+        $("#input-method").show();
+      }
+      else{
+        $("#input-count-method").val("");
+        $("#input-method").hide();
+      }
+    });
+
+    $("#other-treatment-method").on("click", () => {
+      if($("#other-treatment-method").is(':checked')){
+        $("#input-treatment").show();
+      }
+      else{
+        $("#input-treatment-method").val("");
+        $("#input-treatment").hide();
+      }
+    });
+
+    $("#other-diseases").on("click", () => {
+      if($("#other-diseases").is(':checked')){
+        $("#input-disease").show();
+      }
+      else{
+        $("#input-other-disease").val("");
+        $("#input-disease").hide();
+      }
+    });
+
   },
 
   renderProfileForm: function() {
@@ -60,6 +91,7 @@ var app = {
       db.createProfile(profileAttributes);
       $("#profile-form-template").hide();
       this.renderSurveyForm();
+      this.showOption();
     });
   },
 
@@ -88,6 +120,8 @@ var app = {
     db.initialize();
     db.createTables();
   }
+
+
 };
 
 app.initialize();

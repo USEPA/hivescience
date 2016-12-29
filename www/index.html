@@ -18,6 +18,8 @@
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Hello World</title>
+
+
 </head>
 
 <body>
@@ -140,6 +142,10 @@
                         <label for="other-monitor-methods">Other</label>
                         <input id="other-monitor-methods" type="checkbox" name="monitorMethods" value="Other"/>
                     </p>
+                    <p id="input-method" class="hidden">
+                        <label for="input-count-method">Other count method</label>
+                        <input id="input-count-method" type="text" name="monitorMethods" placeholder="Enter count method"/>
+                    </p>
                 </fieldset>
                 <fieldset>
                     <legend>What methods do you use for treating Varroa mites?</legend>
@@ -169,6 +175,14 @@
                     <p>
                         <label for="mite-treatment-applied">Mite treatment applied</label>
                         <input id="mite-treatment-applied" type="checkbox" name="treatmentMethods" value="Mite treatment applied"/>
+                    </p>
+                    <p>
+                        <label for="other-treatment-method">Other</label>
+                        <input id="other-treatment-method" type="checkbox" name="treatmentMethods" value="Other"/>
+                    </p>
+                    <p id="input-treatment" class="hidden">
+                        <label for="input-treatment-method">Other treatment method</label>
+                        <input id="input-treatment-method" type="text" name="treatmentMethods" placeholder="Enter treatment method"/>
                     </p>
                 </fieldset>
                 <p>
@@ -278,6 +292,10 @@
                     <input id="other-diseases" type="checkbox" name="diseases"
                            value="Other"/>
                 </p>
+                <p id="input-disease" class="hidden">
+                    <label for="input-other-disease">Other disease</label>
+                    <input id="input-other-disease" type="text" name="diseases" placeholder="Enter disease"/>
+                </p>
             </fieldset>
 
             <h2>Honey</h2>
@@ -367,6 +385,7 @@
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="dist/bundle.js"></script>
+
 </body>
 
 </html>
