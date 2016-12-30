@@ -380,6 +380,35 @@
         <p><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</p>
         <p><strong>Did you split/combine the colony after sampling in the fall?</strong> {{splitOrCombine}}</p>
         <p><strong>Honey sample collection tube code:</strong> {{sampleTubeCode}}</p>
+
+        <h1>What was submitted in the database</h1>
+        <pre>{{profileRow}}</pre>
+
+        <h2>Profile:</h2>
+        <p><strong>Name:</strong> {{profileRow.full_name}}</p>
+        <p><strong>Email:</strong> {{profileRow.email}}</p>
+        <p><strong>Zip code:</strong> {{profileRow.zip_code}}</p>
+        <p><strong>Number of Colonies:</strong> {{profileRow.number_of_colonies}}</p>
+        <p><strong>Race of bees in monitored hive:</strong> {{profileRow.race_of_bees}}</p>
+        <p><strong>Do you monitor for Varroa Mites?</strong> {{profileRow.monitor_varroa_mites}}</p>
+        <p><strong>How many times per year do you monitor for Varroa Mites?</strong> {{profileRow.monitor_varroa_mites_count}}</p>
+        <p><strong>What methods do you use to monitor Varroa Mites?</strong> {{profileRow.monitor_methods}}</p>
+        <p><strong>What methods do you use for treating Varroa mites?</strong> {{profileRow.treatment_methods}}</p>
+        <p><strong>When was the hive last treated for Varroa mites?</strong> {{profileRow.last_treatment_date}}</p>
+        <p><strong>Have you lost any colonies in your apiary over winter?</strong> {{profileRow.lost_colonies_over_winter}}</p>
+
+        <h2>Survey:</h2>
+        <p><strong>Is the hive Queen right?</strong> {{surveyRow.queen_right}}</p>
+        <p><strong>Is the Queen drone laying?</strong> {{surveyRow.queen_drone_laying}}</p>
+        <p><strong>Did you observe any disease in your hive?</strong> {{surveyRow.diseases}}</p>
+        <p><strong>Are honey supers on?</strong> {{surveyRow.honey_supers_on}}</p>
+        <p><strong>Honey collected after supers removed?</strong> {{surveyRow.honey_supers_removed}}</p>
+        <p><strong>Are you feeding your bees supplementary sugar?</strong> {{surveyRow.feeding_supplementary_sugar}}</p>
+        <p><strong>Honey collected from sealed honey cells?</strong> {{surveyRow.honey_from_sealed_cells}}</p>
+        <p><strong>Honey collected from brood nest?</strong> {{surveyRow.honey_from_brood}}</p>
+        <p><strong>Did you split/combine the colony after sampling in the fall?</strong> {{surveyRow.split_or_combine}}</p>
+        <p><strong>Honey sample collection tube code:</strong> {{surveyRow.sample_tube_code}}</p>
+
     </script>
 </div>
 

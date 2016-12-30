@@ -1,14 +1,16 @@
 import ghost from "ghostjs"
 import expect from "expect.js"
 import sinon from "sinon"
-import DB from "../../js/db";
+import DB from "../../js/db"
+import Q from "Q"
 
 describe("DB", () => {
-  const connection = {
+  let connection = {
     executeSql: () => {
     }
   };
-  const sqlitePlugin = {
+
+  let sqlitePlugin = {
     openDatabase: () => connection
   };
 
@@ -17,7 +19,6 @@ describe("DB", () => {
   let db;
 
   beforeEach(() => {
-    executeSqlSpy = sinon.spy(connection, "executeSql");
     openDatabaseSpy = sinon.spy(sqlitePlugin, "openDatabase");
     db = new DB(sqlitePlugin);
     db.initialize();
@@ -25,10 +26,17 @@ describe("DB", () => {
 
   afterEach(() => {
     openDatabaseSpy.restore();
-    executeSqlSpy.restore();
   });
 
   describe("initialize", () => {
+    beforeEach(() => {
+      executeSqlSpy = sinon.spy(connection, "executeSql");
+    });
+
+    afterEach(() => {
+      executeSqlSpy.restore();
+    });
+
     it("connects to the DB", () => {
       sinon.assert.calledWithMatch(openDatabaseSpy, {
         name: "buzz_buzz",
@@ -77,6 +85,14 @@ describe("DB", () => {
   });
 
   describe("create", () => {
+    beforeEach(() => {
+      executeSqlSpy = sinon.spy(connection, "executeSql");
+    });
+
+    afterEach(() => {
+      executeSqlSpy.restore();
+    });
+
     describe("createProfile", () => {
       it("persists a profile record with the provided attributes", () => {
         const sqlStatement = `
@@ -177,5 +193,24 @@ describe("DB", () => {
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
       });
     });
+  });
+
+  describe("reading", () => {
+    describe("findAll", () => {
+      it("should return an array of all the records for the given repository", async function() {
+        const sqlStatement = "SELECT * FROM profiles;";
+        let rowsArray = [{id: 1, full_name: "Belinda", email: "belinda@gmail.com"}];
+        let rows = {item: (index) => rowsArray[0], length: 1};
+        let sqlResult = {rows: rows, rowsAffected: 0, insertId: 2};
+        let defer = Q.defer();
+        connection.executeSql = (sql, variables, callback) => {
+          expect(sql).to.equal(sqlStatement);
+          defer.resolve(callback(sqlResult));
+          return defer.promise;
+        };
+        let profiles = await db.allProfiles();
+        expect(profiles).to.eql(rowsArray);
+      })
+    })
   });
 });
