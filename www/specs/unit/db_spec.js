@@ -1,4 +1,3 @@
-import ghost from "ghostjs"
 import expect from "expect.js"
 import sinon from "sinon"
 import DB from "../../js/db"

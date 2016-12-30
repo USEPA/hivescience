@@ -5,6 +5,8 @@ import DB from "./db";
 import {formatAttributes} from "./helpers"
 import ProfileRepository from "./repositories/profile_repository"
 import SurveyRepository from "./repositories/survey_repository"
+import GeoPlatformGateway from "./geo_platform/geo_platform_gateway"
+import AttributesFormatter from "./geo_platform/attributes_formatter"
 
 require("babel-core/register");
 require("babel-polyfill");
@@ -80,6 +82,7 @@ let app = {
         const surveys = await surveyRepository.findAll();
         profileAttributes['profileRow'] = _.last(profiles);
         surveyAttributes['surveyRow'] = _.last(surveys);
+        this.syncToGeoPlatform(_.last(profiles), _.last(surveys));
         const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
         $("#main-container").html(dataViewTemplate(allAttributes));
     },
@@ -97,6 +100,12 @@ let app = {
         surveyRepository = new SurveyRepository(db);
         profileRepository.createTable();
         surveyRepository.createTable();
+    },
+
+    syncToGeoPlatform(profile, survey) {
+        const formatter = new AttributesFormatter(profile, survey);
+        const geoPlatform = new GeoPlatformGateway(formatter.execute());
+        geoPlatform.sync();
     },
 
     _setupOption: function (parentId, childId) {
