@@ -3,6 +3,8 @@ import expect from "expect.js"
 import sinon from "sinon"
 import DB from "../../js/db"
 import Q from "Q"
+import ProfileRepository from "../../js/repositories/profile_repository"
+import SurveyRepository from "../../js/repositories/survey_repository"
 
 describe("DB", () => {
   let connection = {
@@ -17,11 +19,15 @@ describe("DB", () => {
   let executeSqlSpy;
   let openDatabaseSpy;
   let db;
+  let profileRepository;
+  let surveyRepository;
 
   beforeEach(() => {
     openDatabaseSpy = sinon.spy(sqlitePlugin, "openDatabase");
     db = new DB(sqlitePlugin);
     db.initialize();
+    profileRepository = new ProfileRepository(db);
+    surveyRepository = new SurveyRepository(db);
   });
 
   afterEach(() => {
@@ -45,7 +51,7 @@ describe("DB", () => {
     });
 
     it("creates the profile table for this app", () => {
-      db.createTables();
+      profileRepository.createTable();
       const sqlStatement = `
       CREATE TABLE IF NOT EXISTS profiles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,7 +71,7 @@ describe("DB", () => {
     });
 
     it("creates the survey table for this app", () => {
-      db.createTables();
+      surveyRepository.createTable();
       const sqlStatement = `
       CREATE TABLE IF NOT EXISTS surveys (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -125,7 +131,7 @@ describe("DB", () => {
           lostColoniesOverWinter: "Y"
         };
 
-        db.createProfile(attributes);
+        profileRepository.createRecord(attributes);
 
         const expectedAttributes = [
           attributes.email,
@@ -175,7 +181,7 @@ describe("DB", () => {
           sampleTubeCode: 1234567890
         };
 
-        db.createSurvey(attributes);
+        surveyRepository.createRecord(attributes);
 
         const expectedAttributes = [
           attributes.queenRight,
@@ -208,7 +214,7 @@ describe("DB", () => {
           defer.resolve(callback(sqlResult));
           return defer.promise;
         };
-        let profiles = await db.allProfiles();
+        let profiles = await profileRepository.findAll();
         expect(profiles).to.eql(rowsArray);
       })
     })

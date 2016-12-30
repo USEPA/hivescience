@@ -3,6 +3,8 @@ import $ from "jquery";
 import Handlebars from "handlebars";
 import DB from "./db";
 import {formatAttributes} from "./helpers"
+import ProfileRepository from "./repositories/profile_repository"
+import SurveyRepository from "./repositories/survey_repository"
 
 require("babel-core/register");
 require("babel-polyfill");
@@ -13,8 +15,10 @@ let surveyFormTemplate;
 let dataViewTemplate;
 let profileAttributes;
 let surveyAttributes;
+let profileRepository;
+let surveyRepository;
 
-var app = {
+let app = {
   initialize: function () {
     profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
     surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
@@ -68,7 +72,6 @@ var app = {
         $("#input-disease").hide();
       }
     });
-
   },
 
   renderProfileForm: function () {
@@ -90,7 +93,7 @@ var app = {
     form.on("submit", (event) => {
       event.preventDefault();
       profileAttributes = formatAttributes(form.serializeArray());
-      db.createProfile(profileAttributes);
+      profileRepository.createRecord(profileAttributes);
       $("#profile-form-template").hide();
       this.renderSurveyForm();
       this.showOption();
@@ -103,15 +106,15 @@ var app = {
     form.on("submit", (event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
-      db.createSurvey(surveyAttributes);
+      surveyRepository.createRecord(surveyAttributes);
       $("#survey-form-template").hide();
       this.renderDataView();
     });
   },
 
   renderDataView: async function () {
-    const profiles = await db.allProfiles();
-    const surveys = await db.allSurveys();
+    const profiles = await profileRepository.findAll();
+    const surveys = await surveyRepository.findAll();
     profileAttributes['profileRow'] = _.last(profiles);
     surveyAttributes['surveyRow'] = _.last(surveys);
     const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
@@ -123,7 +126,14 @@ var app = {
   setupDatabase: function () {
     db = new DB(window.sqlitePlugin);
     db.initialize();
-    db.createTables();
+    this.setupRepositories(db);
+  },
+
+  setupRepositories: function(db) {
+    profileRepository = new ProfileRepository(db);
+    surveyRepository = new SurveyRepository(db);
+    profileRepository.createTable();
+    surveyRepository.createTable();
   }
 
 };
