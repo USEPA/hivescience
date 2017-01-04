@@ -19,123 +19,96 @@ let profileRepository;
 let surveyRepository;
 
 let app = {
-  initialize: function () {
-    profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
-    surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
-    dataViewTemplate = Handlebars.compile($("#data-view-template").html());
-    document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
-  },
+    initialize: function () {
+        profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
+        surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
+        dataViewTemplate = Handlebars.compile($("#data-view-template").html());
+        document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
+    },
 
-  onDeviceReady: function () {
-    this.setupDatabase();
-    this.renderProfileForm();
-    this.showOption();
-  },
+    onDeviceReady: function () {
+        this._setupDatabase();
+        this.renderProfileForm();
+    },
 
-  showOption: function () {
-    $("#other-race-of-bees").on("click", () => {
-      if ($("#other-race-of-bees").is(':checked')) {
-        $("#input-race").show();
-      }
-      else {
-        $("#input-race-of-bees").val("");
-        $("#input-race").hide();
-      }
-    });
+    renderProfileForm: function () {
+        $("#main-container").html(profileFormTemplate());
 
-    $("#other-monitor-methods").on("click", () => {
-      if ($("#other-monitor-methods").is(':checked')) {
-        $("#input-method").show();
-      }
-      else {
-        $("#input-count-method").val("");
-        $("#input-method").hide();
-      }
-    });
+        $(".profile-form-back-button").on("click", (event) => {
+            const pageNumber = parseInt($(event.target).data("next-page"), 10);
+            $(`#profile-form-page-${pageNumber + 1}`).hide();
+            $(`#profile-form-page-${pageNumber}`).show();
+        });
 
-    $("#other-treatment-method").on("click", () => {
-      if ($("#other-treatment-method").is(':checked')) {
-        $("#input-treatment").show();
-      }
-      else {
-        $("#input-treatment-method").val("");
-        $("#input-treatment").hide();
-      }
-    });
+        $(".profile-form-next-button").on("click", (event) => {
+            const pageNumber = parseInt($(event.target).data("next-page"), 10);
+            $(`#profile-form-page-${pageNumber - 1}`).hide();
+            $(`#profile-form-page-${pageNumber}`).show();
+        });
 
-    $("#other-diseases").on("click", () => {
-      if ($("#other-diseases").is(':checked')) {
-        $("#input-disease").show();
-      }
-      else {
-        $("#input-other-disease").val("");
-        $("#input-disease").hide();
-      }
-    });
-  },
+        this._setupOption("#other-race-of-bees", "#input-race");
+        this._setupOption("#other-monitor-method", "#input-method");
+        this._setupOption("#other-treatment-method", "#input-treatment");
 
-  renderProfileForm: function () {
-    $("#main-container").html(profileFormTemplate());
+        const form = $("#profile-form");
+        form.on("submit", (event) => {
+            event.preventDefault();
+            profileAttributes = formatAttributes(form.serializeArray());
+            profileRepository.createRecord(profileAttributes);
+            $("#profile-form-template").hide();
+            this.renderSurveyForm();
+        });
+    },
 
-    $(".profile-form-back-button").on("click", (event) => {
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      $(`#profile-form-page-${pageNumber + 1}`).hide();
-      $(`#profile-form-page-${pageNumber}`).show();
-    });
+    renderSurveyForm: function () {
+        $("#main-container").html(surveyFormTemplate());
 
-    $(".profile-form-next-button").on("click", (event) => {
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      $(`#profile-form-page-${pageNumber - 1}`).hide();
-      $(`#profile-form-page-${pageNumber}`).show();
-    });
+        this._setupOption("#other-disease", "#input-disease");
 
-    const form = $("#profile-form");
-    form.on("submit", (event) => {
-      event.preventDefault();
-      profileAttributes = formatAttributes(form.serializeArray());
-      profileRepository.createRecord(profileAttributes);
-      $("#profile-form-template").hide();
-      this.renderSurveyForm();
-      this.showOption();
-    });
-  },
+        const form = $("#survey-form");
+        form.on("submit", (event) => {
+            event.preventDefault();
+            surveyAttributes = formatAttributes(form.serializeArray());
+            surveyRepository.createRecord(surveyAttributes);
+            $("#survey-form-template").hide();
+            this.renderDataView();
+        });
+    },
 
-  renderSurveyForm: function () {
-    $("#main-container").html(surveyFormTemplate());
-    const form = $("#survey-form");
-    form.on("submit", (event) => {
-      event.preventDefault();
-      surveyAttributes = formatAttributes(form.serializeArray());
-      surveyRepository.createRecord(surveyAttributes);
-      $("#survey-form-template").hide();
-      this.renderDataView();
-    });
-  },
+    renderDataView: async function () {
+        const profiles = await profileRepository.findAll();
+        const surveys = await surveyRepository.findAll();
+        profileAttributes['profileRow'] = _.last(profiles);
+        surveyAttributes['surveyRow'] = _.last(surveys);
+        const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
+        $("#main-container").html(dataViewTemplate(allAttributes));
+    },
 
-  renderDataView: async function () {
-    const profiles = await profileRepository.findAll();
-    const surveys = await surveyRepository.findAll();
-    profileAttributes['profileRow'] = _.last(profiles);
-    surveyAttributes['surveyRow'] = _.last(surveys);
-    const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
-    $("#main-container").html(dataViewTemplate(allAttributes));
-  },
+    // "private" methods
 
-  // "private" methods
+    _setupDatabase: function () {
+        db = new DB(window.sqlitePlugin);
+        db.initialize();
+        this._setupRepositories(db);
+    },
 
-  setupDatabase: function () {
-    db = new DB(window.sqlitePlugin);
-    db.initialize();
-    this.setupRepositories(db);
-  },
+    _setupRepositories: function (db) {
+        profileRepository = new ProfileRepository(db);
+        surveyRepository = new SurveyRepository(db);
+        profileRepository.createTable();
+        surveyRepository.createTable();
+    },
 
-  setupRepositories: function(db) {
-    profileRepository = new ProfileRepository(db);
-    surveyRepository = new SurveyRepository(db);
-    profileRepository.createTable();
-    surveyRepository.createTable();
-  }
-
+    _setupOption: function (parentId, childId) {
+        $(parentId).on("click", () => {
+            if ($(parentId).is(":checked")) {
+                $(childId).show();
+            } else {
+                $(`${childId} > input`).val("");
+                $(childId).hide();
+            }
+        });
+    }
 };
 
 app.initialize();
