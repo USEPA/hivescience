@@ -52,6 +52,8 @@ let app = {
         this._setupOption("#other-monitor-method", "#input-method");
         this._setupOption("#other-treatment-method", "#input-treatment");
 
+        this._setupRadioButtonsAria();
+
         const form = $("#profile-form");
         form.on("submit", (event) => {
             event.preventDefault();
@@ -66,6 +68,8 @@ let app = {
         $("#main-container").html(surveyFormTemplate());
 
         this._setupOption("#other-disease", "#input-disease");
+
+        this._setupRadioButtonsAria();
 
         const form = $("#survey-form");
         form.on("submit", (event) => {
@@ -116,6 +120,16 @@ let app = {
                 $(`${childId} > input`).val("");
                 $(childId).hide();
             }
+        });
+    },
+
+    _setupRadioButtonsAria: function () {
+        $("input[type=radio]").on("change", (event) => {
+            const label = $(`label[for=${event.target.id}]`);
+            const siblingLabels = label.siblings("label");
+            const checked = event.target.checked;
+            siblingLabels.attr("aria-checked", !checked);
+            label.attr("aria-checked", checked);
         });
     }
 };

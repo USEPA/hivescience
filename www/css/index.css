@@ -1,61 +1,196 @@
 html {
-    position: relative;
     min-height: 100%;
+    position: relative;
 }
 
 body {
+    background-color: rgb(246, 247, 250);
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #EEEEEE;
     margin: 0 0 100px;
 }
 
-h1 {
-    color: #4A4A4A;
-    font-size: 1.75em;
+form {
+    max-width: 300px;
 }
 
-label {
+h1 {
+    color: rgb(48, 50, 68);
+    font-size: 18pt;
+}
+
+label, legend {
+    color: rgb(52, 54, 61);
     display: block;
-    color: #7F7F7F;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input[type=text], [type=email], [type=number], [type=date] {
+    background-color:white;
+    border: 1px;
+    border-color: rgb(218, 220, 228);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-style: solid;
+    color: rgb(146, 149, 156);
+    font-size: 12pt;
+    height: 35px;
+    margin-bottom: 32px;
+    padding-left: 18px;
+    width: 278px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type=checkbox] {
+    background-color: white;
+    border: 1px rgb(218, 220, 228) solid;
+    height: 20px;
+    margin: 0px 15px 0 0;
+    width: 20px;
+    -webkit-appearance: none;
+}
+
+input[type=checkbox]:checked {
+    background-color: rgb(55, 187, 155);
+}
+
+legend {
+    padding: 0;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+}
+
+fieldset label {
+    align-items: center;
+    display: flex;
+    font-size: 12pt;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+    display: table-cell;
 }
 
 #main-container {
+    display: flex;
     justify-content: center;
 }
 
-.navigation-footer {
-    position: absolute;
-    bottom: 0;
+#submit-break {
+    border-top: 1px rgb(216, 216, 216) solid;
     left: 0;
-    height: 100px;
+    position: absolute;
+    right: 0;
+}
+
+#submit-report {
+    background-color: rgb(55, 187, 155);
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    font-size: 10pt;
+    height: 60px;
+    letter-spacing: 1.5pt;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-transform: uppercase;
+    width: 300px;
+    -webkit-appearance: none;
+}
+
+#data-view {
+    display: block;
+}
+
+.profile-header, .survey-header {
+    margin-bottom: 32px;
+    margin-top: 125px;
+}
+
+.radio-container {
+    border-color: rgb(218, 220, 228);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    display: flex;
+    height: 35px;
+    margin-bottom: 32px;
+    width: 296px;
+}
+
+.radio-container label {
+    align-items: center;
+    background-color: white;
+    display: inline-flex;
+    font-size: 12pt;
+    font-weight: normal;
+    height: 100%;
+    justify-content: center;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.radio-container label:first-of-type {
+    border-right: 1px solid rgb(218, 220, 228);
+}
+
+.radio-container input[type=radio] {
+    display: none;
+}
+
+.radio-container input[type=radio]:checked + label {
+    background-color: rgb(218, 220, 228);
+}
+
+.navigation-footer {
+    background-color: rgb(51, 102, 153);
+    bottom: 0;
+    display: flex;
+    height: 50px;
+    left: 0;
+    position: fixed;
     width: 100%;
-    background-color: #FFFFFF;
+}
+
+.navigation-footer button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 9pt;
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+}
+
+.navigation-footer input[type=submit] {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 9pt;
+    letter-spacing: 1.5pt;
+    margin-left: auto;
+    margin-right: 15px;
+    text-transform: uppercase;
 }
 
 .profile-form-back-button {
-    background-color: transparent;
-    border: none;
-    color: #7F7F7F;
-    font-size: 1.10em;
-    text-transform: uppercase;
-}
-.profile-form-next-button {
-    margin-left: auto;
-    text-transform: uppercase;
-    float: right;
-    background-color: transparent;
-    border: none;
-    color: #7F7F7F;
-    font-size: 1.10em;
+    margin-left: 15px;
+    margin-right: auto;
 }
 
-input[type=submit] {
-    background-color: transparent;
-    border: none;
-    color: #7F7F7F;
-    float: right;
-    font-size: 1.10em;
-    text-transform: uppercase;
+.profile-form-next-button {
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 .hidden {
