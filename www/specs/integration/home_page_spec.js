@@ -8,7 +8,7 @@ describe("Home page", () => {
 
   it("loads when the device is ready", async () => {
     let pageTitle = await ghost.pageTitle();
-    expect(pageTitle).to.equal("Hello World");
+    expect(pageTitle).to.equal("Show Me The Honey");
 
     let body = await ghost.findElement("body");
     expect(await body.isVisible()).to.be.ok();
