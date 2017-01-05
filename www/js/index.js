@@ -35,17 +35,20 @@ let app = {
 
     renderProfileForm: function () {
         $("#main-container").html(profileFormTemplate());
+        window.scrollTo(0, 0);
 
         $(".profile-form-back-button").on("click", (event) => {
             const pageNumber = parseInt($(event.target).data("next-page"), 10);
             $(`#profile-form-page-${pageNumber + 1}`).hide();
             $(`#profile-form-page-${pageNumber}`).show();
+            window.scrollTo(0, 0);
         });
 
         $(".profile-form-next-button").on("click", (event) => {
             const pageNumber = parseInt($(event.target).data("next-page"), 10);
             $(`#profile-form-page-${pageNumber - 1}`).hide();
             $(`#profile-form-page-${pageNumber}`).show();
+            window.scrollTo(0, 0);
         });
 
         this._setupOption("#other-race-of-bees", "#input-race");
@@ -66,6 +69,7 @@ let app = {
 
     renderSurveyForm: function () {
         $("#main-container").html(surveyFormTemplate());
+        window.scrollTo(0, 0);
 
         this._setupOption("#other-disease", "#input-disease");
 
@@ -89,6 +93,7 @@ let app = {
         this.syncToGeoPlatform(_.last(profiles), _.last(surveys));
         const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
         $("#main-container").html(dataViewTemplate(allAttributes));
+        window.scrollTo(0, 0);
     },
 
     // "private" methods
