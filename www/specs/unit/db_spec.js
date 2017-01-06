@@ -77,6 +77,7 @@ describe("DB", () => {
         queen_right VARCHAR(1),
         queen_drone_laying VARCHAR(1),
         diseases TEXT,
+        number_of_mites INTEGER,
         honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
         feeding_supplementary_sugar VARCHAR(1),
@@ -157,6 +158,7 @@ describe("DB", () => {
           queen_right,
           queen_drone_laying,
           diseases,
+          number_of_mites,
           honey_supers_on,
           honey_supers_removed,
           feeding_supplementary_sugar,
@@ -165,12 +167,13 @@ describe("DB", () => {
           split_or_combine,
           sample_tube_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
           queenDroneLaying: "N",
           diseases: "Abnormal cappings, Other",
+          numberOfMites: 200,
           honeySupersOn: "Y",
           honeySupersRemoved: "Y",
           feedingSupplementarySugar: "N",
@@ -186,6 +189,7 @@ describe("DB", () => {
           attributes.queenRight,
           attributes.queenDroneLaying,
           attributes.diseases,
+          attributes.numberOfMites,
           attributes.honeySupersOn,
           attributes.honeySupersRemoved,
           attributes.feedingSupplementarySugar,

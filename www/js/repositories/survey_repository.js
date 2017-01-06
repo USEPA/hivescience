@@ -14,6 +14,7 @@ export default class SurveyRepository extends AbstractRepository {
       ["queen_right", "VARCHAR(1)"],
       ["queen_drone_laying", "VARCHAR(1)"],
       ["diseases", "TEXT"],
+      ["number_of_mites", "INTEGER"],
       ["honey_supers_on", "VARCHAR(1)"],
       ["honey_supers_removed", "VARCHAR(1)"],
       ["feeding_supplementary_sugar", "VARCHAR(1)"],
