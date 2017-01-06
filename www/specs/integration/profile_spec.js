@@ -1,7 +1,7 @@
 import ghost from "ghostjs"
 import expect from "expect.js"
 
-describe("Home page", () => {
+describe("Profile", () => {
   beforeEach(async () => {
     await ghost.open("http://localhost:8000");
   });

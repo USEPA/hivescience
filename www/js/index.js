@@ -75,6 +75,17 @@ let app = {
 
         this._setupRadioButtonsAria();
 
+        $("#number-of-mites").on("keyup", (event) => {
+            const numberOfMites = Math.ceil(parseFloat(event.target.value, 10) / 300.0);
+            if (isNaN(numberOfMites)) {
+                $("#mites-per-bees-calc").text("");
+                $("#mites-per-bees-calc").hide();
+            } else {
+                $("#mites-per-bees-calc").text(`${numberOfMites} mites per 100 bees`);
+                $("#mites-per-bees-calc").show();
+            }
+        });
+
         const form = $("#survey-form");
         form.on("submit", (event) => {
             event.preventDefault();
