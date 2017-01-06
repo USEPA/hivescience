@@ -261,94 +261,62 @@
                 <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N"/>
                 <label for="queen-drone-laying-no" role="checkbox" aria-checked="false">No</label>
             </div>
-            <h2>Disease Presence</h2>
-            <fieldset>
-                <legend>Did you observe any disease in your hive?</legend>
-                <div>
-                    <label>
-                        <input id="hive-beatles" type="checkbox" name="diseases" value="Hive beatles"/>
-                        Hive beatles
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="wax-moths" type="checkbox" name="diseases" value="Wax moths"/>
-                        Wax moths
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="deformed-wings" type="checkbox" name="diseases" value="Deformed wings"/>
-                        Deformed wings
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="black-shiny-bees" type="checkbox" name="diseases" value="Black shiny bees"/>
-                        Black shiny bees
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="america-foul-brood" type="checkbox" name="diseases" value="American foul brood"/>
-                        American foul brood
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="european-foul-brood" type="checkbox" name="diseases" value="European foul brood"/>
-                        European foul brood
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="chalk-brood" type="checkbox" name="diseases" value="Chalk brood"/>
-                        Chalk brood
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="parasitic-mite-syndrome" type="checkbox" name="diseases"
-                               value="Parasitic mite syndrome"/>
-                        Parasitic mite syndrome
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="dysentery" type="checkbox" name="diseases" value="Dysentery"/>
-                        Dysentery
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="spotty-brood-pattern" type="checkbox" name="diseases" value="Spotty brood pattern"/>
-                        Spotty brood pattern
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="abnormal-cappings" type="checkbox" name="diseases" value="Abnormal cappings"/>
-                        Abnormal cappings
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="dried-remains" type="checkbox" name="diseases"
-                               value="Dried remains of larvae/pulpae"/>
-                        Dried remains of larvae/pulpae
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="other-disease" type="checkbox" name="diseases" value="Other"/>
-                        Other
-                    </label>
-                </div>
-                <div id="input-disease" class="hidden">
-                    <label for="input-other-disease">Other disease</label>
-                    <input id="input-other-disease" type="text" name="diseases" placeholder="Enter disease"/>
-                </div>
-            </fieldset>
+            <h2>Disease & pest presence</h2>
+            <label>Wax moths?</label>
+            <div class="radio-container">
+                <input id="wax-moths-yes" type="radio" name="waxMoths" value="Y"/>
+                <label for="wax-moths-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="wax-moths-no" type="radio" name="waxMoths" value="N"/>
+                <label for="wax-moths-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Deformed wings?</label>
+            <div class="radio-container">
+                <input id="deformed-wings-yes" type="radio" name="deformedWings" value="Y"/>
+                <label for="deformed-wings-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="deformed-wings-no" type="radio" name="deformedWings" value="N"/>
+                <label for="deformed-wings-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Black shiny bees (Greasy bees)?</label>
+            <div class="radio-container">
+                <input id="black-shiny-bees-yes" type="radio" name="blackShinyBees" value="Y"/>
+                <label for="black-shiny-bees-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="black-shiny-bees-no" type="radio" name="blackShinyBees" value="N"/>
+                <label for="black-shiny-bees-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>American foul brood?</label>
+            <div class="radio-container">
+                <input id="american-foul-brood-yes" type="radio" name="americanFoulBrood" value="Y"/>
+                <label for="american-foul-brood-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="american-foul-brood-no" type="radio" name="americanFoulBrood" value="N"/>
+                <label for="american-foul-brood-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>European foul brood?</label>
+            <div class="radio-container">
+                <input id="european-foul-brood-yes" type="radio" name="europeanFoulBrood" value="Y"/>
+                <label for="european-foul-brood-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="european-foul-brood-no" type="radio" name="europeanFoulBrood" value="N"/>
+                <label for="european-foul-brood-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Chalk brood?</label>
+            <div class="radio-container">
+                <input id="chalk-brood-yes" type="radio" name="chalkBrood" value="Y"/>
+                <label for="chalk-brood-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="chalk-brood-no" type="radio" name="chalkBrood" value="N"/>
+                <label for="chalk-brood-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Abnormal cappings?</label>
+            <div class="radio-container">
+                <input id="abnormal-cappings-yes" type="radio" name="abnormalCappings" value="Y"/>
+                <label for="abnormal-cappings-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="abnormal-cappings-no" type="radio" name="abnormalCappings" value="N"/>
+                <label for="abnormal-cappings-no" role="checkbox" aria-checked="false">No</label>
+            </div><label>Dried remains of pulpae/larvae?</label>
+            <div class="radio-container">
+                <input id="dried-remains-yes" type="radio" name="driedRemains" value="Y"/>
+                <label for="dried-remains-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="dried-remains-no" type="radio" name="driedRemains" value="N"/>
+                <label for="dried-remains-no" role="checkbox" aria-checked="false">No</label>
+            </div>
 
             <h2>Varroa mite count</h2>
             <div>
@@ -433,7 +401,14 @@
             <h1>Survey:</h1>
             <div><strong>Is the hive Queen right?</strong> {{queenRight}}</div>
             <div><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</div>
-            <div><strong>Did you observe any disease in your hive?</strong> {{diseases}}</div>
+            <div><strong>Wax moths?</strong> {{waxMoths}}</div>
+            <div><strong>Deformed wings?</strong> {{deformedWings}}</div>
+            <div><strong>Black shiny bees (Greasy bees)?</strong> {{blackShinyBees}}</div>
+            <div><strong>American foul brood?</strong> {{americanFoulBrood}}</div>
+            <div><strong>European foul brood?</strong> {{europeanFoulBrood}}</div>
+            <div><strong>Chalk brood?</strong> {{chalkBrood}}</div>
+            <div><strong>Abnormal cappings?</strong> {{abnormalCappings}}</div>
+            <div><strong>Dried remains of pulpae/larvae?</strong> {{driedRemains}}</div>
             <div><strong>Total # of mites after alcohol wash</strong> {{numberOfMites}}</div>
             <div><strong>Are honey supers on?</strong> {{honeySupersOn}}</div>
             <div><strong>Honey collected after supers removed?</strong> {{honeySupersRemoved}}</div>
@@ -467,7 +442,14 @@
             <h2>Survey:</h2>
             <div><strong>Is the hive Queen right?</strong> {{surveyRow.queen_right}}</div>
             <div><strong>Is the Queen drone laying?</strong> {{surveyRow.queen_drone_laying}}</div>
-            <div><strong>Did you observe any disease in your hive?</strong> {{surveyRow.diseases}}</div>
+            <div><strong>Wax moths?</strong> {{surveyRow.wax_moths}}</div>
+            <div><strong>Deformed wings?</strong> {{surveyRow.deformed_wings}}</div>
+            <div><strong>Black shiny bees (Greasy bees)?</strong> {{surveyRow.black_shiny_bees}}</div>
+            <div><strong>American foul brood?</strong> {{surveyRow.american_foul_brood}}</div>
+            <div><strong>European foul brood?</strong> {{surveyRow.european_foul_brood}}</div>
+            <div><strong>Chalk brood?</strong> {{surveyRow.chalk_brood}}</div>
+            <div><strong>Abnormal cappings?</strong> {{surveyRow.abnormal_cappings}}</div>
+            <div><strong>Dried remains of pulpae/larvae?</strong> {{surveyRow.dried_remains}}</div>
             <div><strong>Total # of mites after alcohol wash</strong> {{surveyRow.number_of_mites}}</div>
             <div><strong>Are honey supers on?</strong> {{surveyRow.honey_supers_on}}</div>
             <div><strong>Honey collected after supers removed?</strong> {{surveyRow.honey_supers_removed}}</div>
