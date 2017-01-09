@@ -25,16 +25,23 @@
     <script id="profile-form-template" type="text/template">
         <form action="#" id="profile-form" novalidate>
             <div id="profile-form-page-1">
-                <h1 class="profile-header">Tell us about yourself</h1>
+                <h1 class="profile-header">Welcome to the EPA Citizen Scientist Beekeeper Program</h1>
+
+                <p>
+                    If you haven't already received a sample kit package, please email
+                    <a href="mailto:Lehmann.David@epa.gov">Lehmann.David@epa.gov</a>
+                </p>
+
+                <p>You can begin by telling us a little bit about yourself</p>
 
                 <label for="name">Name</label>
-                <input id="name" type="text" name="fullName" placeholder="Full name"/>
+                <input id="name" type="text" name="fullName" placeholder="Enter full name"/>
 
-                <label for="email">Email address</label>
+                <label for="email">Email Address</label>
                 <input id="email" type="email" name="email" placeholder="Enter email address"/>
 
-                <label for="zip-code">Zip code</label>
-                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>
+                <!--<label for="zip-code">Zip code</label>-->
+                <!--<input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>-->
 
                 <div class="navigation-footer">
                     <button class="profile-form-next-button"
@@ -310,7 +317,8 @@
                 <label for="abnormal-cappings-yes" role="checkbox" aria-checked="false">Yes</label>
                 <input id="abnormal-cappings-no" type="radio" name="abnormalCappings" value="N"/>
                 <label for="abnormal-cappings-no" role="checkbox" aria-checked="false">No</label>
-            </div><label>Dried remains of pulpae/larvae?</label>
+            </div>
+            <label>Dried remains of pulpae/larvae?</label>
             <div class="radio-container">
                 <input id="dried-remains-yes" type="radio" name="driedRemains" value="Y"/>
                 <label for="dried-remains-yes" role="checkbox" aria-checked="false">Yes</label>

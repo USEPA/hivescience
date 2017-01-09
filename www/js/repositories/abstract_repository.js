@@ -13,7 +13,9 @@ export default class AbstractRepository {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         ${this.columnsForInsert()}
       );`;
-    this.db.executeSql(sqlStatement.replace(/\s+/g, " "));
+    let defer = Q.defer();
+    this.db.executeSql(sqlStatement.replace(/\s+/g, " "), [], defer.resolve, defer.reject);
+    return defer.promise;
   }
 
   createRecord(attributes) {
@@ -29,7 +31,7 @@ export default class AbstractRepository {
     let defer = Q.defer();
     this.db.connection.executeSql(`SELECT * FROM ${this.tableName()};`, [],
       (result) => {
-        for(let i = 0; i < result.rows.length; i++) {
+        for (let i = 0; i < result.rows.length; i++) {
           rows[i] = result.rows.item(i);
         }
         defer.resolve(rows);

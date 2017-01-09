@@ -1,3 +1,15 @@
+const defaultSuccess = (action) => {
+  return () => {
+    console.log(`${action} success`);
+  };
+};
+
+const defaultFailure = (action) => {
+  return (error) => {
+    console.log(`${action} failure`, error);
+  };
+};
+
 export default class DB {
   constructor(sqlitePlugin) {
     this.sqlitePlugin = sqlitePlugin;
@@ -10,13 +22,10 @@ export default class DB {
     });
   }
 
-  executeSql(sqlStatement, sqlVariables = []) {
+  executeSql(sqlStatement, sqlVariables = [], success, failure) {
     let action = sqlStatement.split("(")[0].trim();
-    this.connection.executeSql(
-      sqlStatement,
-      sqlVariables,
-      () => console.log(`${action} successful`),
-      (error) => console.log(`${action} failed`, error)
-    );
+    success = success || defaultSuccess(action);
+    failure = failure || defaultFailure(action);
+    this.connection.executeSql(sqlStatement, sqlVariables, success, failure);
   }
 }

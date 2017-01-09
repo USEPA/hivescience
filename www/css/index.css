@@ -18,6 +18,15 @@ h1 {
     font-size: 18pt;
 }
 
+p {
+    font-size: 10pt;
+}
+
+a {
+    color: rgb(43, 170, 225);
+    text-decoration: none;
+}
+
 label, legend {
     color: rgb(52, 54, 61);
     display: block;
@@ -27,7 +36,7 @@ label, legend {
 }
 
 input[type=text], [type=email], [type=number], [type=date] {
-    background-color:white;
+    background-color: white;
     border: 1px;
     border-color: rgb(218, 220, 228);
     border-radius: 5px;
@@ -113,8 +122,8 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .profile-header, .survey-header {
-    margin-bottom: 32px;
-    margin-top: 125px;
+    margin-bottom: 30px;
+    margin-top: 60px;
 }
 
 .radio-container {
