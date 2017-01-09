@@ -66,6 +66,22 @@ input[type=checkbox]:checked {
     background-color: rgb(55, 187, 155);
 }
 
+input[type=submit] {
+    background-color: rgb(55, 187, 155);
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    font-size: 10pt;
+    height: 60px;
+    letter-spacing: 1.5pt;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-transform: uppercase;
+    width: 300px;
+    -webkit-appearance: none;
+}
+
 legend {
     padding: 0;
 }
@@ -99,22 +115,6 @@ body:not(:-moz-handler-blocked) fieldset {
     left: 0;
     position: absolute;
     right: 0;
-}
-
-#submit-report {
-    background-color: rgb(55, 187, 155);
-    border: none;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    color: white;
-    font-size: 10pt;
-    height: 60px;
-    letter-spacing: 1.5pt;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    text-transform: uppercase;
-    width: 300px;
-    -webkit-appearance: none;
 }
 
 #data-view {
@@ -204,4 +204,16 @@ body:not(:-moz-handler-blocked) fieldset {
 
 .hidden {
     display: none;
+}
+
+.marker-underline {
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.marker-underline img {
+    left: 79px;
+    position: absolute;
+    top: 19px;
+    width: 57px;
 }

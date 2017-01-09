@@ -55,16 +55,8 @@ describe("DB", () => {
       CREATE TABLE IF NOT EXISTS profiles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         email VARCHAR(100),
-        full_name VARCHAR(100),
         zip_code VARCHAR(20),
-        number_of_colonies INTEGER,
-        race_of_bees TEXT,
-        monitor_varroa_mites VARCHAR(1),
-        monitor_varroa_mites_count INTEGER,
-        monitor_methods VARCHAR(255),
-        treatment_methods VARCHAR(255),
-        last_treatment_date TEXT,
-        lost_colonies_over_winter VARCHAR(1)
+        race_of_bees TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -111,47 +103,23 @@ describe("DB", () => {
         const sqlStatement = `
         INSERT INTO profiles (
           email,
-          full_name,
           zip_code,
-          number_of_colonies,
-          race_of_bees,
-          monitor_varroa_mites,
-          monitor_varroa_mites_count,
-          monitor_methods,
-          treatment_methods,
-          last_treatment_date,
-          lost_colonies_over_winter
+          race_of_bees 
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           email: "belinda@beekeepers.us",
-          fullName: "Belinda Bees",
           zipCode: "12345-5555",
-          numberOfColonies: 111,
-          raceOfBees: "Unknown, Italian, Other",
-          monitorVarroaMites: "N",
-          monitorVarroaMitesCount: 345,
-          monitorMethods: "Alcohol Wash, Other",
-          treatmentMethods: "Requeening with resistant stock, Other",
-          lastTreatmentDate: "2016-03-20",
-          lostColoniesOverWinter: "Y"
+          raceOfBees: "Italian"
         };
 
         profileRepository.createRecord(attributes);
 
         const expectedAttributes = [
           attributes.email,
-          attributes.fullName,
           attributes.zipCode,
-          attributes.numberOfColonies,
-          attributes.raceOfBees,
-          attributes.monitorVarroaMites,
-          attributes.monitorVarroaMitesCount,
-          attributes.monitorMethods,
-          attributes.treatmentMethods,
-          attributes.lastTreatmentDate,
-          attributes.lostColoniesOverWinter
+          attributes.raceOfBees
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

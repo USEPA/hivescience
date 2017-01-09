@@ -27,226 +27,26 @@
             <div id="profile-form-page-1">
                 <h1 class="profile-header">Welcome to the EPA Citizen Scientist Beekeeper Program</h1>
 
+                <p class="marker-underline">
+                    <img src="img/marker-underline.png" alt=""/>
+                    Please select <strong>only one</strong> hive to report on.
+                </p>
+
+                <label for="zip-code">Zip code of the hive you'll be reporting on</label>
+                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code"/>
+
+                <label for="race-of-bees">Race of bees in your hive</label>
+                <input id="race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees"/>
+
+                <label for="email">Email Address</label>
+                <input id="email" type="email" name="email" placeholder="Enter email address"/>
+
                 <p>
                     If you haven't already received a sample kit package, please email
                     <a href="mailto:Lehmann.David@epa.gov">Lehmann.David@epa.gov</a>
                 </p>
 
-                <p>You can begin by telling us a little bit about yourself</p>
-
-                <label for="name">Name</label>
-                <input id="name" type="text" name="fullName" placeholder="Enter full name"/>
-
-                <label for="email">Email Address</label>
-                <input id="email" type="email" name="email" placeholder="Enter email address"/>
-
-                <!--<label for="zip-code">Zip code</label>-->
-                <!--<input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code of your apiary"/>-->
-
-                <div class="navigation-footer">
-                    <button class="profile-form-next-button"
-                            type="button"
-                            data-next-page="2"
-                            aria-label="Go to the next page">
-                        Next
-                    </button>
-                </div>
-            </div>
-
-            <div id="profile-form-page-2" class="hidden">
-                <h1 class="profile-header">Tell us about your bees</h1>
-                <div>
-                    <label for="number-of-colonies">Number of colonies in your apiary:</label>
-                    <input id="number-of-colonies" type="number" name="numberOfColonies" placeholder="Enter number"/>
-                </div>
-                <fieldset>
-                    <legend>Race of bees in monitored hive:</legend>
-                    <div>
-                        <label>
-                            <input id="unknown" type="checkbox" name="raceOfBees" value="Unknown"/>
-                            Unknown
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="italian" type="checkbox" name="raceOfBees" value="Italian"/>
-                            Italian
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="carnolian" type="checkbox" name="raceOfBees" value="Carnolian"/>
-                            Carnolian
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="caucasian" type="checkbox" name="raceOfBees" value="Caucasian"/>
-                            Caucasian
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="german-black-bees" type="checkbox" name="raceOfBees" value="German Black Bees"/>
-                            German Black Bees
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="russian" type="checkbox" name="raceOfBees" value="Russian"/>
-                            Russian
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="buckfast" type="checkbox" name="raceOfBees" value="Buckfast"/>
-                            Buckfast
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="other-race-of-bees" type="checkbox" name="raceOfBees" value="Other"/>
-                            Other
-                        </label>
-                    </div>
-                    <div id="input-race" class="hidden">
-                        <label for="input-race-of-bees">Other race</label>
-                        <input id="input-race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees"/>
-                    </div>
-                </fieldset>
-                <div class="navigation-footer">
-                    <button class="profile-form-back-button" type="button" data-next-page="1"
-                            aria-label="Go back to the previous page">
-                        Back
-                    </button>
-                    <button class="profile-form-next-button" type="button" data-next-page="3"
-                            aria-label="Go to the next page">
-                        Next
-                    </button>
-                </div>
-            </div>
-
-            <div id="profile-form-page-3" class="hidden">
-                <h1 class="profile-header">Colony Health</h1>
-                <label>Do you actively monitor for Varroa mites?</label>
-                <div class="radio-container">
-                    <input id="monitor-varroa-mites-yes" type="radio" name="monitorVarroaMites" value="Y"/>
-                    <label for="monitor-varroa-mites-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="monitor-varroa-mites-no" type="radio" name="monitorVarroaMites" value="N"/>
-                    <label for="monitor-varroa-mites-no" role="checkbox" aria-checked="false">No</label>
-                </div>
-                <div>
-                    <label for="monitor-varroa-mites-count">How many times have you monitored for mites in the last
-                        year?</label>
-                    <input id="monitor-varroa-mites-count" type="number" name="monitorVarroaMitesCount"/>
-                </div>
-                <fieldset>
-                    <legend>What methods do you use for counting Varroa mites?</legend>
-                    <div>
-                        <label>
-                            <input id="screen-bottom-board-count" type="checkbox" name="monitorMethods"
-                                   value="Screen bottom board"/>
-                            Screen bottom board
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="powdered-sugar-roll" type="checkbox" name="monitorMethods"
-                                   value="Powdered sugar roll"/>
-                            Powdered sugar roll
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="alcohol-wash" type="checkbox" name="monitorMethods" value="Alcohol wash"/>
-                            Alcohol wash
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="other-monitor-method" type="checkbox" name="monitorMethods" value="Other"/>
-                            Other
-                        </label>
-                    </div>
-                    <div id="input-method" class="hidden">
-                        <label for="input-count-method">Other count method</label>
-                        <input id="input-count-method" type="text" name="monitorMethods"
-                               placeholder="Enter count method"/>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>What methods do you use for treating Varroa mites?</legend>
-                    <div>
-                        <label>
-                            <input id="no-treatment" type="checkbox" name="treatmentMethods" value="No treatment"/>
-                            No treatment
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="screen-bottom-board-treatment" type="checkbox" name="treatmentMethods"
-                                   value="Screen bottom board"/>
-                            Screen bottom board
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="requeening" type="checkbox" name="treatmentMethods"
-                                   value="Requeening with resistant stock"/>
-                            Requeening with resistant stock
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="drone-brood-removal" type="checkbox" name="treatmentMethods"
-                                   value="Drone brood removal"/>
-                            Drone brood removal
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="brood-interruption" type="checkbox" name="treatmentMethods"
-                                   value="Brood interruption"/>
-                            Brood interruption
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="mite-treatment-applied" type="checkbox" name="treatmentMethods"
-                                   value="Mite treatment applied"/>
-                            Mite treatment applied
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="other-treatment-method" type="checkbox" name="treatmentMethods" value="Other"/>
-                            Other
-                        </label>
-                    </div>
-                    <div id="input-treatment" class="hidden">
-                        <label for="input-treatment-method">Other treatment method</label>
-                        <input id="input-treatment-method" type="text" name="treatmentMethods"
-                               placeholder="Enter treatment method"/>
-                    </div>
-                </fieldset>
-                <div>
-                    <label for="last-treatment-date">When was the hive last treated for Varroa mites?</label>
-                    <input id="last-treatment-date" type="date" name="lastTreatmentDate" value=""/>
-                </div>
-                <label>Have you lost any colonies in your apiary over winter?</label>
-                <div class="radio-container">
-                    <input id="lost-colonies-over-winter-yes" type="radio" name="lostColoniesOverWinter" value="Y"/>
-                    <label for="lost-colonies-over-winter-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="lost-colonies-over-winter-no" type="radio" name="lostColoniesOverWinter" value="N"/>
-                    <label for="lost-colonies-over-winter-no" role="checkbox" aria-checked="false">No</label>
-                </div>
-                <div class="navigation-footer">
-                    <button class="profile-form-back-button" type="button" data-next-page="2"
-                            aria-label="Go back to the previous page">
-                        Back
-                    </button>
-                    <input type="submit" value="Done"/>
-                </div>
+                <input type="submit" value="Get Started"/>
             </div>
         </form>
     </script>
@@ -385,7 +185,7 @@
                        name="sampleTubeCode"/>
             </div>
             <div id="submit-break"></div>
-            <input id="submit-report" type="submit" value="Submit Report"/>
+            <input type="submit" value="Submit Report"/>
         </form>
     </script>
 
