@@ -36,7 +36,7 @@
     "ios": "npm run build && cordova run ios",
     "android": "npm run build && cordova run android",
     "browser": "npm run build && cordova run browser",
-    "test": "ghostjs www/specs/unit/**/*.js",
+    "test": "ghostjs www/specs/unit/**/*.js"
   },
   "repository": {
     "type": "git",
