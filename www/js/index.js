@@ -80,12 +80,13 @@ let app = {
     this._setupRadioButtonsAria();
 
     $("#number-of-mites").on("keyup", (event) => {
-      const numberOfMites = Math.ceil(parseFloat(event.target.value, 10) / 300.0);
-      if (isNaN(numberOfMites)) {
+      const numberOfMitesTotal = parseFloat(event.target.value, 10);
+      const numberOfMitesPer100 = Math.round((numberOfMitesTotal / 3.0) * 100.0) / 100.0;
+      if (isNaN(numberOfMitesPer100)) {
         $("#mites-per-bees-calc").text("");
         $("#mites-per-bees-calc").hide();
       } else {
-        $("#mites-per-bees-calc").text(`${numberOfMites} mites per 100 bees`);
+        $("#mites-per-bees-calc").text(`${numberOfMitesPer100} mites per 100 bees`);
         $("#mites-per-bees-calc").show();
       }
     });
