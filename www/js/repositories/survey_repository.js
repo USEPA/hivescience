@@ -13,6 +13,8 @@ export default class SurveyRepository extends AbstractRepository {
     return [
       ["queen_right", "VARCHAR(1)"],
       ["queen_drone_laying", "VARCHAR(1)"],
+      ["age_of_queen", "INTEGER"],
+      ["hive_beetles", "VARCHAR(1)"],
       ["wax_moths", "VARCHAR(1)"],
       ["deformed_wings", "VARCHAR(1)"],
       ["black_shiny_bees", "VARCHAR(1)"],
@@ -21,6 +23,7 @@ export default class SurveyRepository extends AbstractRepository {
       ["chalk_brood", "VARCHAR(1)"],
       ["abnormal_cappings", "VARCHAR(1)"],
       ["dried_remains", "VARCHAR(1)"],
+      ["dysentery", "VARCHAR(1)"],
       ["number_of_mites", "INTEGER"],
       ["honey_supers_on", "VARCHAR(1)"],
       ["honey_supers_removed", "VARCHAR(1)"],

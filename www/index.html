@@ -68,7 +68,7 @@
 
     <script id="survey-form-template" type="text/template">
         <form action="#" id="survey-form">
-            <h2 class="survey-header">The Queen</h2>
+            <h2 class="survey-header">The queen</h2>
             <label>Is your hive queen right?</label>
             <div class="radio-container">
                 <input id="queen-right-yes" type="radio" name="queenRight" value="Y"/>
@@ -83,7 +83,18 @@
                 <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N"/>
                 <label for="queen-drone-laying-no" role="checkbox" aria-checked="false">No</label>
             </div>
+
+            <label for="age-of-queen">Age of queen?</label>
+            <input id="age-of-queen" type="number" name="ageOfQueen" placeholder="Enter age"/>
+
             <h2>Disease & pest presence</h2>
+            <label>Hive beetles?</label>
+            <div class="radio-container">
+                <input id="hive-beetles-yes" type="radio" name="hiveBeetles" value="Y"/>
+                <label for="hive-beetles-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="hive-beetles-no" type="radio" name="hiveBeetles" value="N"/>
+                <label for="hive-beetles-no" role="checkbox" aria-checked="false">No</label>
+            </div>
             <label>Wax moths?</label>
             <div class="radio-container">
                 <input id="wax-moths-yes" type="radio" name="waxMoths" value="Y"/>
@@ -140,6 +151,13 @@
                 <input id="dried-remains-no" type="radio" name="driedRemains" value="N"/>
                 <label for="dried-remains-no" role="checkbox" aria-checked="false">No</label>
             </div>
+            <label>Dysentery?</label>
+            <div class="radio-container">
+                <input id="dysentery-yes" type="radio" name="dysentery" value="Y"/>
+                <label for="dysentery-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="dysentery-no" type="radio" name="dysentery" value="N"/>
+                <label for="dysentery-no" role="checkbox" aria-checked="false">No</label>
+            </div>
 
             <h2>Varroa mite count</h2>
             <p>We'll need you to perform a varroa mite count by doing a powdered sugar shake. For instructions please
@@ -170,57 +188,58 @@
                 <label for="final-mite-count-of-season-no" role="checkbox" aria-checked="false">No</label>
             </div>
 
-            <h2>Honey</h2>
-            <label>Are honey supers on?</label>
-            <div class="radio-container">
-                <input id="honey-supers-on-yes" type="radio" name="honeySupersOn" value="Y"/>
-                <label for="honey-supers-on-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-supers-on-no" type="radio" name="honeySupersOn" value="N"/>
-                <label for="honey-supers-on-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <label>Honey collected after supers removed?</label>
-            <div class="radio-container">
-                <input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y"/>
-                <label for="honey-supers-removed-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>
-                <label for="honey-supers-removed-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <label>Are you feeding your bees supplementary sugar?</label>
-            <div class="radio-container">
-                <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>
-                <label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>
-                <label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <label>Honey collected from sealed honey cells?</label>
-            <div class="radio-container">
-                <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>
-                <label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>
-                <label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <label>Honey collected from brood nest?</label>
-            <div class="radio-container">
-                <input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>
-                <label for="honey-from-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>
-                <label for="honey-from-brood-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <label>Did you split/combine the colony after sampling in the fall?</label>
-            <div class="radio-container">
-                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>
-                <label for="split-or-combine-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>
-                <label for="split-or-combine-no" role="checkbox" aria-checked="false">No</label>
-            </div>
-            <div>
-                <label for="sample-tube-code">Honey sample collection tube code:</label>
-                <input id="sample-tube-code"
-                       aria-label="Enter the honey sample collection tube code"
-                       placeholder="Enter number"
-                       type="number"
-                       name="sampleTubeCode"/>
-            </div>
+            <!--<h2>Honey</h2>-->
+            <!--<label>Are honey supers on?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="honey-supers-on-yes" type="radio" name="honeySupersOn" value="Y"/>-->
+                <!--<label for="honey-supers-on-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="honey-supers-on-no" type="radio" name="honeySupersOn" value="N"/>-->
+                <!--<label for="honey-supers-on-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<label>Honey collected after supers removed?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y"/>-->
+                <!--<label for="honey-supers-removed-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>-->
+                <!--<label for="honey-supers-removed-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<label>Are you feeding your bees supplementary sugar?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>-->
+                <!--<label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>-->
+                <!--<label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<label>Honey collected from sealed honey cells?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>-->
+                <!--<label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>-->
+                <!--<label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<label>Honey collected from brood nest?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>-->
+                <!--<label for="honey-from-brood-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>-->
+                <!--<label for="honey-from-brood-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<label>Did you split/combine the colony after sampling in the fall?</label>-->
+            <!--<div class="radio-container">-->
+                <!--<input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>-->
+                <!--<label for="split-or-combine-yes" role="checkbox" aria-checked="false">Yes</label>-->
+                <!--<input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>-->
+                <!--<label for="split-or-combine-no" role="checkbox" aria-checked="false">No</label>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label for="sample-tube-code">Honey sample collection tube code:</label>-->
+                <!--<input id="sample-tube-code"-->
+                       <!--aria-label="Enter the honey sample collection tube code"-->
+                       <!--placeholder="Enter number"-->
+                       <!--type="number"-->
+                       <!--name="sampleTubeCode"/>-->
+            <!--</div>-->
+
             <div id="submit-break"></div>
             <input type="submit" value="Submit Report"/>
         </form>

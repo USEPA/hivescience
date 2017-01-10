@@ -68,6 +68,8 @@ describe("DB", () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         queen_right VARCHAR(1),
         queen_drone_laying VARCHAR(1),
+        age_of_queen INTEGER,
+        hive_beetles VARCHAR(1),
         wax_moths VARCHAR(1),
         deformed_wings VARCHAR(1),
         black_shiny_bees VARCHAR(1),
@@ -76,6 +78,7 @@ describe("DB", () => {
         chalk_brood VARCHAR(1),
         abnormal_cappings VARCHAR(1),
         dried_remains VARCHAR(1),
+        dysentery VARCHAR(1),
         number_of_mites INTEGER,
         honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
@@ -135,6 +138,8 @@ describe("DB", () => {
         INSERT INTO surveys (
           queen_right,
           queen_drone_laying,
+          age_of_queen,
+          hive_beetles,
           wax_moths,
           deformed_wings,
           black_shiny_bees,
@@ -143,6 +148,7 @@ describe("DB", () => {
           chalk_brood,
           abnormal_cappings,
           dried_remains,
+          dysentery,
           number_of_mites,
           honey_supers_on,
           honey_supers_removed,
@@ -155,11 +161,13 @@ describe("DB", () => {
           final_mite_count_of_season,
           mite_count_photo_uri
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
           queenDroneLaying: "N",
+          ageOfQueen: 8,
+          hiveBeetles: "N",
           waxMoths: "Y",
           deformedWings: "N",
           blackShinyBees: "N",
@@ -168,6 +176,7 @@ describe("DB", () => {
           chalkBrood: "Y",
           abnormalCappings: "N",
           driedRemains: "Y",
+          dysentery: "N",
           numberOfMites: 200,
           honeySupersOn: "Y",
           honeySupersRemoved: "Y",
@@ -186,6 +195,8 @@ describe("DB", () => {
         const expectedAttributes = [
           attributes.queenRight,
           attributes.queenDroneLaying,
+          attributes.ageOfQueen,
+          attributes.hiveBeetles,
           attributes.waxMoths,
           attributes.deformedWings,
           attributes.blackShinyBees,
@@ -194,6 +205,7 @@ describe("DB", () => {
           attributes.chalkBrood,
           attributes.abnormalCappings,
           attributes.driedRemains,
+          attributes.dysentery,
           attributes.numberOfMites,
           attributes.honeySupersOn,
           attributes.honeySupersRemoved,
