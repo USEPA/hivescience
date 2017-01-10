@@ -83,7 +83,9 @@ describe("DB", () => {
         honey_from_sealed_cells VARCHAR(1),
         honey_from_brood VARCHAR(1),
         split_or_combine VARCHAR(1),
-        sample_tube_code INTEGER
+        sample_tube_code INTEGER,
+        will_perform_treatment VARCHAR(1),
+        final_mite_count_of_season VARCHAR(1)
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -147,9 +149,11 @@ describe("DB", () => {
           honey_from_sealed_cells,
           honey_from_brood,
           split_or_combine,
-          sample_tube_code
+          sample_tube_code,
+          will_perform_treatment,
+          final_mite_count_of_season
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -169,7 +173,9 @@ describe("DB", () => {
           honeyFromSealedCells: "N",
           honeyFromBrood: "Y",
           splitOrCombine: "N",
-          sampleTubeCode: 1234567890
+          sampleTubeCode: 1234567890,
+          willPerformTreatment: "Y",
+          finalMiteCountOfSeason: "N"
         };
 
         surveyRepository.createRecord(attributes);
@@ -192,7 +198,9 @@ describe("DB", () => {
           attributes.honeyFromSealedCells,
           attributes.honeyFromBrood,
           attributes.splitOrCombine,
-          attributes.sampleTubeCode
+          attributes.sampleTubeCode,
+          attributes.willPerformTreatment,
+          attributes.finalMiteCountOfSeason
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

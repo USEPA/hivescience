@@ -142,11 +142,32 @@
             </div>
 
             <h2>Varroa mite count</h2>
+            <p>We'll need you to perform a varroa mite count by doing an alcohol wash. The wash should contain roughly
+                300 bees or a 1/2 cup of bees.</p>
             <div>
                 <label for="number-of-mites">Total number of mites after alcohol wash</label>
                 <input id="number-of-mites" type="number" name="numberOfMites" placeholder="Enter number"/>
             </div>
             <div id="mites-per-bees-calc" class="hidden" tabindex="0"></div>
+
+            <p><strong>Please attach a photo of the mites on a white background</strong></p>
+            <button>ADD PHOTO +</button>
+
+            <label>Will you perform a treatment?</label>
+            <div class="radio-container">
+                <input id="will-perform-treatment-yes" type="radio" name="willPerformTreatment" value="Y"/>
+                <label for="will-perform-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="will-perform-treatment-no" type="radio" name="willPerformTreatment" value="N"/>
+                <label for="will-perform-treatment-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+
+            <label>Is this your final mite count of the season?</label>
+            <div class="radio-container">
+                <input id="final-mite-count-of-season-yes" type="radio" name="finalMiteCountOfSeason" value="Y"/>
+                <label for="final-mite-count-of-season-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="final-mite-count-of-season-no" type="radio" name="finalMiteCountOfSeason" value="N"/>
+                <label for="final-mite-count-of-season-no" role="checkbox" aria-checked="false">No</label>
+            </div>
 
             <h2>Honey</h2>
             <label>Are honey supers on?</label>
@@ -207,19 +228,9 @@
     <script id="data-view-template" type="text/template">
         <div class="container">
             <h1>Profile:</h1>
-            <div><strong>Name:</strong> {{fullName}}</div>
             <div><strong>Email:</strong> {{email}}</div>
             <div><strong>Zip code:</strong> {{zipCode}}</div>
-            <div><strong>Number of Colonies:</strong> {{numberOfColonies}}</div>
             <div><strong>Race of bees in monitored hive:</strong> {{raceOfBees}}</div>
-            <div><strong>Do you monitor for Varroa Mites?</strong> {{monitorVarroaMites}}</div>
-            <div><strong>How many times per year do you monitor for Varroa Mites?</strong> {{monitorVarroaMitesCount}}
-            </div>
-            <div><strong>What methods do you use to monitor Varroa Mites?</strong> {{monitorMethods}}</div>
-            <div><strong>What methods do you use for treating Varroa mites?</strong> {{treatmentMethods}}</div>
-            <div><strong>When was the hive last treated for Varroa mites?</strong> {{lastTreatmentDate}}</div>
-            <div><strong>Have you lost any colonies in your apiary over winter?</strong> {{lostColoniesOverWinter}}
-            </div>
 
             <h1>Survey:</h1>
             <div><strong>Is the hive Queen right?</strong> {{queenRight}}</div>
@@ -233,6 +244,10 @@
             <div><strong>Abnormal cappings?</strong> {{abnormalCappings}}</div>
             <div><strong>Dried remains of pulpae/larvae?</strong> {{driedRemains}}</div>
             <div><strong>Total # of mites after alcohol wash</strong> {{numberOfMites}}</div>
+            <div><strong>Will you perform a treatment?</strong> {{surveyRow.willPerformTreatment}}</div>
+            <div><strong>Is this your final mite count of the season?</strong> {{surveyRow.finalMiteCountOfSeason}}
+            </div>
+
             <div><strong>Are honey supers on?</strong> {{honeySupersOn}}</div>
             <div><strong>Honey collected after supers removed?</strong> {{honeySupersRemoved}}</div>
             <div><strong>Are you feeding your bees supplementary sugar?</strong> {{feedingSupplementarySugar}}</div>
@@ -244,23 +259,9 @@
             <h1>What was submitted in the database</h1>
 
             <h2>Profile:</h2>
-            <div><strong>Name:</strong> {{profileRow.full_name}}</div>
             <div><strong>Email:</strong> {{profileRow.email}}</div>
             <div><strong>Zip code:</strong> {{profileRow.zip_code}}</div>
-            <div><strong>Number of Colonies:</strong> {{profileRow.number_of_colonies}}</div>
             <div><strong>Race of bees in monitored hive:</strong> {{profileRow.race_of_bees}}</div>
-            <div><strong>Do you monitor for Varroa Mites?</strong> {{profileRow.monitor_varroa_mites}}</div>
-            <div><strong>How many times per year do you monitor for Varroa Mites?</strong>
-                {{profileRow.monitor_varroa_mites_count}}
-            </div>
-            <div><strong>What methods do you use to monitor Varroa Mites?</strong> {{profileRow.monitor_methods}}</div>
-            <div><strong>What methods do you use for treating Varroa mites?</strong> {{profileRow.treatment_methods}}
-            </div>
-            <div><strong>When was the hive last treated for Varroa mites?</strong> {{profileRow.last_treatment_date}}
-            </div>
-            <div><strong>Have you lost any colonies in your apiary over winter?</strong>
-                {{profileRow.lost_colonies_over_winter}}
-            </div>
 
             <h2>Survey:</h2>
             <div><strong>Is the hive Queen right?</strong> {{surveyRow.queen_right}}</div>
@@ -274,6 +275,9 @@
             <div><strong>Abnormal cappings?</strong> {{surveyRow.abnormal_cappings}}</div>
             <div><strong>Dried remains of pulpae/larvae?</strong> {{surveyRow.dried_remains}}</div>
             <div><strong>Total # of mites after alcohol wash</strong> {{surveyRow.number_of_mites}}</div>
+            <div><strong>Will you perform a treatment?</strong> {{surveyRow.will_perform_treatment}}</div>
+            <div><strong>Is this your final mite count of the season?</strong> {{surveyRow.final_mite_count_of_season}}
+            </div>
             <div><strong>Are honey supers on?</strong> {{surveyRow.honey_supers_on}}</div>
             <div><strong>Honey collected after supers removed?</strong> {{surveyRow.honey_supers_removed}}</div>
             <div><strong>Are you feeding your bees supplementary sugar?</strong>

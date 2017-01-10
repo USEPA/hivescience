@@ -28,7 +28,9 @@ export default class SurveyRepository extends AbstractRepository {
       ["honey_from_sealed_cells", "VARCHAR(1)"],
       ["honey_from_brood", "VARCHAR(1)"],
       ["split_or_combine", "VARCHAR(1)"],
-      ["sample_tube_code", "INTEGER"]
+      ["sample_tube_code", "INTEGER"],
+      ["will_perform_treatment", "VARCHAR(1)"],
+      ["final_mite_count_of_season", "VARCHAR(1)"]
     ];
   }
 }
