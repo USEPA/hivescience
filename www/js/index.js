@@ -2,25 +2,32 @@ import _ from "underscore";
 import $ from "jquery";
 import Handlebars from "handlebars";
 import DB from "./db";
-import {formatAttributes} from "./helpers"
-import ProfileRepository from "./repositories/profile_repository"
-import SurveyRepository from "./repositories/survey_repository"
-import GeoPlatformGateway from "./geo_platform/geo_platform_gateway"
-import AttributesFormatter from "./geo_platform/attributes_formatter"
-
-require("babel-core/register");
-require("babel-polyfill");
+import {formatAttributes} from "./helpers";
+import ProfileRepository from "./repositories/profile_repository";
+import SurveyRepository from "./repositories/survey_repository";
+import GeoPlatformGateway from "./geo_platform/geo_platform_gateway";
+import AttributesFormatter from "./geo_platform/attributes_formatter";
+import CameraService from "./services/camera_service";
+import FileService from "./services/file_service";
+import "babel-core/register";
+import "babel-polyfill";
 
 let db;
+
 let profileFormTemplate;
 let surveyFormTemplate;
 let dataViewTemplate;
 let welcomeTemplate;
 
-let profileAttributes;
-let surveyAttributes;
+let profileAttributes = {};
+let surveyAttributes = {};
+let miteCountPhotoUri;
+
 let profileRepository;
 let surveyRepository;
+
+let cameraService;
+let fileService;
 
 let app = {
   initialize: function () {
@@ -32,6 +39,8 @@ let app = {
   },
 
   onDeviceReady: async function () {
+    cameraService = new CameraService(navigator.camera);
+    fileService = new FileService(window, FileReader, Blob);
     await this._setupDatabase();
     if (await this._profileExists()) {
       $("#main-container").html(welcomeTemplate());
@@ -86,6 +95,8 @@ let app = {
 
     this._setupRadioButtonsAria();
 
+    this._setupAddMitesPhotoButton();
+
     $("#number-of-mites").on("keyup", (event) => {
       const numberOfMitesTotal = parseFloat(event.target.value, 10);
       const numberOfMitesPer100 = Math.round((numberOfMitesTotal / 3.0) * 100.0) / 100.0;
@@ -102,6 +113,7 @@ let app = {
     form.on("submit", (event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
+      surveyAttributes = _.extend(surveyAttributes, miteCountPhotoUri);
       surveyRepository.createRecord(surveyAttributes);
       $("#survey-form-template").hide();
       this.renderDataView();
@@ -111,11 +123,15 @@ let app = {
   renderDataView: async function () {
     const profiles = await profileRepository.findAll();
     const surveys = await surveyRepository.findAll();
+
     profileAttributes['profileRow'] = _.last(profiles);
     surveyAttributes['surveyRow'] = _.last(surveys);
-    this.syncToGeoPlatform(_.last(profiles), _.last(surveys));
-    const allAttributes = _.extend({}, profileAttributes, surveyAttributes);
-    $("#main-container").html(dataViewTemplate(allAttributes));
+
+    await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+
+    const allSurveyAttributes = _.extend({}, profileAttributes, surveyAttributes);
+    $("#main-container").html(dataViewTemplate(allSurveyAttributes));
+
     window.scrollTo(0, 0);
   },
 
@@ -139,10 +155,11 @@ let app = {
     return profiles.length > 0;
   },
 
-  syncToGeoPlatform(profile, survey) {
+  _syncToGeoPlatform: async function (profile, survey) {
     const formatter = new AttributesFormatter(profile, survey);
-    const geoPlatform = new GeoPlatformGateway(formatter.execute());
-    geoPlatform.sync();
+    const photo = await fileService.getBlob(survey["mite_count_photo_uri"]);
+    const geoPlatform = new GeoPlatformGateway(formatter.execute(), photo);
+    await geoPlatform.sync();
   },
 
   _setupOption: function (parentId, childId) {
@@ -163,6 +180,16 @@ let app = {
       const checked = event.target.checked;
       siblingLabels.attr("aria-checked", !checked);
       label.attr("aria-checked", checked);
+    });
+  },
+
+  _setupAddMitesPhotoButton: function () {
+    $("#add-mites-photo").on("click", async(event) => {
+      event.preventDefault();
+      const imageUri = await cameraService.getImageUri();
+      let fileEntry = await fileService.getFile(imageUri);
+      let copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
+      miteCountPhotoUri = {miteCountPhotoUri: copiedFileUri};
     });
   }
 };

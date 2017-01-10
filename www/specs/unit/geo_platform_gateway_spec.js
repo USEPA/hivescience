@@ -1,10 +1,7 @@
-import expect from "expect.js"
-import ghost from "ghostjs"
-import sinon from "sinon"
-import fetchMock from "fetch-mock"
-
-import GeoPlatformGateway from "../../js/geo_platform/geo_platform_gateway"
-import AttributesFormatter from "../../js/geo_platform/attributes_formatter"
+import expect from "expect.js";
+import fetchMock from "fetch-mock";
+import GeoPlatformGateway from "../../js/geo_platform/geo_platform_gateway";
+import AttributesFormatter from "../../js/geo_platform/attributes_formatter";
 
 class FakeFormData {
   constructor() {
@@ -42,10 +39,9 @@ describe("GeoPlatformGateway", () => {
       honey_from_sealed_cells: "Y",
       honey_from_brood: "N",
       split_or_combine: "Y",
-      sample_tube_code: ""
+      sample_tube_code: "",
+      mite_count_photo_uri: "test_photo_uri"
     };
-    const surveyUrl = "https://services.arcgis.com/cJ9YHowT8TU7DUyn/" +
-      "arcgis/rest/services/Show_Me_The_Honey/FeatureServer/0/addFeatures";
     const surveyJSON = [
       {
         "attributes": {
@@ -107,29 +103,48 @@ describe("GeoPlatformGateway", () => {
     ];
 
     // profile, survey => translate Keys, merge
-    it("sends a POST request with all of the profile & survey data", () => {
-      fetchMock.post(surveyUrl, {
-        "addResults": [
-          {
-            "objectId": 1021,
-            "globalId": "A0BD4DE3-4E4A-4EBE-82A1-9E407600CADA",
-            "success": true
-          }
-        ]
-      });
+    it("sends a POST request with all of the profile & survey data", async () => {
+      const objectId = 1021;
+
+      fetchMock.post(
+        GeoPlatformGateway.surveyUrl,
+        {
+          "addResults": [
+            {
+              "objectId": objectId,
+              "globalId": "A0BD4DE3-4E4A-4EBE-82A1-9E407600CADA",
+              "success": true
+            }
+          ]
+        }
+      );
+
+      fetchMock.post(GeoPlatformGateway.photoUrl(objectId), {"foo": "bar"});
 
       let formatter = new AttributesFormatter(profile, survey);
       let formattedAttributes = formatter.execute();
-      const geoPlatform = new GeoPlatformGateway(formattedAttributes);
 
-      let fakeFormData = new FakeFormData();
-      fakeFormData.append("features", JSON.stringify(surveyJSON));
-      fakeFormData.append("f", "pjson");
-      fakeFormData.append("rollbackOnFailure", "true");
-      geoPlatform.sync();
+      let fakeBlob = Symbol("fakeBlob");
 
-      expect(fetchMock.called(surveyUrl)).to.be(true);
-      expect(fetchMock.lastOptions(surveyUrl).body).to.eql(fakeFormData);
+      const geoPlatform = new GeoPlatformGateway(formattedAttributes, fakeBlob);
+
+      let fakeSurveyData = new FakeFormData();
+      fakeSurveyData.append("features", JSON.stringify(surveyJSON));
+      fakeSurveyData.append("f", "pjson");
+      fakeSurveyData.append("rollbackOnFailure", "true");
+
+      let fakePhotoData = new FakeFormData();
+      fakePhotoData.append("file", fakeBlob);
+      fakePhotoData.append("f", "pjson");
+      fakePhotoData.append("rollbackOnFailure", "true");
+
+      await geoPlatform.sync();
+
+      expect(fetchMock.called(GeoPlatformGateway.surveyUrl)).to.be(true);
+      expect(fetchMock.lastOptions(GeoPlatformGateway.surveyUrl).body).to.eql(fakeSurveyData);
+
+      expect(fetchMock.called(GeoPlatformGateway.photoUrl(objectId))).to.be(true);
+      expect(fetchMock.lastOptions(GeoPlatformGateway.photoUrl(objectId)).body).to.eql(fakePhotoData);
 
       fetchMock.restore();
     });

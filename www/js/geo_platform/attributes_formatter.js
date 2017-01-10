@@ -1,4 +1,4 @@
-import _ from "underscore"
+import _ from "underscore";
 
 export default class AttributesFormatter {
   constructor(profile, survey) {
@@ -53,7 +53,6 @@ export default class AttributesFormatter {
       race_of_bees: "Race",
       monitor_varroa_mites: "Active_Monitoring",
       monitor_varroa_mites_count: "Times_Year_Monitor",
-      // Verify that this is correct, or fixed in the final version
       treatment_methods: "Management_Strategy",
       queen_right: "Queen_Right",
       queen_drone_laying: "Drone_Laying_Queen",
@@ -62,8 +61,28 @@ export default class AttributesFormatter {
       honey_from_brood: "Brood_Nest",
       split_or_combine: "Split_Combine_Colony",
       lost_colonies_over_winter: "Overwintering",
-      last_treatment_date: "Last_Treatment"
+      last_treatment_date: "Last_Treatment",
+      small_hive_beetle: "Small_Hive_Beetle",
+      age_of_queen: "Age_of_Queen",
+      wax_moth: "Wax_Moth",
+      deformed_wings: "Deformed_Wings",
+      black_shiny_bees: "Black_Shiny_Bees",
+      american_foul_brood: "American_Foul_Brood",
+      european_foul_brood: "European_Foul_Brood",
+      chalkbrood: "Chalkbrood",
+      parasitic_mite_syndrome: "Parasitic_Mite_Syndrome",
+      dysentry: "Dysentery",
+      spotty_brood_pattern: "Spotty_Brood_Pattern",
+      abnormal_cappings: "Abnormal_Cappings",
+      dried_remains: "Dried_Remains"
+
     };
+  }
+
+  get keysToScrub() {
+    return [
+      "mite_count_photo_uri"
+    ];
   }
 
   get translatableKeys() {
@@ -90,7 +109,7 @@ export default class AttributesFormatter {
 
   get untranslatableAttributes() {
     return _.omit(this.attributes, (value, key) => {
-      return _.contains(this.translatableKeys, key);
+      return _.contains(this.translatableKeys, key) || _.contains(this.keysToScrub, key);
     });
   }
 }
