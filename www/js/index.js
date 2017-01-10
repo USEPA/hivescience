@@ -15,6 +15,8 @@ let db;
 let profileFormTemplate;
 let surveyFormTemplate;
 let dataViewTemplate;
+let welcomeTemplate;
+
 let profileAttributes;
 let surveyAttributes;
 let profileRepository;
@@ -25,13 +27,18 @@ let app = {
     profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
     surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
     dataViewTemplate = Handlebars.compile($("#data-view-template").html());
+    welcomeTemplate = Handlebars.compile($("#welcome-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
   onDeviceReady: async function () {
     await this._setupDatabase();
     if (await this._profileExists()) {
-      $("#main-container").html("<div><h1>Welcome!</h1></div>");
+      $("#main-container").html(welcomeTemplate());
+      $(".create-report").on("click", (event) => {
+        event.preventDefault();
+        this.renderSurveyForm();
+      });
     } else {
       this.renderProfileForm();
     }

@@ -14,8 +14,20 @@ form {
 }
 
 h1 {
+    border-bottom: 1px solid rgb(218, 220, 228);
+    color: rgb(52, 54, 61);
+    display: block;
+    font-size: 10pt;
+    margin-top: 30px;
+    padding-bottom: 7px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h2 {
     color: rgb(48, 50, 68);
     font-size: 18pt;
+    margin-top:70px;
 }
 
 p {
@@ -105,6 +117,10 @@ body:not(:-moz-handler-blocked) fieldset {
     display: table-cell;
 }
 
+#main-column{
+    flex-direction: column;
+}
+
 #main-container {
     display: flex;
     justify-content: center;
@@ -117,8 +133,10 @@ body:not(:-moz-handler-blocked) fieldset {
     right: 0;
 }
 
-#data-view {
-    display: block;
+.container {
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
 }
 
 .profile-header, .survey-header {
@@ -190,6 +208,21 @@ body:not(:-moz-handler-blocked) fieldset {
     margin-left: auto;
     margin-right: 15px;
     text-transform: uppercase;
+}
+
+.navigation-footer a.create-report {
+    color: rgb(255,255,255);
+    font-size: 18pt;
+    font-weight: bold;
+    margin-left: auto;
+    padding: 8px 15px 0 0;
+}
+
+#create-report-marker {
+    bottom: 80px;
+    position: fixed;
+    right: 40px;
+    width: 150px;
 }
 
 .profile-form-back-button {
