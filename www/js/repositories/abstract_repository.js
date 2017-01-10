@@ -14,7 +14,8 @@ export default class AbstractRepository {
         ${this.columnsForInsert()}
       );`;
     let defer = Q.defer();
-    this.db.executeSql(sqlStatement.replace(/\s+/g, " "), [], defer.resolve, defer.reject);
+    this.db.executeSql(sqlStatement.replace(/\s+/g, " "), [],
+      defer.resolve, defer.reject);
     return defer.promise;
   }
 
@@ -22,8 +23,11 @@ export default class AbstractRepository {
     const sqlStatement = `
       INSERT INTO ${this.tableName()} ( ${this.columnNames()} )
       VALUES (${this.updatePreparedStatement()});`;
+    let defer = Q.defer();
     const values = this.extractValuesFromAttributes(attributes);
-    this.db.executeSql(sqlStatement.replace(/\s+/g, " "), values);
+    this.db.executeSql(sqlStatement.replace(/\s+/g, " "), values,
+      defer.resolve, defer.reject);
+    return defer.promise;
   }
 
   findAll() {

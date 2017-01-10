@@ -1,23 +1,64 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans Italic';
+    src: url('../fonts/OpenSans-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans Bold';
+    src: url('../fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans Semibold';
+    src: url('../fonts/OpenSans-Semibold.ttf');
+}
+
+@font-face {
+    font-family: 'Droid Sans';
+    src: url('../fonts/DroidSans.ttf');
+}
+
+@font-face {
+    font-family: 'Droid Sans Bold';
+    src: url('../fonts/DroidSans-Bold.ttf');
+}
+
 html {
     min-height: 100%;
     position: relative;
 }
 
 body {
-    background-color: rgb(246, 247, 250);
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     margin: 0 0 100px;
 }
 
+body.gray-background {
+    background-color: rgb(246, 247, 250);
+}
+
+body.white-background {
+    background-color: #ffffff;
+}
+
 form {
+    margin: 0 auto;
     max-width: 300px;
 }
 
+h1, h2, h3, h4, h5 { font-weight: normal; }
 h1 {
     border-bottom: 1px solid rgb(218, 220, 228);
     color: rgb(52, 54, 61);
     display: block;
+    font-family: 'Open Sans Semibold';
     font-size: 10pt;
+    margin-bottom: 0;
     margin-top: 30px;
     padding-bottom: 7px;
     text-align: center;
@@ -26,6 +67,7 @@ h1 {
 
 h2 {
     color: rgb(48, 50, 68);
+    font-family: 'Droid Sans Bold';
     font-size: 18pt;
     margin-top: 70px;
 }
@@ -148,12 +190,9 @@ body:not(:-moz-handler-blocked) fieldset {
     display: table-cell;
 }
 
-#main-column {
-    flex-direction: column;
-}
-
 #main-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -285,4 +324,37 @@ body:not(:-moz-handler-blocked) fieldset {
     position: absolute;
     top: 19px;
     width: 57px;
+}
+
+ul.surveys {
+    list-style: none;
+    padding: 0;
+}
+
+ul.surveys li {
+    background-color: rgb(246, 247, 250);
+    border: 1px solid rgb(218, 220, 228);
+    margin-bottom:15px;
+    padding: 10px 0px 0px 25px;
+}
+
+ul.surveys li h2 {
+    color: rgb(52, 54, 61);
+    font-family: 'Open Sans Semibold';
+    font-size: 16pt;
+    margin: 0;
+}
+
+ul.surveys li p {
+    color: rgb(55, 187, 155);
+    font-family: 'Open Sans Semibold';
+    margin-top: 5px;
+}
+
+.success-banner {
+    background-color: rgb(55, 187, 155);
+    color: #ffffff;
+    margin-bottom:5px;
+    padding: 23px 0;
+    text-align: center;
 }

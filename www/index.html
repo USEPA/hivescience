@@ -20,7 +20,7 @@
     <title>Show Me The Honey</title>
 </head>
 
-<body>
+<body class="gray-background">
 <div id="main-container" class="app">
     <script id="profile-form-template" type="text/template">
         <form action="#" id="profile-form" novalidate>
@@ -52,16 +52,14 @@
     </script>
 
     <script id="welcome-template" type="text/template">
-        <div id="main-column">
-            <h1>Reports</h1>
-            <div class="container">
-                <h2>Welcome Beekeeper Citizen Scientist</h2>
-                <p>Once you've received your sample kits you can create your first report.</p>
-                <p>You can submit reports as often as you like.</p>
-                <img src="img/create-a-report.svg" alt="" aria-hidden="true" id="create-report-marker"/>
-                <div class="navigation-footer">
-                    <a href="" aria-label="Create a Report" class="create-report">+</a>
-                </div>
+        <h1>Reports</h1>
+        <div class="container">
+            <h2>Welcome Beekeeper Citizen Scientist</h2>
+            <p>Once you've received your sample kits you can create your first report.</p>
+            <p>You can submit reports as often as you like.</p>
+            <img src="img/create-a-report.svg" alt="" aria-hidden="true" id="create-report-marker"/>
+            <div class="navigation-footer">
+                <a href="" aria-label="Create a Report" class="create-report">+</a>
             </div>
         </div>
     </script>
@@ -245,70 +243,61 @@
         </form>
     </script>
 
+    <script id="reports-template" type="text/template">
+        <h1>Reports</h1>
+        <div class="success-banner">Thank you for your submission!</div>
+        <div class="container">
+
+            <ul class="surveys">
+                {{#each surveys}}
+                <li>
+                    <h2>{{created_on}}</h2>
+                    <p>Submitted</p>
+                </li>
+                {{/each}}
+            </ul>
+
+            <div class="navigation-footer">
+                <a href="" aria-label="Create a Report" class="create-report">+</a>
+            </div>
+        </div>
+    </script>
+
     <script id="data-view-template" type="text/template">
         <div class="container">
-            <h1>Profile:</h1>
-            <div><strong>Email:</strong> {{email}}</div>
-            <div><strong>Zip code:</strong> {{zipCode}}</div>
-            <div><strong>Race of bees in monitored hive:</strong> {{raceOfBees}}</div>
-
-            <h1>Survey:</h1>
-            <div><strong>Is the hive Queen right?</strong> {{queenRight}}</div>
-            <div><strong>Is the Queen drone laying?</strong> {{queenDroneLaying}}</div>
-            <div><strong>Wax moths?</strong> {{waxMoths}}</div>
-            <div><strong>Deformed wings?</strong> {{deformedWings}}</div>
-            <div><strong>Black shiny bees (Greasy bees)?</strong> {{blackShinyBees}}</div>
-            <div><strong>American foul brood?</strong> {{americanFoulBrood}}</div>
-            <div><strong>European foul brood?</strong> {{europeanFoulBrood}}</div>
-            <div><strong>Chalk brood?</strong> {{chalkBrood}}</div>
-            <div><strong>Abnormal cappings?</strong> {{abnormalCappings}}</div>
-            <div><strong>Dried remains of pulpae/larvae?</strong> {{driedRemains}}</div>
-            <div><strong>Total # of mites after powdered sugar shake</strong> {{numberOfMites}}</div>
-            <div><strong>Will you perform a treatment?</strong> {{surveyRow.willPerformTreatment}}</div>
-            <div><strong>Is this your final mite count of the season?</strong> {{surveyRow.finalMiteCountOfSeason}}
-            </div>
-
-            <div><strong>Are honey supers on?</strong> {{honeySupersOn}}</div>
-            <div><strong>Honey collected after supers removed?</strong> {{honeySupersRemoved}}</div>
-            <div><strong>Are you feeding your bees supplementary sugar?</strong> {{feedingSupplementarySugar}}</div>
-            <div><strong>Honey collected from sealed honey cells?</strong> {{honeyFromSealedCells}}</div>
-            <div><strong>Honey collected from brood nest?</strong> {{honeyFromBrood}}</div>
-            <div><strong>Did you split/combine the colony after sampling in the fall?</strong> {{splitOrCombine}}</div>
-            <div><strong>Honey sample collection tube code:</strong> {{sampleTubeCode}}</div>
-
             <h1>What was submitted in the database</h1>
 
             <h2>Profile:</h2>
-            <div><strong>Email:</strong> {{profileRow.email}}</div>
-            <div><strong>Zip code:</strong> {{profileRow.zip_code}}</div>
-            <div><strong>Race of bees in monitored hive:</strong> {{profileRow.race_of_bees}}</div>
+            <div><strong>Email:</strong> {{email}}</div>
+            <div><strong>Zip code:</strong> {{zip_code}}</div>
+            <div><strong>Race of bees in monitored hive:</strong> {{race_of_bees}}</div>
 
             <h2>Survey:</h2>
-            <div><strong>Is the hive Queen right?</strong> {{surveyRow.queen_right}}</div>
-            <div><strong>Is the Queen drone laying?</strong> {{surveyRow.queen_drone_laying}}</div>
-            <div><strong>Wax moths?</strong> {{surveyRow.wax_moths}}</div>
-            <div><strong>Deformed wings?</strong> {{surveyRow.deformed_wings}}</div>
-            <div><strong>Black shiny bees (Greasy bees)?</strong> {{surveyRow.black_shiny_bees}}</div>
-            <div><strong>American foul brood?</strong> {{surveyRow.american_foul_brood}}</div>
-            <div><strong>European foul brood?</strong> {{surveyRow.european_foul_brood}}</div>
-            <div><strong>Chalk brood?</strong> {{surveyRow.chalk_brood}}</div>
-            <div><strong>Abnormal cappings?</strong> {{surveyRow.abnormal_cappings}}</div>
-            <div><strong>Dried remains of pulpae/larvae?</strong> {{surveyRow.dried_remains}}</div>
-            <div><strong>Total # of mites after powdered sugar shake</strong> {{surveyRow.number_of_mites}}</div>
-            <div><strong>Will you perform a treatment?</strong> {{surveyRow.will_perform_treatment}}</div>
-            <div><strong>Is this your final mite count of the season?</strong> {{surveyRow.final_mite_count_of_season}}
+            <div><strong>Is the hive Queen right?</strong> {{queen_right}}</div>
+            <div><strong>Is the Queen drone laying?</strong> {{queen_drone_laying}}</div>
+            <div><strong>Wax moths?</strong> {{wax_moths}}</div>
+            <div><strong>Deformed wings?</strong> {{deformed_wings}}</div>
+            <div><strong>Black shiny bees (Greasy bees)?</strong> {{black_shiny_bees}}</div>
+            <div><strong>American foul brood?</strong> {{american_foul_brood}}</div>
+            <div><strong>European foul brood?</strong> {{european_foul_brood}}</div>
+            <div><strong>Chalk brood?</strong> {{chalk_brood}}</div>
+            <div><strong>Abnormal cappings?</strong> {{abnormal_cappings}}</div>
+            <div><strong>Dried remains of pulpae/larvae?</strong> {{dried_remains}}</div>
+            <div><strong>Total # of mites after alcohol wash</strong> {{number_of_mites}}</div>
+            <div><strong>Will you perform a treatment?</strong> {{will_perform_treatment}}</div>
+            <div><strong>Is this your final mite count of the season?</strong> {{final_mite_count_of_season}}
             </div>
-            <div><strong>Are honey supers on?</strong> {{surveyRow.honey_supers_on}}</div>
-            <div><strong>Honey collected after supers removed?</strong> {{surveyRow.honey_supers_removed}}</div>
+            <div><strong>Are honey supers on?</strong> {{honey_supers_on}}</div>
+            <div><strong>Honey collected after supers removed?</strong> {{honey_supers_removed}}</div>
             <div><strong>Are you feeding your bees supplementary sugar?</strong>
-                {{surveyRow.feeding_supplementary_sugar}}
+                {{feeding_supplementary_sugar}}
             </div>
-            <div><strong>Honey collected from sealed honey cells?</strong> {{surveyRow.honey_from_sealed_cells}}</div>
-            <div><strong>Honey collected from brood nest?</strong> {{surveyRow.honey_from_brood}}</div>
+            <div><strong>Honey collected from sealed honey cells?</strong> {{honey_from_sealed_cells}}</div>
+            <div><strong>Honey collected from brood nest?</strong> {{honey_from_brood}}</div>
             <div><strong>Did you split/combine the colony after sampling in the fall?</strong>
-                {{surveyRow.split_or_combine}}
+                {{split_or_combine}}
             </div>
-            <div><strong>Honey sample collection tube code:</strong> {{surveyRow.sample_tube_code}}</div>
+            <div><strong>Honey sample collection tube code:</strong> {{sample_tube_code}}</div>
         </div>
     </script>
 </div>

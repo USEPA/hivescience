@@ -89,7 +89,8 @@ describe("DB", () => {
         sample_tube_code INTEGER,
         will_perform_treatment VARCHAR(1),
         final_mite_count_of_season VARCHAR(1),
-        mite_count_photo_uri VARCHAR(255)
+        mite_count_photo_uri VARCHAR(255),
+        created_on TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -159,9 +160,10 @@ describe("DB", () => {
           sample_tube_code,
           will_perform_treatment,
           final_mite_count_of_season,
-          mite_count_photo_uri
+          mite_count_photo_uri,
+          created_on
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -187,7 +189,8 @@ describe("DB", () => {
           sampleTubeCode: 1234567890,
           willPerformTreatment: "Y",
           finalMiteCountOfSeason: "N",
-          miteCountPhotoUri: "testphotouri"
+          miteCountPhotoUri: "testphotouri",
+          createdOn: "January 12, 2017"
         };
 
         surveyRepository.createRecord(attributes);
@@ -216,7 +219,8 @@ describe("DB", () => {
           attributes.sampleTubeCode,
           attributes.willPerformTreatment,
           attributes.finalMiteCountOfSeason,
-          attributes.miteCountPhotoUri
+          attributes.miteCountPhotoUri,
+          attributes.createdOn
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

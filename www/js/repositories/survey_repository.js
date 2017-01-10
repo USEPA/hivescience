@@ -34,7 +34,8 @@ export default class SurveyRepository extends AbstractRepository {
       ["sample_tube_code", "INTEGER"],
       ["will_perform_treatment", "VARCHAR(1)"],
       ["final_mite_count_of_season", "VARCHAR(1)"],
-      ["mite_count_photo_uri", "VARCHAR(255)"]
+      ["mite_count_photo_uri", "VARCHAR(255)"],
+      ["created_on", "TEXT"]
     ];
   }
 }

@@ -13,11 +13,13 @@ import "babel-core/register";
 import "babel-polyfill";
 
 let db;
+let body;
 
 let profileFormTemplate;
 let surveyFormTemplate;
 let dataViewTemplate;
 let welcomeTemplate;
+let reportsTemplate;
 
 let profileAttributes = {};
 let surveyAttributes = {};
@@ -35,10 +37,12 @@ let app = {
     surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
     dataViewTemplate = Handlebars.compile($("#data-view-template").html());
     welcomeTemplate = Handlebars.compile($("#welcome-template").html());
+    reportsTemplate = Handlebars.compile($("#reports-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
   onDeviceReady: async function () {
+    body = $("body");
     cameraService = new CameraService(navigator.camera);
     fileService = new FileService(window, FileReader, Blob);
     await this._setupDatabase();
@@ -88,6 +92,8 @@ let app = {
   },
 
   renderSurveyForm: function () {
+    body.removeClass("white-background");
+    body.addClass("gray-background");
     $("#main-container").html(surveyFormTemplate());
     window.scrollTo(0, 0);
 
@@ -110,28 +116,30 @@ let app = {
     });
 
     const form = $("#survey-form");
-    form.on("submit", (event) => {
+    form.on("submit", async (event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
-      surveyAttributes = _.extend(surveyAttributes, miteCountPhotoUri);
-      surveyRepository.createRecord(surveyAttributes);
+      const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
+      _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
+      await surveyRepository.createRecord(surveyAttributes);
+
+      const surveys = await surveyRepository.findAll();
+      const profiles = await profileRepository.findAll();
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+
       $("#survey-form-template").hide();
-      this.renderDataView();
+      this.renderReportsView(surveys);
     });
   },
 
-  renderDataView: async function () {
-    const profiles = await profileRepository.findAll();
-    const surveys = await surveyRepository.findAll();
-
-    profileAttributes['profileRow'] = _.last(profiles);
-    surveyAttributes['surveyRow'] = _.last(surveys);
-
-    await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
-
-    const allSurveyAttributes = _.extend({}, profileAttributes, surveyAttributes);
-    $("#main-container").html(dataViewTemplate(allSurveyAttributes));
-
+  renderReportsView: function (surveys) {
+    body.removeClass("gray-background");
+    body.addClass("white-background");
+    $("#main-container").html(reportsTemplate({surveys: surveys}));
+    $(".create-report").on("click", (event) => {
+      event.preventDefault();
+      this.renderSurveyForm();
+    });
     window.scrollTo(0, 0);
   },
 
