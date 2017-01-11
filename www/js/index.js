@@ -47,7 +47,13 @@ let app = {
     fileService = new FileService(window, FileReader, Blob);
     await this._setupDatabase();
     if (await this._profileExists()) {
-      $("#main-container").html(welcomeTemplate());
+      const surveys = await surveyRepository.findAll();
+      if (surveys.length > 0) {
+        this.renderReportsView(surveys);
+      } else {
+        $("#main-container").html(welcomeTemplate());
+      }
+
       $(".create-report").on("click", (event) => {
         event.preventDefault();
         this.renderSurveyForm();
