@@ -71,7 +71,7 @@ export default class AttributesFormatter {
       european_foul_brood: "European_Foul_Brood",
       chalkbrood: "Chalkbrood",
       parasitic_mite_syndrome: "Parasitic_Mite_Syndrome",
-      dysentry: "Dysentery",
+      dysentery: "Dysentery",
       spotty_brood_pattern: "Spotty_Brood_Pattern",
       abnormal_cappings: "Abnormal_Cappings",
       dried_remains: "Dried_Remains"
