@@ -65,21 +65,7 @@ let app = {
 
   renderProfileForm: function () {
     $("#main-container").html(profileFormTemplate());
-    window.scrollTo(0, 0);
-
-    $(".profile-form-back-button").on("click", (event) => {
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      $(`#profile-form-page-${pageNumber + 1}`).hide();
-      $(`#profile-form-page-${pageNumber}`).show();
-      window.scrollTo(0, 0);
-    });
-
-    $(".profile-form-next-button").on("click", (event) => {
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      $(`#profile-form-page-${pageNumber - 1}`).hide();
-      $(`#profile-form-page-${pageNumber}`).show();
-      window.scrollTo(0, 0);
-    });
+    document.location.href = "#top";
 
     this._setupOption("#other-race-of-bees", "#input-race");
     this._setupOption("#other-monitor-method", "#input-method");
@@ -101,7 +87,28 @@ let app = {
     body.removeClass("white-background");
     body.addClass("gray-background");
     $("#main-container").html(surveyFormTemplate());
-    window.scrollTo(0, 0);
+    document.location.href = "#top";
+    $("#survey-section-1 .section-indicator").children().eq(0).css("background-color", "rgba(255,255,255,1.0)");
+
+    $(".previous-section-button").on("click", (event) => {
+      event.preventDefault();
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      document.location.href = "#top";
+      $(`#survey-section-${pageNumber + 1}`).hide();
+      $(`#survey-section-${pageNumber}`).show();
+      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
+        .css("background-color", "rgba(255,255,255,1.0)");
+    });
+
+    $(".next-section-button").on("click", (event) => {
+      event.preventDefault();
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      document.location.href = "#top";
+      $(`#survey-section-${pageNumber - 1}`).hide();
+      $(`#survey-section-${pageNumber}`).show();
+      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
+        .css("background-color", "rgba(255,255,255,1.0)");
+    });
 
     this._setupOption("#other-disease", "#input-disease");
 
@@ -146,7 +153,7 @@ let app = {
       event.preventDefault();
       this.renderSurveyForm();
     });
-    window.scrollTo(0, 0);
+    document.location.href = "#top";
   },
 
   // "private" methods

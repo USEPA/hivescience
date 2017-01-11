@@ -151,22 +151,6 @@ input[type=checkbox]:checked {
     background-color: rgb(55, 187, 155);
 }
 
-input[type=submit] {
-    background-color: rgb(55, 187, 155);
-    border: none;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    color: white;
-    font-size: 10pt;
-    height: 60px;
-    letter-spacing: 1.5pt;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    text-transform: uppercase;
-    width: 300px;
-    -webkit-appearance: none;
-}
-
 legend {
     padding: 0;
 }
@@ -196,11 +180,20 @@ body:not(:-moz-handler-blocked) fieldset {
     justify-content: center;
 }
 
-#submit-break {
-    border-top: 1px rgb(216, 216, 216) solid;
-    left: 0;
-    position: absolute;
-    right: 0;
+#profile-form input[type=submit] {
+    background-color: rgb(55, 187, 155);
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    font-size: 10pt;
+    height: 60px;
+    letter-spacing: 1.5pt;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-transform: uppercase;
+    width: 300px;
+    -webkit-appearance: none;
 }
 
 .container {
@@ -259,6 +252,7 @@ body:not(:-moz-handler-blocked) fieldset {
     background-color: rgb(51, 102, 153);
     bottom: 0;
     display: flex;
+    align-items: center;
     height: 50px;
     left: 0;
     position: fixed;
@@ -275,14 +269,18 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .navigation-footer input[type=submit] {
-    background-color: transparent;
+    background-color: rgb(55, 187, 155);
     border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
     color: white;
     font-size: 9pt;
     letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    -webkit-appearance: none;
     margin-left: auto;
     margin-right: 15px;
-    text-transform: uppercase;
+    height: 30px;
 }
 
 .navigation-footer a.create-report {
@@ -290,7 +288,34 @@ body:not(:-moz-handler-blocked) fieldset {
     font-size: 18pt;
     font-weight: bold;
     margin-left: auto;
-    padding: 8px 15px 0 0;
+    padding: 0px 15px;
+}
+
+.previous-section-button {
+    margin-left: 15px;
+}
+
+.next-section-button {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.section-indicator {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
 }
 
 #create-report-marker {
@@ -298,16 +323,6 @@ body:not(:-moz-handler-blocked) fieldset {
     position: fixed;
     right: 40px;
     width: 150px;
-}
-
-.profile-form-back-button {
-    margin-left: 15px;
-    margin-right: auto;
-}
-
-.profile-form-next-button {
-    margin-left: auto;
-    margin-right: 15px;
 }
 
 .hidden {
