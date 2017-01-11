@@ -79,7 +79,7 @@ let app = {
       profileAttributes = formatAttributes(form.serializeArray());
       profileRepository.createRecord(profileAttributes);
       $("#profile-form-template").hide();
-      this.renderSurveyForm();
+      $("#main-container").html(welcomeTemplate());
     });
   },
 
