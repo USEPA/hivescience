@@ -85,7 +85,7 @@ label, legend {
     color: rgb(52, 54, 61);
     display: block;
     font-size: 10pt;
-    font-weight: bold;
+    font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
     margin-bottom: 10px;
 }
 
@@ -234,6 +234,7 @@ body:not(:-moz-handler-blocked) fieldset {
 
 .radio-container label:nth-of-type(2) {
     border: 1px solid rgb(218, 220, 228);
+    border-left: 0px;
     border-radius: 0 5px 5px 0;
     -webkit-border-radius: 0 5px 5px 0;
 }
@@ -246,6 +247,10 @@ body:not(:-moz-handler-blocked) fieldset {
     border-color: rgb(43, 170, 225);
     background-color: rgb(43, 170, 225);
     color: white;
+}
+
+.radio-container input[type=radio]:checked + label[for~=yes] {
+    border-right: 0px;
 }
 
 .navigation-footer {

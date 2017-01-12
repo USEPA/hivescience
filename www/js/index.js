@@ -71,7 +71,7 @@ let app = {
     this._setupOption("#other-monitor-method", "#input-method");
     this._setupOption("#other-treatment-method", "#input-treatment");
 
-    this._setupRadioButtonsAria();
+    this._setupRadioButtons();
 
     const form = $("#profile-form");
     form.on("submit", (event) => {
@@ -112,7 +112,7 @@ let app = {
 
     this._setupOption("#other-disease", "#input-disease");
 
-    this._setupRadioButtonsAria();
+    this._setupRadioButtons();
 
     this._setupAddMitesPhotoButton();
 
@@ -194,13 +194,14 @@ let app = {
     });
   },
 
-  _setupRadioButtonsAria: function () {
+  _setupRadioButtons: function () {
     $("input[type=radio]").on("change", (event) => {
       const label = $(`label[for=${event.target.id}]`);
       const siblingLabels = label.siblings("label");
       const checked = event.target.checked;
       siblingLabels.attr("aria-checked", !checked);
       label.attr("aria-checked", checked);
+      label.siblings("label:first-of-type").css("border-right", 0);
     });
   },
 
