@@ -181,9 +181,12 @@ let app = {
 
   _syncToGeoPlatform: async function (profile, survey) {
     const formatter = new AttributesFormatter(profile, survey);
-    const photo = await fileService.getBlob(survey["mite_count_photo_uri"]);
-    const geoPlatform = new GeoPlatformGateway(formatter.execute(), photo);
-    await geoPlatform.sync();
+    const geoPlatform = new GeoPlatformGateway(formatter.execute());
+    const surveyId = await geoPlatform.syncSurvey();
+    if (survey["mite_count_photo_uri"] !== null) {
+      const photo = await fileService.getBlob(survey["mite_count_photo_uri"]);
+      await geoPlatform.syncPhoto(photo, surveyId);
+    }
   },
 
   _setupOption: function (parentId, childId) {

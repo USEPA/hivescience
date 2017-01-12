@@ -133,7 +133,8 @@ describe("GeoPlatformGateway", () => {
       fakePhotoData.append("f", "pjson");
       fakePhotoData.append("rollbackOnFailure", "true");
 
-      await geoPlatform.sync();
+      let surveyId = await geoPlatform.syncSurvey();
+      await geoPlatform.syncPhoto(fakeBlob, surveyId);
 
       expect(fetchMock.called(GeoPlatformGateway.surveyUrl)).to.be(true);
       let rawBody = fetchMock.lastOptions(GeoPlatformGateway.surveyUrl).body;

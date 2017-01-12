@@ -24,19 +24,11 @@ export default class GeoPlatformGateway {
     return `https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Show_Me_The_Honey/FeatureServer/0/${id}/addAttachment`;
   }
 
-  constructor(attributes, photoBlob) {
+  constructor(attributes) {
     this.attributes = attributes;
-    this.photoBlob = photoBlob;
   }
 
-  async sync() {
-    const id = await this._syncSurvey();
-    await this._syncPhoto(id);
-  }
-
-  // private
-
-  _syncSurvey() {
+  syncSurvey() {
     let defer = Q.defer();
     fetch(GeoPlatformGateway.surveyUrl,
       {
@@ -53,12 +45,12 @@ export default class GeoPlatformGateway {
     return defer.promise;
   }
 
-  _syncPhoto(id) {
+  syncPhoto(photoBlob, surveyId) {
     let defer = Q.defer();
-    fetch(GeoPlatformGateway.photoUrl(id),
+    fetch(GeoPlatformGateway.photoUrl(surveyId),
       {
         method: "POST",
-        body: this._makeForm("file", this.photoBlob)
+        body: this._makeForm("file", photoBlob)
       }
     ).then((response) => {
       return response.json();
@@ -69,6 +61,8 @@ export default class GeoPlatformGateway {
     });
     return defer.promise;
   }
+
+  // private
 
   _makeForm(type, data) {
     let form = new GeoPlatformGateway.formDataClass();
