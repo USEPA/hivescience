@@ -209,7 +209,7 @@ let app = {
   },
 
   _setupAddMitesPhotoButton: function () {
-    $("#add-mites-photo").on("click", async(event) => {
+    $("#add-mites-photo").on("click", async (event) => {
       event.preventDefault();
       const imageUri = await cameraService.getImageUri();
       let fileEntry = await fileService.getFile(imageUri);
