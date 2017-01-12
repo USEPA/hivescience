@@ -36,6 +36,7 @@ html {
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     margin: 0 0 100px;
+    font-size: 10pt;
 }
 
 body.gray-background {
@@ -51,7 +52,10 @@ form {
     max-width: 300px;
 }
 
-h1, h2, h3, h4, h5 { font-weight: normal; }
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+
 h1 {
     border-bottom: 1px solid rgb(218, 220, 228);
     color: rgb(52, 54, 61);
@@ -63,6 +67,7 @@ h1 {
     padding-bottom: 7px;
     text-align: center;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 h2 {
@@ -70,10 +75,6 @@ h2 {
     font-family: 'Droid Sans Bold';
     font-size: 18pt;
     margin-top: 70px;
-}
-
-p {
-    font-size: 10pt;
 }
 
 a {
@@ -99,9 +100,10 @@ input[type=text], [type=email], [type=number], [type=date] {
     color: rgb(146, 149, 156);
     font-size: 12pt;
     height: 35px;
-    margin-bottom: 32px;
-    padding-left: 18px;
-    width: 278px;
+    padding: 5px 0 5px 15px;
+    margin-bottom: 35px;
+    margin-right: 0;
+    width: 283px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -119,7 +121,7 @@ input[type=number]#number-of-mites {
 #mites-per-bees-calc {
     color: rgb(148, 151, 157);
     font-style: italic;
-    margin-bottom: 32px;
+    margin-bottom: 35px;
     text-align: right;
 }
 
@@ -132,7 +134,7 @@ input[type=number]#number-of-mites {
     font-size: 10pt;
     height: 40px;
     letter-spacing: 1.5pt;
-    margin-bottom: 32px;
+    margin-bottom: 35px;
     text-transform: uppercase;
     width: 300px;
     -webkit-appearance: none;
@@ -209,9 +211,9 @@ body:not(:-moz-handler-blocked) fieldset {
 
 .radio-container {
     display: flex;
-    height: 35px;
-    margin-bottom: 32px;
-    width: 296px;
+    height: 45px;
+    margin-bottom: 35px;
+    width: 300px;
 }
 
 .radio-container label {
@@ -284,16 +286,16 @@ body:not(:-moz-handler-blocked) fieldset {
     text-transform: uppercase;
     -webkit-appearance: none;
     margin-left: auto;
-    margin-right: 15px;
+    margin-right: 10px;
     height: 30px;
 }
 
 .navigation-footer a.create-report {
     color: rgb(255, 255, 255);
-    font-size: 18pt;
+    font-size: 24pt;
     font-weight: bold;
     margin-left: auto;
-    padding: 0px 15px;
+    padding-right: 20px;
 }
 
 .previous-section-button {
@@ -335,7 +337,7 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .marker-underline {
-    margin-bottom: 32px;
+    margin-bottom: 35px;
     position: relative;
 }
 
@@ -354,7 +356,7 @@ ul.surveys {
 ul.surveys li {
     background-color: rgb(246, 247, 250);
     border: 1px solid rgb(218, 220, 228);
-    margin-bottom:15px;
+    margin-bottom: 15px;
     padding: 10px 0px 0px 25px;
 }
 
@@ -374,7 +376,6 @@ ul.surveys li p {
 .success-banner {
     background-color: rgb(55, 187, 155);
     color: #ffffff;
-    margin-bottom:5px;
     padding: 23px 0;
     text-align: center;
 }

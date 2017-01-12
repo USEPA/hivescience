@@ -51,13 +51,8 @@ let app = {
       if (surveys.length > 0) {
         this.renderReportsView(surveys);
       } else {
-        $("#main-container").html(welcomeTemplate());
+        this.renderWelcomeTemplate();
       }
-
-      $(".create-report").on("click", (event) => {
-        event.preventDefault();
-        this.renderSurveyForm();
-      });
     } else {
       this.renderProfileForm();
     }
@@ -79,7 +74,15 @@ let app = {
       profileAttributes = formatAttributes(form.serializeArray());
       profileRepository.createRecord(profileAttributes);
       $("#profile-form-template").hide();
-      $("#main-container").html(welcomeTemplate());
+      this.renderWelcomeTemplate();
+    });
+  },
+
+  renderWelcomeTemplate() {
+    $("#main-container").html(welcomeTemplate());
+    $(".create-report").on("click", (event) => {
+      event.preventDefault();
+      this.renderSurveyForm();
     });
   },
 
