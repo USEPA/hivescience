@@ -152,6 +152,13 @@
                     <input id="chalk-brood-no" type="radio" name="chalkBrood" value="N"/>
                     <label for="chalk-brood-no" role="checkbox" aria-checked="false">No</label>
                 </div>
+                <label>Parasitic mite syndrome?</label>
+                <div class="radio-container">
+                    <input id="parasitic-mite-syndrome-yes" type="radio" name="parasiticMiteSyndrome" value="Y"/>
+                    <label for="parasitic-mite-syndrome-yes" role="checkbox" aria-checked="false">Yes</label>
+                    <input id="parasitic-mite-syndrome-no" type="radio" name="parasiticMiteSyndrome" value="N"/>
+                    <label for="parasitic-mite-syndrome-no" role="checkbox" aria-checked="false">No</label>
+                </div>
                 <label>Abnormal cappings?</label>
                 <div class="radio-container">
                     <input id="abnormal-cappings-yes" type="radio" name="abnormalCappings" value="Y"/>
@@ -172,6 +179,13 @@
                     <label for="dysentery-yes" role="checkbox" aria-checked="false">Yes</label>
                     <input id="dysentery-no" type="radio" name="dysentery" value="N"/>
                     <label for="dysentery-no" role="checkbox" aria-checked="false">No</label>
+                </div>
+                <label>Spotty brood pattern?</label>
+                <div class="radio-container">
+                    <input id="spotty-brood-pattern-yes" type="radio" name="spottyBroodPattern" value="Y"/>
+                    <label for="spotty-brood-pattern-yes" role="checkbox" aria-checked="false">Yes</label>
+                    <input id="spotty-brood-pattern-no" type="radio" name="spottyBroodPattern" value="N"/>
+                    <label for="spotty-brood-pattern-no" role="checkbox" aria-checked="false">No</label>
                 </div>
 
                 <div class="navigation-footer">
@@ -272,8 +286,12 @@
             <div><strong>American foul brood?</strong> {{american_foul_brood}}</div>
             <div><strong>European foul brood?</strong> {{european_foul_brood}}</div>
             <div><strong>Chalk brood?</strong> {{chalk_brood}}</div>
+            <div><strong>Parasitic mite syndrome?</strong> {{parasitic_mite_syndrome}}</div>
             <div><strong>Abnormal cappings?</strong> {{abnormal_cappings}}</div>
             <div><strong>Dried remains of pulpae/larvae?</strong> {{dried_remains}}</div>
+            <div><strong>Dysentery?</strong> {{dysentery}}</div>
+            <div><strong>Spotty brood pattern?</strong> {{spotty_brood_pattern}}</div>
+
             <div><strong>Total # of mites after alcohol wash</strong> {{number_of_mites}}</div>
             <div><strong>Will you perform a treatment?</strong> {{will_perform_treatment}}</div>
             <div><strong>Is this your final mite count of the season?</strong> {{final_mite_count_of_season}}

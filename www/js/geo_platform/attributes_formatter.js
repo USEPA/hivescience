@@ -7,21 +7,6 @@ export default class AttributesFormatter {
 
   get baseAttributes() {
     return {
-      // We are going to change the diseases question to be several different questions.
-      "Small_Hive_Beetle": "", // omit for now
-      "Age_of_Queen": "", // omit for now
-      "Wax_Moth": "", // omit for now
-      "Deformed_Wings": "", // omit for now
-      "Black_Shiny_Bees": "", // omit for now
-      "American_Foul_Brood": "", // omit for now
-      "European_Foul_Brood": "", // omit for now
-      "Chalkbrood": "", // omit for now
-      "Parasitic_Mite_Syndrome": "", // omit for now
-      "Dysentery": "", // omit for now
-      "Spotty_Brood_Pattern": "", // omit for now
-      "Abnormal_Cappings": "", // omit for now
-      "Dried_Remains": "", // omit for now
-
       // Wait until we implement "Type of Treatment Applied"
       "Treatment_Type": "",
 
@@ -30,7 +15,6 @@ export default class AttributesFormatter {
       "Treatment_Required": "",
 
       // Will implement soon
-      "Mite_Count_1": "10",
       "Image_Upload_1": "",
       "Mites_per_100_Bees": "",
       // Questions that have been removed but Geoplatform (at least this
@@ -62,20 +46,21 @@ export default class AttributesFormatter {
       split_or_combine: "Split_Combine_Colony",
       lost_colonies_over_winter: "Overwintering",
       last_treatment_date: "Last_Treatment",
-      small_hive_beetle: "Small_Hive_Beetle",
+      hive_beetles: "Small_Hive_Beetle",
       age_of_queen: "Age_of_Queen",
-      wax_moth: "Wax_Moth",
+      wax_moths: "Wax_Moth",
       deformed_wings: "Deformed_Wings",
       black_shiny_bees: "Black_Shiny_Bees",
       american_foul_brood: "American_Foul_Brood",
       european_foul_brood: "European_Foul_Brood",
-      chalkbrood: "Chalkbrood",
+      chalk_brood: "Chalkbrood",
       parasitic_mite_syndrome: "Parasitic_Mite_Syndrome",
       dysentery: "Dysentery",
       spotty_brood_pattern: "Spotty_Brood_Pattern",
       abnormal_cappings: "Abnormal_Cappings",
-      dried_remains: "Dried_Remains"
-
+      dried_remains: "Dried_Remains",
+      number_of_mites: "Mite_Count_1",
+      will_perform_treatment: "Treatment_Required"
     };
   }
 
@@ -90,8 +75,9 @@ export default class AttributesFormatter {
   }
 
   execute(profile, survey) {
-    let finalAttributes = _.assign(this.transformAttributes(), this.baseAttributes);
-    return JSON.stringify([{"attributes": finalAttributes}]);
+    let finalAttributes = _.assign({}, this.baseAttributes, this.transformAttributes());
+    let sortedAttributes = this.sortKeys(finalAttributes);
+    return JSON.stringify([{"attributes": sortedAttributes}]);
   }
 
   // "Private" methods
@@ -111,5 +97,16 @@ export default class AttributesFormatter {
     return _.omit(this.attributes, (value, key) => {
       return _.contains(this.translatableKeys, key) || _.contains(this.keysToScrub, key);
     });
+  }
+
+  sortKeys(attributes) {
+    let keys = Object.keys(attributes);
+    keys.sort();
+    let sortedAttributes = {};
+    let key;
+    for(key in keys) {
+      sortedAttributes[keys[key]] = attributes[keys[key]];
+    }
+    return sortedAttributes;
   }
 }

@@ -76,9 +76,11 @@ describe("DB", () => {
         american_foul_brood VARCHAR(1),
         european_foul_brood VARCHAR(1),
         chalk_brood VARCHAR(1),
+        parasitic_mite_syndrome VARCHAR(1),
         abnormal_cappings VARCHAR(1),
         dried_remains VARCHAR(1),
         dysentery VARCHAR(1),
+        spotty_brood_pattern VARCHAR(1),
         number_of_mites INTEGER,
         honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
@@ -147,9 +149,11 @@ describe("DB", () => {
           american_foul_brood,
           european_foul_brood,
           chalk_brood,
+          parasitic_mite_syndrome,
           abnormal_cappings,
           dried_remains,
           dysentery,
+          spotty_brood_pattern,
           number_of_mites,
           honey_supers_on,
           honey_supers_removed,
@@ -163,7 +167,7 @@ describe("DB", () => {
           mite_count_photo_uri,
           created_on
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -176,9 +180,11 @@ describe("DB", () => {
           americanFoulBrood: "N",
           europeanFoulBrood: "Y",
           chalkBrood: "Y",
+          parasiticMiteSyndrome: "N",
           abnormalCappings: "N",
           driedRemains: "Y",
           dysentery: "N",
+          spottyBroodPattern: "Y",
           numberOfMites: 200,
           honeySupersOn: "Y",
           honeySupersRemoved: "Y",
@@ -206,9 +212,11 @@ describe("DB", () => {
           attributes.americanFoulBrood,
           attributes.europeanFoulBrood,
           attributes.chalkBrood,
+          attributes.parasiticMiteSyndrome,
           attributes.abnormalCappings,
           attributes.driedRemains,
           attributes.dysentery,
+          attributes.spottyBroodPattern,
           attributes.numberOfMites,
           attributes.honeySupersOn,
           attributes.honeySupersRemoved,
