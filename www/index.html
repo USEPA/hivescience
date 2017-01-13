@@ -255,10 +255,16 @@
 
             <ul class="surveys">
                 {{#each surveys}}
-                <li>
+                <li class="report-button">
                     <h2>{{created_on}}</h2>
-                    <p>Submitted</p>
+                    <span>Submitted</span>
                 </li>
+                {{#if this.renderFollowUpButton}}
+                <li class="follow-up-button">
+                    <span>Create treatment follow up report</span>
+                    <span>+</span>
+                </li>
+                {{/if}}
                 {{/each}}
             </ul>
 

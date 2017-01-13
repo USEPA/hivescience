@@ -132,7 +132,7 @@ let app = {
     });
 
     const form = $("#survey-form");
-    form.on("submit", async (event) => {
+    form.on("submit", async(event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
@@ -151,6 +151,10 @@ let app = {
   renderReportsView: function (surveys) {
     body.removeClass("gray-background");
     body.addClass("white-background");
+    surveys = surveys.map((survey) => {
+      survey.renderFollowUpButton = survey.will_perform_treatment === "Y";
+      return survey;
+    });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
     $(".create-report").on("click", (event) => {
       event.preventDefault();
@@ -212,7 +216,7 @@ let app = {
   },
 
   _setupAddMitesPhotoButton: function () {
-    $("#add-mites-photo").on("click", async (event) => {
+    $("#add-mites-photo").on("click", async(event) => {
       event.preventDefault();
       const imageUri = await cameraService.getImageUri();
       let fileEntry = await fileService.getFile(imageUri);

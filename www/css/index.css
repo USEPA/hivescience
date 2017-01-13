@@ -353,24 +353,49 @@ ul.surveys {
     padding: 0;
 }
 
-ul.surveys li {
+.report-button {
     background-color: rgb(246, 247, 250);
     border: 1px solid rgb(218, 220, 228);
     margin-bottom: 15px;
-    padding: 10px 0px 0px 25px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    justify-content: center;
 }
 
-ul.surveys li h2 {
+.report-button h2 {
     color: rgb(52, 54, 61);
-    font-family: 'Open Sans Semibold';
-    font-size: 16pt;
+    font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
+    font-size: 12pt;
     margin: 0;
 }
 
-ul.surveys li p {
+.report-button span {
+    font-size: 9pt;
     color: rgb(55, 187, 155);
-    font-family: 'Open Sans Semibold';
-    margin-top: 5px;
+    font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
+}
+
+.follow-up-button {
+    background-color: white;
+    border: 2px dashed rgb(43, 170, 225);
+    margin-bottom: 15px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    color: rgb(43, 170, 225);
+    font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
+}
+
+.follow-up-button span {
+    font-size: 12px;
+}
+
+.follow-up-button span:nth-of-type(2) {
+    font-size: 18pt;
 }
 
 .success-banner {
