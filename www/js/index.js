@@ -222,6 +222,7 @@ let app = {
       let fileEntry = await fileService.getFile(imageUri);
       let copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
       miteCountPhotoUri = {miteCountPhotoUri: copiedFileUri};
+      $("#mites-photo-preview").attr('src', copiedFileUri).show();
     });
   }
 };
