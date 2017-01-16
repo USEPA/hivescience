@@ -22,6 +22,7 @@ let welcomeTemplate;
 let reportsTemplate;
 let followUpFormTemplate;
 let honeyFormTemplate;
+let overwinteringFormTemplate;
 
 let profileAttributes = {};
 let surveyAttributes = {};
@@ -42,6 +43,7 @@ let app = {
     reportsTemplate = Handlebars.compile($("#reports-template").html());
     followUpFormTemplate = Handlebars.compile($("#follow-up-form-template").html());
     honeyFormTemplate = Handlebars.compile($("#honey-form-template").html());
+    overwinteringFormTemplate = Handlebars.compile($("#overwintering-form-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
@@ -123,6 +125,7 @@ let app = {
       survey.renderHoneyReportButton = survey.final_mite_count_of_season === "Y";
       survey.honeyReportSubmitted = survey.honey_report_submitted_on != null;
       survey.renderOverwinterReportButton = survey.honeyReportSubmitted;
+      survey.overwinteringReportSubmitted = survey.overwintering_report_submitted_on != null;
       return survey;
     });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
@@ -135,6 +138,11 @@ let app = {
     $(".honey-report-button").on("click", (event) => {
       event.preventDefault();
       this.renderHoneyForm($(event.currentTarget).data("survey-id"));
+    });
+
+    $(".overwintering-report-button").on("click", (event) => {
+      event.preventDefault();
+      this.renderOverwinteringForm($(event.currentTarget).data("survey-id"));
     });
 
     $(".create-report").on("click", (event) => {
@@ -193,6 +201,30 @@ let app = {
       this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#honey-form-template").hide();
+      this.renderReportsView(surveys);
+    });
+  },
+
+  renderOverwinteringForm: function (surveyId) {
+    body.removeClass("white-background");
+    body.addClass("gray-background");
+    $("#main-container").html(overwinteringFormTemplate({surveyId: surveyId}));
+    document.location.href = "#top";
+
+    this._setupRadioButtons();
+
+    const form = $("#overwintering-form");
+    form.on("submit", async(event) => {
+      event.preventDefault();
+      surveyAttributes = formatAttributes(form.serializeArray());
+      surveyAttributes.overwinteringReportSubmittedOn = (new Date()).toLocaleDateString();
+      await surveyRepository.updateRecord(surveyAttributes);
+
+      const surveys = await surveyRepository.findAll();
+      const profiles = await profileRepository.findAll();
+      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+
+      $("#overwintering-form-template").hide();
       this.renderReportsView(surveys);
     });
   },

@@ -104,7 +104,10 @@ describe("DB", () => {
         follow_up_number_of_mites INTEGER,
         follow_up_mite_count_photo_uri VARCHAR(255),
         follow_up_submitted_on TEXT,
-        honey_report_submitted_on TEXT
+        honey_report_submitted_on TEXT,
+        survived_winter VARCHAR(1),
+        winter_treatment VARCHAR(1),
+        overwintering_report_submitted_on TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -189,11 +192,14 @@ describe("DB", () => {
           follow_up_number_of_mites,
           follow_up_mite_count_photo_uri,
           follow_up_submitted_on,
-          honey_report_submitted_on
+          honey_report_submitted_on,
+          survived_winter,
+          winter_treatment,
+          overwintering_report_submitted_on
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -235,7 +241,10 @@ describe("DB", () => {
           followUpNumberOfMites: "2",
           followUpMiteCountPhotoUri: "photo-2.jpg",
           followUpSubmittedOn: "1/16/17",
-          honeyReportSubmittedOn: "1/18/17"
+          honeyReportSubmittedOn: "1/18/17",
+          survivedWinter: "Y",
+          winterTreatment: "N",
+          overwinteringReportSubmittedOn: "1/19/17"
         };
 
         surveyRepository.createRecord(attributes);
@@ -280,7 +289,10 @@ describe("DB", () => {
           attributes.followUpNumberOfMites,
           attributes.followUpMiteCountPhotoUri,
           attributes.followUpSubmittedOn,
-          attributes.honeyReportSubmittedOn
+          attributes.honeyReportSubmittedOn,
+          attributes.survivedWinter,
+          attributes.winterTreatment,
+          attributes.overwinteringReportSubmittedOn,
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

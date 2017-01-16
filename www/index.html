@@ -293,10 +293,20 @@
                 {{/if}}
                 {{/if}}
                 {{#if renderOverwinterReportButton}}
+                {{#if overwinteringReportSubmitted}}
+                <li class="report-button">
+                    <h2>{{overwintering_report_submitted_on}}</h2>
+                    <div class="sub-row">
+                        <span>Submitted</span>
+                        <span class="report-status">Overwintering</span>
+                    </div>
+                </li>
+                {{else}}
                 <li class="overwintering-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create overwintering report</span>
                     <span>+</span>
                 </li>
+                {{/if}}
                 {{/if}}
                 {{/each}}
             </ul>
@@ -458,6 +468,38 @@
             </div>
             <div class="navigation-footer">
                 <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
+            </div>
+        </form>
+    </script>
+
+    <script id="overwintering-form-template" type="text/template">
+        <form action="#" id="overwintering-form">
+            <input type="hidden" name="id" value="{{surveyId}}">
+            <h2>Overwintering</h2>
+            <p>We'll need you to report on the survivorship of your hive over the winter.</p>
+            <label>Did your hive survive the winter?</label>
+            <div class="radio-container">
+                <input id="survived-winter-yes" type="radio" name="survivedWinter" value="Y"/>
+                <label for="survived-winter-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="survived-winter-no" type="radio" name="survivedWinter" value="N"/>
+                <label for="survived-winter-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Did you split/combine the colony after sampling in the fall?</label>
+            <div class="radio-container">
+                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>
+                <label for="split-or-combine-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>
+                <label for="split-or-combine-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Did you treat your hive for varroa mites over winter?</label>
+            <div class="radio-container">
+                <input id="winter-treatment-yes" type="radio" name="winterTreatment" value="Y"/>
+                <label for="winter-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="winter-treatment-no" type="radio" name="winterTreatment" value="N"/>
+                <label for="winter-treatment-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <div class="navigation-footer">
+                <input type="submit" value="Submit" aria-label="Submit the overwintering report"/>
             </div>
         </form>
     </script>

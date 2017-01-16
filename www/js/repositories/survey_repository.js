@@ -52,7 +52,12 @@ export default class SurveyRepository extends AbstractRepository {
       ["follow_up_number_of_mites", "INTEGER"],
       ["follow_up_mite_count_photo_uri", "VARCHAR(255)"],
       ["follow_up_submitted_on", "TEXT"],
-      ["honey_report_submitted_on", "TEXT"]
+      ["honey_report_submitted_on", "TEXT"],
+
+      // Overwintering survey
+      ["survived_winter", "VARCHAR(1)"],
+      ["winter_treatment", "VARCHAR(1)"],
+      ["overwintering_report_submitted_on", "TEXT"]
     ];
   }
 }
