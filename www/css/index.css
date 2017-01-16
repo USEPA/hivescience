@@ -90,7 +90,7 @@ label, legend {
     margin-bottom: 10px;
 }
 
-input[type=text], [type=email], [type=number], [type=date] {
+input[type=text], [type=email], [type=number], [type=date], textarea {
     background-color: white;
     border: 1px;
     border-color: rgb(218, 220, 228);
@@ -109,6 +109,10 @@ input[type=text], [type=email], [type=number], [type=date] {
     -moz-appearance: none;
 }
 
+textarea {
+    min-height: 250px;
+}
+
 input[type=number]#number-of-mites {
     margin-bottom: 10px;
     padding-right: 4px;
@@ -125,7 +129,7 @@ input[type=number]#number-of-mites {
     text-align: right;
 }
 
-#add-mites-photo {
+.add-photo {
     background-color: rgb(43, 170, 225);
     border: none;
     border-radius: 5px;
@@ -366,7 +370,7 @@ ul.surveys {
     height: 60px;
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    padding: 0 10px;
     justify-content: center;
 }
 
@@ -381,6 +385,14 @@ ul.surveys {
     font-size: 9pt;
     color: rgb(55, 187, 155);
     font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
+}
+
+.report-button .sub-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.report-button .treatment-icon {
 }
 
 .follow-up-button {

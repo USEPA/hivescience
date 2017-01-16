@@ -11,6 +11,7 @@ export default class SurveyRepository extends AbstractRepository {
 
   columns() {
     return [
+      // Initial survey
       ["queen_right", "VARCHAR(1)"],
       ["queen_drone_laying", "VARCHAR(1)"],
       ["age_of_queen", "INTEGER"],
@@ -37,7 +38,21 @@ export default class SurveyRepository extends AbstractRepository {
       ["will_perform_treatment", "VARCHAR(1)"],
       ["final_mite_count_of_season", "VARCHAR(1)"],
       ["mite_count_photo_uri", "VARCHAR(255)"],
-      ["created_on", "TEXT"]
+      ["created_on", "TEXT"],
+
+      // Follow-up survey
+      ["did_you_perform_treatment", "VARCHAR(1)"],
+      ["requeen", "VARCHAR(1)"],
+      ["remove_drone_brood", "VARCHAR(1)"],
+      ["brood_interruption", "VARCHAR(1)"],
+      ["screen_bottom_board", "VARCHAR(1)"],
+      ["soft_or_hard_treatment", "VARCHAR(1)"],
+      ["kind_of_chemical", "VARCHAR(1)"],
+      ["survive_treatment", "VARCHAR(1)"],
+      ["survive_treatment_description", "TEXT"],
+      ["follow_up_number_of_mites", "INTEGER"],
+      ["follow_up_mite_count_photo_uri", "VARCHAR(255)"],
+      ["follow_up_submitted_on", "TEXT"]
     ];
   }
 }

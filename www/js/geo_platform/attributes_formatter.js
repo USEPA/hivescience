@@ -20,7 +20,6 @@ export default class AttributesFormatter {
       // Questions that have been removed but Geoplatform (at least this
       // current iteration) requires it/them
       "Bee_Kill": "",
-      "Mite_Count_2": "",
       "Image_Upload_2": "",
       "Total_Number_of_Bees": ""
       // ,
@@ -60,7 +59,8 @@ export default class AttributesFormatter {
       abnormal_cappings: "Abnormal_Cappings",
       dried_remains: "Dried_Remains",
       number_of_mites: "Mite_Count_1",
-      will_perform_treatment: "Treatment_Required"
+      will_perform_treatment: "Treatment_Required",
+      follow_up_number_of_mites: "Mite_Count_2"
     };
   }
 

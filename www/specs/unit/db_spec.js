@@ -92,7 +92,19 @@ describe("DB", () => {
         will_perform_treatment VARCHAR(1),
         final_mite_count_of_season VARCHAR(1),
         mite_count_photo_uri VARCHAR(255),
-        created_on TEXT
+        created_on TEXT,
+        did_you_perform_treatment VARCHAR(1),
+        requeen VARCHAR(1),
+        remove_drone_brood VARCHAR(1),
+        brood_interruption VARCHAR(1),
+        screen_bottom_board VARCHAR(1),
+        soft_or_hard_treatment VARCHAR(1),
+        kind_of_chemical VARCHAR(1),
+        survive_treatment VARCHAR(1),
+        survive_treatment_description TEXT,
+        follow_up_number_of_mites INTEGER,
+        follow_up_mite_count_photo_uri VARCHAR(255),
+        follow_up_submitted_on TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -165,9 +177,23 @@ describe("DB", () => {
           will_perform_treatment,
           final_mite_count_of_season,
           mite_count_photo_uri,
-          created_on
+          created_on,
+          did_you_perform_treatment,
+          requeen,
+          remove_drone_brood,
+          brood_interruption,
+          screen_bottom_board,
+          soft_or_hard_treatment,
+          kind_of_chemical,
+          survive_treatment,
+          survive_treatment_description,
+          follow_up_number_of_mites,
+          follow_up_mite_count_photo_uri,
+          follow_up_submitted_on
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+          ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -196,7 +222,20 @@ describe("DB", () => {
           willPerformTreatment: "Y",
           finalMiteCountOfSeason: "N",
           miteCountPhotoUri: "testphotouri",
-          createdOn: "January 12, 2017"
+          createdOn: "January 12, 2017",
+
+          didYouPerformTreatment: "Y",
+          requeen: "N",
+          removeDroneBrood: "N",
+          broodInterruption: "Y",
+          screenBottomBoard: "N",
+          softOrHardTreatment: "N",
+          kindOfChemical: "",
+          surviveTreatment: "Y",
+          surviveTreatmentDescription: "",
+          followUpNumberOfMites: "2",
+          followUpMiteCountPhotoUri: "photo-2.jpg",
+          followUpSubmittedOn: "1/16/17"
         };
 
         surveyRepository.createRecord(attributes);
@@ -228,7 +267,20 @@ describe("DB", () => {
           attributes.willPerformTreatment,
           attributes.finalMiteCountOfSeason,
           attributes.miteCountPhotoUri,
-          attributes.createdOn
+          attributes.createdOn,
+
+          attributes.didYouPerformTreatment,
+          attributes.requeen,
+          attributes.removeDroneBrood,
+          attributes.broodInterruption,
+          attributes.screenBottomBoard,
+          attributes.softOrHardTreatment,
+          attributes.kindOfChemical,
+          attributes.surviveTreatment,
+          attributes.surviveTreatmentDescription,
+          attributes.followUpNumberOfMites,
+          attributes.followUpMiteCountPhotoUri,
+          attributes.followUpSubmittedOn
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
@@ -237,8 +289,15 @@ describe("DB", () => {
   });
 
   describe("reading", () => {
+    beforeEach(() => {
+      executeSqlSpy = sinon.spy(connection, "executeSql");
+    });
+
+    afterEach(() => {
+      executeSqlSpy.restore();
+    });
     describe("findAll", () => {
-      it("should return an array of all the records for the given repository", async function() {
+      it("should return an array of all the records for the given repository", async function () {
         const sqlStatement = "SELECT * FROM profiles;";
         let rowsArray = [{id: 1, full_name: "Belinda", email: "belinda@gmail.com"}];
         let rows = {item: (index) => rowsArray[0], length: 1};
@@ -254,4 +313,44 @@ describe("DB", () => {
       })
     })
   });
+
+  describe("updating", () => {
+    beforeEach(() => {
+      executeSqlSpy = sinon.spy(connection, "executeSql");
+    });
+
+    afterEach(() => {
+      executeSqlSpy.restore();
+    });
+
+    describe("updateRecord", () => {
+      it("updates the survey with the given id using the other provided attributes", () => {
+        const attributes = {
+          didYouPerformTreatment: "Y",
+          kindOfChemical: "N",
+          followUpMiteCountPhotoUri: "photo-two.png",
+          id: 1000
+        };
+
+        const sqlStatement = `
+        UPDATE surveys
+        SET
+        did_you_perform_treatment = ?,
+        kind_of_chemical = ?,
+        follow_up_mite_count_photo_uri = ?
+        WHERE id = 1000;`.replace(/\s+/g, " ");
+
+        surveyRepository.updateRecord(attributes);
+
+        const expectedAttributes = [
+          attributes.didYouPerformTreatment,
+          attributes.kindOfChemical,
+          attributes.followUpMiteCountPhotoUri
+        ];
+
+        sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
+      });
+    });
+  });
+
 });

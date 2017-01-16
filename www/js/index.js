@@ -20,6 +20,7 @@ let surveyFormTemplate;
 let dataViewTemplate;
 let welcomeTemplate;
 let reportsTemplate;
+let followUpFormTemplate;
 
 let profileAttributes = {};
 let surveyAttributes = {};
@@ -38,6 +39,7 @@ let app = {
     dataViewTemplate = Handlebars.compile($("#data-view-template").html());
     welcomeTemplate = Handlebars.compile($("#welcome-template").html());
     reportsTemplate = Handlebars.compile($("#reports-template").html());
+    followUpFormTemplate = Handlebars.compile($("#follow-up-form-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
@@ -61,10 +63,6 @@ let app = {
   renderProfileForm: function () {
     $("#main-container").html(profileFormTemplate());
     document.location.href = "#top";
-
-    this._setupOption("#other-race-of-bees", "#input-race");
-    this._setupOption("#other-monitor-method", "#input-method");
-    this._setupOption("#other-treatment-method", "#input-treatment");
 
     this._setupRadioButtons();
 
@@ -91,45 +89,11 @@ let app = {
     body.addClass("gray-background");
     $("#main-container").html(surveyFormTemplate());
     document.location.href = "#top";
-    $("#survey-section-1 .section-indicator").children().eq(0).css("background-color", "rgba(255,255,255,1.0)");
 
-    $(".previous-section-button").on("click", (event) => {
-      event.preventDefault();
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      document.location.href = "#top";
-      $(`#survey-section-${pageNumber + 1}`).hide();
-      $(`#survey-section-${pageNumber}`).show();
-      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
-        .css("background-color", "rgba(255,255,255,1.0)");
-    });
-
-    $(".next-section-button").on("click", (event) => {
-      event.preventDefault();
-      const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      document.location.href = "#top";
-      $(`#survey-section-${pageNumber - 1}`).hide();
-      $(`#survey-section-${pageNumber}`).show();
-      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
-        .css("background-color", "rgba(255,255,255,1.0)");
-    });
-
-    this._setupOption("#other-disease", "#input-disease");
-
+    this._setupPagination();
     this._setupRadioButtons();
-
     this._setupAddMitesPhotoButton();
-
-    $("#number-of-mites").on("keyup", (event) => {
-      const numberOfMitesTotal = parseFloat(event.target.value, 10);
-      const numberOfMitesPer100 = Math.round((numberOfMitesTotal / 3.0) * 100.0) / 100.0;
-      if (isNaN(numberOfMitesPer100)) {
-        $("#mites-per-bees-calc").text("");
-        $("#mites-per-bees-calc").hide();
-      } else {
-        $("#mites-per-bees-calc").text(`${numberOfMitesPer100} mites per 100 bees`);
-        $("#mites-per-bees-calc").show();
-      }
-    });
+    this._setupNumberOfMitesCalculator();
 
     const form = $("#survey-form");
     form.on("submit", async(event) => {
@@ -141,7 +105,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#survey-form-template").hide();
       this.renderReportsView(surveys);
@@ -153,14 +117,50 @@ let app = {
     body.addClass("white-background");
     surveys = surveys.map((survey) => {
       survey.renderFollowUpButton = survey.will_perform_treatment === "Y";
+      survey.followUpSubmitted = survey.follow_up_number_of_mites != null;
       return survey;
     });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
+
+    $(".follow-up-button").on("click", (event) => {
+      event.preventDefault();
+      this.renderFollowUpForm($(event.currentTarget).data("survey-id"));
+    });
+
     $(".create-report").on("click", (event) => {
       event.preventDefault();
       this.renderSurveyForm();
     });
+
     document.location.href = "#top";
+  },
+
+  renderFollowUpForm: function (surveyId) {
+    body.removeClass("white-background");
+    body.addClass("gray-background");
+    $("#main-container").html(followUpFormTemplate({surveyId: surveyId}));
+    document.location.href = "#top";
+
+    this._setupPagination();
+    this._setupRadioButtons();
+    this._setupAddMitesPhotoButton();
+    this._setupNumberOfMitesCalculator();
+
+    const form = $("#follow-up-form");
+    form.on("submit", async(event) => {
+      event.preventDefault();
+      surveyAttributes = formatAttributes(form.serializeArray());
+      surveyAttributes.followUpSubmittedOn = (new Date()).toLocaleDateString();
+      _.extend(surveyAttributes, miteCountPhotoUri);
+      await surveyRepository.updateRecord(surveyAttributes);
+
+      const surveys = await surveyRepository.findAll();
+      const profiles = await profileRepository.findAll();
+      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+
+      $("#follow-up-form-template").hide();
+      this.renderReportsView(surveys);
+    });
   },
 
   // "private" methods
@@ -187,20 +187,34 @@ let app = {
     const formatter = new AttributesFormatter(profile, survey);
     const geoPlatform = new GeoPlatformGateway(formatter.execute());
     const surveyId = await geoPlatform.syncSurvey();
-    if (survey["mite_count_photo_uri"] !== null) {
-      const photo = await fileService.getBlob(survey["mite_count_photo_uri"]);
+    if (survey["mite_count_photo_uri"] !== null || survey["follow_up_mite_count_photo_uri"] !== null) {
+      let fileUri = survey["follow_up_mite_count_photo_uri"] || survey["mite_count_photo_uri"];
+      const photo = await fileService.getBlob(fileUri);
       await geoPlatform.syncPhoto(photo, surveyId);
     }
   },
 
-  _setupOption: function (parentId, childId) {
-    $(parentId).on("click", () => {
-      if ($(parentId).is(":checked")) {
-        $(childId).show();
-      } else {
-        $(`${childId} > input`).val("");
-        $(childId).hide();
-      }
+  _setupPagination: function () {
+    $("#survey-section-1 .section-indicator").children().eq(0).css("background-color", "rgba(255,255,255,1.0)");
+
+    $(".previous-section-button").on("click", (event) => {
+      event.preventDefault();
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      document.location.href = "#top";
+      $(`#survey-section-${pageNumber + 1}`).hide();
+      $(`#survey-section-${pageNumber}`).show();
+      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
+        .css("background-color", "rgba(255,255,255,1.0)");
+    });
+
+    $(".next-section-button").on("click", (event) => {
+      event.preventDefault();
+      const pageNumber = parseInt($(event.target).data("next-page"), 10);
+      document.location.href = "#top";
+      $(`#survey-section-${pageNumber - 1}`).hide();
+      $(`#survey-section-${pageNumber}`).show();
+      $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
+        .css("background-color", "rgba(255,255,255,1.0)");
     });
   },
 
@@ -216,13 +230,29 @@ let app = {
   },
 
   _setupAddMitesPhotoButton: function () {
-    $("#add-mites-photo").on("click", async(event) => {
+    $(".add-photo").on("click", async(event) => {
       event.preventDefault();
       const imageUri = await cameraService.getImageUri();
-      let fileEntry = await fileService.getFile(imageUri);
-      let copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
-      miteCountPhotoUri = {miteCountPhotoUri: copiedFileUri};
+      const fileEntry = await fileService.getFile(imageUri);
+      const copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
+      const key = $(event.currentTarget).data("key-name");
+      miteCountPhotoUri = {};
+      miteCountPhotoUri[key] = copiedFileUri;
       $("#mites-photo-preview").attr('src', copiedFileUri).show();
+    });
+  },
+
+  _setupNumberOfMitesCalculator: function () {
+    $("#number-of-mites").on("keyup", (event) => {
+      const numberOfMitesTotal = parseFloat(event.target.value, 10);
+      const numberOfMitesPer100 = Math.round((numberOfMitesTotal / 3.0) * 100.0) / 100.0;
+      if (isNaN(numberOfMitesPer100)) {
+        $("#mites-per-bees-calc").text("");
+        $("#mites-per-bees-calc").hide();
+      } else {
+        $("#mites-per-bees-calc").text(`${numberOfMitesPer100} mites per 100 bees`);
+        $("#mites-per-bees-calc").show();
+      }
     });
   }
 };
