@@ -122,6 +122,7 @@ let app = {
       survey.followUpSubmitted = survey.follow_up_number_of_mites != null;
       survey.renderHoneyReportButton = survey.final_mite_count_of_season === "Y";
       survey.honeyReportSubmitted = survey.honey_report_submitted_on != null;
+      survey.renderOverwinterReportButton = survey.honeyReportSubmitted;
       return survey;
     });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
