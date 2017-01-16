@@ -390,9 +390,16 @@ ul.surveys {
 .report-button .sub-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.report-button .treatment-icon {
+.report-button .report-status {
+    color: rgb(51, 102, 153);
+    border: 1px solid rgb(51, 102, 153);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 2px 5px;
 }
 
 .additional-report-button {

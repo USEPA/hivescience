@@ -28,7 +28,6 @@ export default class SurveyRepository extends AbstractRepository {
       ["dysentery", "VARCHAR(1)"],
       ["spotty_brood_pattern", "VARCHAR(1)"],
       ["number_of_mites", "INTEGER"],
-      ["honey_supers_on", "VARCHAR(1)"],
       ["honey_supers_removed", "VARCHAR(1)"],
       ["feeding_supplementary_sugar", "VARCHAR(1)"],
       ["honey_from_sealed_cells", "VARCHAR(1)"],
@@ -52,7 +51,8 @@ export default class SurveyRepository extends AbstractRepository {
       ["survive_treatment_description", "TEXT"],
       ["follow_up_number_of_mites", "INTEGER"],
       ["follow_up_mite_count_photo_uri", "VARCHAR(255)"],
-      ["follow_up_submitted_on", "TEXT"]
+      ["follow_up_submitted_on", "TEXT"],
+      ["honey_report_submitted_on", "TEXT"]
     ];
   }
 }

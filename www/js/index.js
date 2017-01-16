@@ -21,6 +21,7 @@ let dataViewTemplate;
 let welcomeTemplate;
 let reportsTemplate;
 let followUpFormTemplate;
+let honeyFormTemplate;
 
 let profileAttributes = {};
 let surveyAttributes = {};
@@ -40,6 +41,7 @@ let app = {
     welcomeTemplate = Handlebars.compile($("#welcome-template").html());
     reportsTemplate = Handlebars.compile($("#reports-template").html());
     followUpFormTemplate = Handlebars.compile($("#follow-up-form-template").html());
+    honeyFormTemplate = Handlebars.compile($("#honey-form-template").html());
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
   },
 
@@ -119,6 +121,7 @@ let app = {
       survey.renderFollowUpButton = survey.will_perform_treatment === "Y";
       survey.followUpSubmitted = survey.follow_up_number_of_mites != null;
       survey.renderHoneyReportButton = survey.final_mite_count_of_season === "Y";
+      survey.honeyReportSubmitted = survey.honey_report_submitted_on != null;
       return survey;
     });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
@@ -126,6 +129,11 @@ let app = {
     $(".follow-up-button").on("click", (event) => {
       event.preventDefault();
       this.renderFollowUpForm($(event.currentTarget).data("survey-id"));
+    });
+
+    $(".honey-report-button").on("click", (event) => {
+      event.preventDefault();
+      this.renderHoneyForm($(event.currentTarget).data("survey-id"));
     });
 
     $(".create-report").on("click", (event) => {
@@ -160,6 +168,30 @@ let app = {
       this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#follow-up-form-template").hide();
+      this.renderReportsView(surveys);
+    });
+  },
+
+  renderHoneyForm: function (surveyId) {
+    body.removeClass("white-background");
+    body.addClass("gray-background");
+    $("#main-container").html(honeyFormTemplate({surveyId: surveyId}));
+    document.location.href = "#top";
+
+    this._setupRadioButtons();
+
+    const form = $("#honey-form");
+    form.on("submit", async(event) => {
+      event.preventDefault();
+      surveyAttributes = formatAttributes(form.serializeArray());
+      surveyAttributes.honeyReportSubmittedOn = (new Date()).toLocaleDateString();
+      await surveyRepository.updateRecord(surveyAttributes);
+
+      const surveys = await surveyRepository.findAll();
+      const profiles = await profileRepository.findAll();
+      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+
+      $("#honey-form-template").hide();
       this.renderReportsView(surveys);
     });
   },

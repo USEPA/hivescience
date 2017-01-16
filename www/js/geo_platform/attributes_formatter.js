@@ -11,7 +11,6 @@ export default class AttributesFormatter {
       "Treatment_Type": "",
 
       // TODO check if the current endpoint requires this. It has been since removed.
-      "Filled_Tube": "",
       "Treatment_Required": "",
 
       // Will implement soon
@@ -39,7 +38,7 @@ export default class AttributesFormatter {
       treatment_methods: "Management_Strategy",
       queen_right: "Queen_Right",
       queen_drone_laying: "Drone_Laying_Queen",
-      honey_supers_on: "Honey_Supers",
+      honey_supers_removed: "Honey_Supers",
       honey_from_sealed_cells: "Sealed_Honey_Cells",
       honey_from_brood: "Brood_Nest",
       split_or_combine: "Split_Combine_Colony",
@@ -60,7 +59,8 @@ export default class AttributesFormatter {
       dried_remains: "Dried_Remains",
       number_of_mites: "Mite_Count_1",
       will_perform_treatment: "Treatment_Required",
-      follow_up_number_of_mites: "Mite_Count_2"
+      follow_up_number_of_mites: "Mite_Count_2",
+      sample_tube_code: "Filled_Tube"
     };
   }
 

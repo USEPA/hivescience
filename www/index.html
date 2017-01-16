@@ -261,26 +261,36 @@
                     <span>Submitted</span>
                 </li>
                 {{#if renderFollowUpButton}}
-                    {{#if followUpSubmitted}}
-                    <li class="report-button">
-                        <h2>{{follow_up_submitted_on}}</h2>
-                        <div class="sub-row">
-                            <span>Submitted</span>
-                            <span class="treatment-icon">Treatment</span>
-                        </div>
-                    </li>
-                    {{else}}
-                    <li class="follow-up-button additional-report-button" data-survey-id="{{id}}">
-                        <span>Create treatment follow up report</span>
-                        <span>+</span>
-                    </li>
-                    {{/if}}
+                {{#if followUpSubmitted}}
+                <li class="report-button">
+                    <h2>{{follow_up_submitted_on}}</h2>
+                    <div class="sub-row">
+                        <span>Submitted</span>
+                        <span class="report-status">Treatment</span>
+                    </div>
+                </li>
+                {{else}}
+                <li class="follow-up-button additional-report-button" data-survey-id="{{id}}">
+                    <span>Create treatment follow up report</span>
+                    <span>+</span>
+                </li>
+                {{/if}}
                 {{/if}}
                 {{#if renderHoneyReportButton}}
+                {{#if honeyReportSubmitted}}
+                <li class="report-button">
+                    <h2>{{honey_report_submitted_on}}</h2>
+                    <div class="sub-row">
+                        <span>Submitted</span>
+                        <span class="report-status">Honey Sample</span>
+                    </div>
+                </li>
+                {{else}}
                 <li class="honey-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create a honey report</span>
                     <span>+</span>
                 </li>
+                {{/if}}
                 {{/if}}
                 {{/each}}
             </ul>
@@ -398,6 +408,54 @@
         </form>
     </script>
 
+    <script id="honey-form-template" type="text/template">
+        <form action="#" id="honey-form">
+            <input type="hidden" name="id" value="{{surveyId}}">
+            <h2>Honey sample collection</h2>
+            <p>Because you've completed your final mite count of the season, we'd like you to provide a honey sample.</p>
+            <p>If you haven't already received a sample kit package please email <a href="mailto:lehmann.david@epa.gov">lehmann.david@epa.gov</a></p>
+            <div>
+                <label for="sample-tube-code">Honey sample collection tube code</label>
+                <input id="sample-tube-code"
+                       aria-label="Enter the honey sample collection tube code"
+                       placeholder="Enter number"
+                       type="number"
+                       name="sampleTubeCode"/>
+            </div>
+            <label>Was the honey collected after supers removed?</label>
+            <div class="radio-container">
+                <input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y"/>
+                <label for="honey-supers-removed-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>
+                <label for="honey-supers-removed-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Are you feeding your bees supplementary sugar?</label>
+            <div class="radio-container">
+                <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>
+                <label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>
+                <label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Was the honey collected from sealed honey cells?</label>
+            <div class="radio-container">
+                <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>
+                <label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>
+                <label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <label>Was the honey collected from a brood nest?</label>
+            <div class="radio-container">
+                <input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>
+                <label for="honey-from-brood-yes" role="checkbox" aria-checked="false">Yes</label>
+                <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>
+                <label for="honey-from-brood-no" role="checkbox" aria-checked="false">No</label>
+            </div>
+            <div class="navigation-footer">
+                <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
+            </div>
+        </form>
+    </script>
+
     <script id="data-view-template" type="text/template">
         <div class="container">
             <h1>What was submitted in the database</h1>
@@ -441,57 +499,6 @@
     </script>
 </div>
 
-<!--<h2>Honey</h2>-->
-<!--<label>Are honey supers on?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="honey-supers-on-yes" type="radio" name="honeySupersOn" value="Y"/>-->
-<!--<label for="honey-supers-on-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="honey-supers-on-no" type="radio" name="honeySupersOn" value="N"/>-->
-<!--<label for="honey-supers-on-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<label>Honey collected after supers removed?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y"/>-->
-<!--<label for="honey-supers-removed-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>-->
-<!--<label for="honey-supers-removed-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<label>Are you feeding your bees supplementary sugar?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>-->
-<!--<label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>-->
-<!--<label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<label>Honey collected from sealed honey cells?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>-->
-<!--<label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>-->
-<!--<label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<label>Honey collected from brood nest?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>-->
-<!--<label for="honey-from-brood-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>-->
-<!--<label for="honey-from-brood-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<label>Did you split/combine the colony after sampling in the fall?</label>-->
-<!--<div class="radio-container">-->
-<!--<input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>-->
-<!--<label for="split-or-combine-yes" role="checkbox" aria-checked="false">Yes</label>-->
-<!--<input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>-->
-<!--<label for="split-or-combine-no" role="checkbox" aria-checked="false">No</label>-->
-<!--</div>-->
-<!--<div>-->
-<!--<label for="sample-tube-code">Honey sample collection tube code:</label>-->
-<!--<input id="sample-tube-code"-->
-<!--aria-label="Enter the honey sample collection tube code"-->
-<!--placeholder="Enter number"-->
-<!--type="number"-->
-<!--name="sampleTubeCode"/>-->
-<!--</div>-->
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="dist/bundle.js"></script>
