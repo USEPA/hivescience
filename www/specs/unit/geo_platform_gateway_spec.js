@@ -30,13 +30,12 @@ describe("GeoPlatformGateway", () => {
     const survey = {
       queen_right: "Y",
       queen_drone_laying: "Y",
-      honey_supers_on: "N",
-      honey_supers_removed: "",
+      honey_supers_removed: "N",
       feeding_supplementary_sugar: "",
       honey_from_sealed_cells: "Y",
       honey_from_brood: "N",
       split_or_combine: "Y",
-      sample_tube_code: "",
+      sample_tube_code: "12345",
       number_of_mites: "10",
       mite_count_photo_uri: "test_photo_uri",
       final_mite_count_of_season: "20"
@@ -59,7 +58,7 @@ describe("GeoPlatformGateway", () => {
           "Drone_Laying_Queen": "Y",
           "Dysentery": "",
           "European_Foul_Brood": "",
-          "Filled_Tube": "",
+          "Filled_Tube": "12345",
           "Honey_Supers": "N",
           "Image_Upload_1": "",
           "Image_Upload_2": "",
@@ -85,8 +84,6 @@ describe("GeoPlatformGateway", () => {
           "email": "belinda@beekeeping.us",
           "feeding_supplementary_sugar": "",
           "final_mite_count_of_season": "20",
-          "honey_supers_removed": "",
-          "sample_tube_code": "",
           "zip_code": "22202",
         }
         // ,

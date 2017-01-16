@@ -82,7 +82,6 @@ describe("DB", () => {
         dysentery VARCHAR(1),
         spotty_brood_pattern VARCHAR(1),
         number_of_mites INTEGER,
-        honey_supers_on VARCHAR(1),
         honey_supers_removed VARCHAR(1),
         feeding_supplementary_sugar VARCHAR(1),
         honey_from_sealed_cells VARCHAR(1),
@@ -104,7 +103,8 @@ describe("DB", () => {
         survive_treatment_description TEXT,
         follow_up_number_of_mites INTEGER,
         follow_up_mite_count_photo_uri VARCHAR(255),
-        follow_up_submitted_on TEXT
+        follow_up_submitted_on TEXT,
+        honey_report_submitted_on TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -167,7 +167,6 @@ describe("DB", () => {
           dysentery,
           spotty_brood_pattern,
           number_of_mites,
-          honey_supers_on,
           honey_supers_removed,
           feeding_supplementary_sugar,
           honey_from_sealed_cells,
@@ -189,7 +188,8 @@ describe("DB", () => {
           survive_treatment_description,
           follow_up_number_of_mites,
           follow_up_mite_count_photo_uri,
-          follow_up_submitted_on
+          follow_up_submitted_on,
+          honey_report_submitted_on
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
@@ -212,7 +212,6 @@ describe("DB", () => {
           dysentery: "N",
           spottyBroodPattern: "Y",
           numberOfMites: 200,
-          honeySupersOn: "Y",
           honeySupersRemoved: "Y",
           feedingSupplementarySugar: "N",
           honeyFromSealedCells: "N",
@@ -235,7 +234,8 @@ describe("DB", () => {
           surviveTreatmentDescription: "",
           followUpNumberOfMites: "2",
           followUpMiteCountPhotoUri: "photo-2.jpg",
-          followUpSubmittedOn: "1/16/17"
+          followUpSubmittedOn: "1/16/17",
+          honeyReportSubmittedOn: "1/18/17"
         };
 
         surveyRepository.createRecord(attributes);
@@ -257,7 +257,6 @@ describe("DB", () => {
           attributes.dysentery,
           attributes.spottyBroodPattern,
           attributes.numberOfMites,
-          attributes.honeySupersOn,
           attributes.honeySupersRemoved,
           attributes.feedingSupplementarySugar,
           attributes.honeyFromSealedCells,
@@ -280,7 +279,8 @@ describe("DB", () => {
           attributes.surviveTreatmentDescription,
           attributes.followUpNumberOfMites,
           attributes.followUpMiteCountPhotoUri,
-          attributes.followUpSubmittedOn
+          attributes.followUpSubmittedOn,
+          attributes.honeyReportSubmittedOn
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
