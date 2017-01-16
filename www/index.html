@@ -270,11 +270,17 @@
                         </div>
                     </li>
                     {{else}}
-                    <li class="follow-up-button" data-survey-id="{{id}}">
+                    <li class="follow-up-button additional-report-button" data-survey-id="{{id}}">
                         <span>Create treatment follow up report</span>
                         <span>+</span>
                     </li>
                     {{/if}}
+                {{/if}}
+                {{#if renderHoneyReportButton}}
+                <li class="honey-report-button additional-report-button" data-survey-id="{{id}}">
+                    <span>Create a honey report</span>
+                    <span>+</span>
+                </li>
                 {{/if}}
                 {{/each}}
             </ul>

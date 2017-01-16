@@ -395,7 +395,7 @@ ul.surveys {
 .report-button .treatment-icon {
 }
 
-.follow-up-button {
+.additional-report-button {
     background-color: white;
     border: 2px dashed rgb(43, 170, 225);
     margin-bottom: 15px;
@@ -408,11 +408,11 @@ ul.surveys {
     font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
 }
 
-.follow-up-button span {
+.additional-report-button span {
     font-size: 12px;
 }
 
-.follow-up-button span:nth-of-type(2) {
+.additional-report-button span:nth-of-type(2) {
     font-size: 18pt;
 }
 

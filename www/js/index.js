@@ -118,6 +118,7 @@ let app = {
     surveys = surveys.map((survey) => {
       survey.renderFollowUpButton = survey.will_perform_treatment === "Y";
       survey.followUpSubmitted = survey.follow_up_number_of_mites != null;
+      survey.renderHoneyReportButton = survey.final_mite_count_of_season === "Y";
       return survey;
     });
     $("#main-container").html(reportsTemplate({surveys: surveys}));
