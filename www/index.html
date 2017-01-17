@@ -175,10 +175,10 @@
                 </div>
                 <label>Snotty brood?</label>
                 <div class="radio-container">
-                    <input id="snotty-brood-yes" type="radio" name="snottyBrood" value="Y"/>
-                    <label for="snotty-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="snotty-brood-no" type="radio" name="snottyBrood" value="N" checked="checked"/>
-                    <label for="snotty-brood-no" role="checkbox" aria-checked="true">No</label>
+                    <input id="snotty-brood-yes" type="radio" name="snottyBrood" value="Y" {{checkIfYes snottyBrood}}/>
+                    <label for="snotty-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes snottyBrood}}">Yes</label>
+                    <input id="snotty-brood-no" type="radio" name="snottyBrood" value="N"  {{checkIfNo snottyBrood}} />
+                    <label for="snotty-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo snottyBrood}}">No</label>
                 </div>
                 <label>Parasitic mite syndrome?</label>
                 <div class="radio-container">
