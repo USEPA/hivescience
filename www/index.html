@@ -76,7 +76,7 @@
                     <input id="queen-right-no" type="radio" name="queenRight" value="N" {{checkIfNo queenRight}}/>
                     <label for="queen-right-no" role="checkbox" aria-checked="{{ariaCheckIfNo queenRight}}">No</label>
                 </div>
-                <label>Is your queen drone laying?</label>
+                <label>Do you have evidence of poor queen performance (i.e, spotty brood pattern, supersedure cells, excessive drone cells)?</label>
                 <div class="radio-container">
                     <input id="queen-drone-laying-yes" type="radio" name="queenDroneLaying" value="Y" {{checkIfYes queenDroneLaying}}/>
                     <label for="queen-drone-laying-yes" role="checkbox" aria-checked="{{ariaCheckIfYes queenDroneLaying}}">Yes</label>
@@ -222,7 +222,7 @@
                 <img id="mites-photo-preview" class="hidden">
                 {{/if}}
 
-                <label>Will you perform a treatment?</label>
+                <label>Will you perform a Varroa mite treatment?</label>
                 <div class="radio-container">
                     <input id="will-perform-treatment-yes" type="radio" name="willPerformTreatment" value="Y" {{checkIfYes willPerformTreatment}}/>
                     <label for="will-perform-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes willPerformTreatment}}">Yes</label>
@@ -328,7 +328,7 @@
                 <h2>Treatment follow up</h2>
                 <p>Because you performed a treatment on your hive, we'd like you to report on how your hive
                     responded.</p>
-                <label>Did you perform a treatment?</label>
+                <label>Did you perform a Varroa mite treatment?</label>
                 <div class="radio-container">
                     <input id="did-you-perform-treatment-yes" type="radio" name="didYouPerformTreatment" value="Y" {{checkIfYes didYouPerformTreatment}}/>
                     <label for="did-you-perform-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes didYouPerformTreatment}}">Yes</label>
@@ -371,7 +371,7 @@
                     <label for="soft-or-hard-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo softOrHardTreatment}}">No</label>
                 </div>
 
-                <label for="kind-of-chemical">If yes, which kind of chemical?</label>
+                <label for="kind-of-chemical">If yes, which chemical(s)?</label>
                 <input id="kind-of-chemical" type="text" name="kindOfChemical" placeholder="Enter chemical" value="{{kindOfChemical}}"/>
 
                 <label>Did your hive survive treatment?</label>
@@ -453,7 +453,7 @@
                 <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N" {{checkIfNo honeySupersRemoved}}/>
                 <label for="honey-supers-removed-no" role="checkbox" aria-checked="{{ariaCheckIfNo honeySupersRemoved}}">No</label>
             </div>
-            <label>Are you feeding your bees supplementary sugar?</label>
+            <label>Are you feeding your bees supplemental sugar (e.g., fondant, liquid sucrose/fructose, sugar bricks...)?</label>
             <div class="radio-container">
                 <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y" {{checkIfYes feedingSupplementarySugar}}/>
                 <label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="{{ariaCheckIfYes feedingSupplementarySugar}}">Yes</label>
