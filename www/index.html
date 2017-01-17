@@ -71,21 +71,21 @@
                 <h2 class="survey-header">The queen</h2>
                 <label>Is your hive queen right?</label>
                 <div class="radio-container">
-                    <input id="queen-right-yes" type="radio" name="queenRight" value="Y"/>
-                    <label for="queen-right-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="queen-right-no" type="radio" name="queenRight" value="N"/>
-                    <label for="queen-right-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="queen-right-yes" type="radio" name="queenRight" value="Y" {{checkIfYes queenRight}}/>
+                    <label for="queen-right-yes" role="checkbox" aria-checked="{{ariaCheckIfYes queenRight}}">Yes</label>
+                    <input id="queen-right-no" type="radio" name="queenRight" value="N" {{checkIfNo queenRight}}/>
+                    <label for="queen-right-no" role="checkbox" aria-checked="{{ariaCheckIfNo queenRight}}">No</label>
                 </div>
                 <label>Is your queen drone laying?</label>
                 <div class="radio-container">
-                    <input id="queen-drone-laying-yes" type="radio" name="queenDroneLaying" value="Y"/>
-                    <label for="queen-drone-laying-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N"/>
-                    <label for="queen-drone-laying-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="queen-drone-laying-yes" type="radio" name="queenDroneLaying" value="Y" {{checkIfYes queenDroneLaying}}/>
+                    <label for="queen-drone-laying-yes" role="checkbox" aria-checked="{{ariaCheckIfYes queenDroneLaying}}">Yes</label>
+                    <input id="queen-drone-laying-no" type="radio" name="queenDroneLaying" value="N" {{checkIfNo queenDroneLaying}}/>
+                    <label for="queen-drone-laying-no" role="checkbox" aria-checked="{{ariaCheckIfNo queenDroneLaying}}">No</label>
                 </div>
 
                 <label for="age-of-queen">Age of queen?</label>
-                <input id="age-of-queen" type="number" name="ageOfQueen" placeholder="Enter age"/>
+                <input id="age-of-queen" type="number" name="ageOfQueen" placeholder="Enter age" value="{{ageOfQueen}}"/>
 
                 <div class="navigation-footer">
                     <div class="section-indicator">
@@ -105,87 +105,87 @@
                 <h2>Disease & pest presence</h2>
                 <label>Hive beetles?</label>
                 <div class="radio-container">
-                    <input id="hive-beetles-yes" type="radio" name="hiveBeetles" value="Y"/>
-                    <label for="hive-beetles-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="hive-beetles-no" type="radio" name="hiveBeetles" value="N"/>
-                    <label for="hive-beetles-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="hive-beetles-yes" type="radio" name="hiveBeetles" value="Y" {{checkIfYes hiveBeetles}}/>
+                    <label for="hive-beetles-yes" role="checkbox" aria-checked="{{ariaCheckIfYes hiveBeetles}}">Yes</label>
+                    <input id="hive-beetles-no" type="radio" name="hiveBeetles" value="N" {{checkIfNo hiveBeetles}}/>
+                    <label for="hive-beetles-no" role="checkbox" aria-checked="{{ariaCheckIfNo hiveBeetles}}">No</label>
                 </div>
                 <label>Wax moths?</label>
                 <div class="radio-container">
-                    <input id="wax-moths-yes" type="radio" name="waxMoths" value="Y"/>
-                    <label for="wax-moths-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="wax-moths-no" type="radio" name="waxMoths" value="N"/>
-                    <label for="wax-moths-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="wax-moths-yes" type="radio" name="waxMoths" value="Y" {{checkIfYes waxMoths}}/>
+                    <label for="wax-moths-yes" role="checkbox" aria-checked="{{ariaCheckIfYes waxMoths}}">Yes</label>
+                    <input id="wax-moths-no" type="radio" name="waxMoths" value="N" {{checkIfNo waxMoths}}/>
+                    <label for="wax-moths-no" role="checkbox" aria-checked="{{ariaCheckIfNo waxMoths}}">No</label>
                 </div>
                 <label>Deformed wings?</label>
                 <div class="radio-container">
-                    <input id="deformed-wings-yes" type="radio" name="deformedWings" value="Y"/>
-                    <label for="deformed-wings-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="deformed-wings-no" type="radio" name="deformedWings" value="N"/>
-                    <label for="deformed-wings-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="deformed-wings-yes" type="radio" name="deformedWings" value="Y" {{checkIfYes deformedWings}}/>
+                    <label for="deformed-wings-yes" role="checkbox" aria-checked="{{ariaCheckIfYes deformedWings}}">Yes</label>
+                    <input id="deformed-wings-no" type="radio" name="deformedWings" value="N" {{checkIfNo deformedWings}}/>
+                    <label for="deformed-wings-no" role="checkbox" aria-checked="{{ariaCheckIfNo deformedWings}}">No</label>
                 </div>
                 <label>Black shiny bees (Greasy bees)?</label>
                 <div class="radio-container">
-                    <input id="black-shiny-bees-yes" type="radio" name="blackShinyBees" value="Y"/>
-                    <label for="black-shiny-bees-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="black-shiny-bees-no" type="radio" name="blackShinyBees" value="N"/>
-                    <label for="black-shiny-bees-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="black-shiny-bees-yes" type="radio" name="blackShinyBees" value="Y" {{checkIfYes blackShinyBees}}/>
+                    <label for="black-shiny-bees-yes" role="checkbox" aria-checked="{{ariaCheckIfYes blackShinyBees}}">Yes</label>
+                    <input id="black-shiny-bees-no" type="radio" name="blackShinyBees" value="N" {{checkIfNo blackShinyBees}}/>
+                    <label for="black-shiny-bees-no" role="checkbox" aria-checked="{{ariaCheckIfNo blackShinyBees}}">No</label>
                 </div>
                 <label>American foul brood?</label>
                 <div class="radio-container">
-                    <input id="american-foul-brood-yes" type="radio" name="americanFoulBrood" value="Y"/>
-                    <label for="american-foul-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="american-foul-brood-no" type="radio" name="americanFoulBrood" value="N"/>
-                    <label for="american-foul-brood-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="american-foul-brood-yes" type="radio" name="americanFoulBrood" value="Y" {{checkIfYes americanFoulBrood}}/>
+                    <label for="american-foul-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes americanFoulBrood}}">Yes</label>
+                    <input id="american-foul-brood-no" type="radio" name="americanFoulBrood" value="N" {{checkIfNo americanFoulBrood}}/>
+                    <label for="american-foul-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo americanFoulBrood}}">No</label>
                 </div>
                 <label>European foul brood?</label>
                 <div class="radio-container">
-                    <input id="european-foul-brood-yes" type="radio" name="europeanFoulBrood" value="Y"/>
-                    <label for="european-foul-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="european-foul-brood-no" type="radio" name="europeanFoulBrood" value="N"/>
-                    <label for="european-foul-brood-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="european-foul-brood-yes" type="radio" name="europeanFoulBrood" value="Y" {{checkIfYes europeanFoulBrood}}/>
+                    <label for="european-foul-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes europeanFoulBrood}}">Yes</label>
+                    <input id="european-foul-brood-no" type="radio" name="europeanFoulBrood" value="N" {{checkIfNo europeanFoulBrood}}/>
+                    <label for="european-foul-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo europeanFoulBrood}}">No</label>
                 </div>
                 <label>Chalk brood?</label>
                 <div class="radio-container">
-                    <input id="chalk-brood-yes" type="radio" name="chalkBrood" value="Y"/>
-                    <label for="chalk-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="chalk-brood-no" type="radio" name="chalkBrood" value="N"/>
-                    <label for="chalk-brood-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="chalk-brood-yes" type="radio" name="chalkBrood" value="Y" {{checkIfYes chalkBrood}}/>
+                    <label for="chalk-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes chalkBrood}}">Yes</label>
+                    <input id="chalk-brood-no" type="radio" name="chalkBrood" value="N" {{checkIfNo chalkBrood}}/>
+                    <label for="chalk-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo chalkBrood}}">No</label>
                 </div>
                 <label>Parasitic mite syndrome?</label>
                 <div class="radio-container">
-                    <input id="parasitic-mite-syndrome-yes" type="radio" name="parasiticMiteSyndrome" value="Y"/>
-                    <label for="parasitic-mite-syndrome-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="parasitic-mite-syndrome-no" type="radio" name="parasiticMiteSyndrome" value="N"/>
-                    <label for="parasitic-mite-syndrome-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="parasitic-mite-syndrome-yes" type="radio" name="parasiticMiteSyndrome" value="Y" {{checkIfYes parasiticMiteSyndrome}}/>
+                    <label for="parasitic-mite-syndrome-yes" role="checkbox" aria-checked="{{ariaCheckIfYes parasiticMiteSyndrome}}">Yes</label>
+                    <input id="parasitic-mite-syndrome-no" type="radio" name="parasiticMiteSyndrome" value="N" {{checkIfNo parasiticMiteSyndrome}}/>
+                    <label for="parasitic-mite-syndrome-no" role="checkbox" aria-checked="{{ariaCheckIfNo parasiticMiteSyndrome}}">No</label>
                 </div>
                 <label>Abnormal cappings?</label>
                 <div class="radio-container">
-                    <input id="abnormal-cappings-yes" type="radio" name="abnormalCappings" value="Y"/>
-                    <label for="abnormal-cappings-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="abnormal-cappings-no" type="radio" name="abnormalCappings" value="N"/>
-                    <label for="abnormal-cappings-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="abnormal-cappings-yes" type="radio" name="abnormalCappings" value="Y" {{checkIfYes abnormalCappings}}/>
+                    <label for="abnormal-cappings-yes" role="checkbox" aria-checked="{{ariaCheckIfYes abnormalCappings}}">Yes</label>
+                    <input id="abnormal-cappings-no" type="radio" name="abnormalCappings" value="N" {{checkIfNo abnormalCappings}}/>
+                    <label for="abnormal-cappings-no" role="checkbox" aria-checked="{{ariaCheckIfNo abnormalCappings}}">No</label>
                 </div>
                 <label>Dried remains of pulpae/larvae?</label>
                 <div class="radio-container">
-                    <input id="dried-remains-yes" type="radio" name="driedRemains" value="Y"/>
-                    <label for="dried-remains-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="dried-remains-no" type="radio" name="driedRemains" value="N"/>
-                    <label for="dried-remains-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="dried-remains-yes" type="radio" name="driedRemains" value="Y" {{checkIfYes driedRemains}}/>
+                    <label for="dried-remains-yes" role="checkbox" aria-checked="{{ariaCheckIfYes driedRemains}}">Yes</label>
+                    <input id="dried-remains-no" type="radio" name="driedRemains" value="N" {{checkIfNo driedRemains}}/>
+                    <label for="dried-remains-no" role="checkbox" aria-checked="{{ariaCheckIfNo driedRemains}}">No</label>
                 </div>
                 <label>Dysentery?</label>
                 <div class="radio-container">
-                    <input id="dysentery-yes" type="radio" name="dysentery" value="Y"/>
-                    <label for="dysentery-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="dysentery-no" type="radio" name="dysentery" value="N"/>
-                    <label for="dysentery-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="dysentery-yes" type="radio" name="dysentery" value="Y" {{checkIfYes dysentery}}/>
+                    <label for="dysentery-yes" role="checkbox" aria-checked="{{ariaCheckIfYes dysentery}}">Yes</label>
+                    <input id="dysentery-no" type="radio" name="dysentery" value="N" {{checkIfNo dysentery}}/>
+                    <label for="dysentery-no" role="checkbox" aria-checked="{{ariaCheckIfNo dysentery}}">No</label>
                 </div>
                 <label>Spotty brood pattern?</label>
                 <div class="radio-container">
-                    <input id="spotty-brood-pattern-yes" type="radio" name="spottyBroodPattern" value="Y"/>
-                    <label for="spotty-brood-pattern-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="spotty-brood-pattern-no" type="radio" name="spottyBroodPattern" value="N"/>
-                    <label for="spotty-brood-pattern-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="spotty-brood-pattern-yes" type="radio" name="spottyBroodPattern" value="Y" {{checkIfYes spottyBroodPattern}}/>
+                    <label for="spotty-brood-pattern-yes" role="checkbox" aria-checked="{{ariaCheckIfYes spottyBroodPattern}}">Yes</label>
+                    <input id="spotty-brood-pattern-no" type="radio" name="spottyBroodPattern" value="N" {{checkIfNo spottyBroodPattern}}/>
+                    <label for="spotty-brood-pattern-no" role="checkbox" aria-checked="{{ariaCheckIfNo spottyBroodPattern}}">No</label>
                 </div>
 
                 <div class="navigation-footer">
@@ -210,28 +210,32 @@
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
-                    <input id="number-of-mites" type="number" name="numberOfMites" placeholder="Enter number"/>
+                    <input id="number-of-mites" type="number" name="numberOfMites" placeholder="Enter number" value="{{numberOfMites}}"/>
                 </div>
                 <div id="mites-per-bees-calc" class="hidden" tabindex="0"></div>
 
                 <label for="add-mites-photo">Please attach a photo of the mites on a white background</label>
                 <button id="add-mites-photo" class="add-photo" data-key-name="miteCountPhotoUri">Add Photo +</button>
+                {{#if miteCountPhotoUri}}
+                <img id="mites-photo-preview" src="{{miteCountPhotoUri}}">
+                {{else}}
                 <img id="mites-photo-preview" class="hidden">
+                {{/if}}
 
                 <label>Will you perform a treatment?</label>
                 <div class="radio-container">
-                    <input id="will-perform-treatment-yes" type="radio" name="willPerformTreatment" value="Y"/>
-                    <label for="will-perform-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="will-perform-treatment-no" type="radio" name="willPerformTreatment" value="N"/>
-                    <label for="will-perform-treatment-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="will-perform-treatment-yes" type="radio" name="willPerformTreatment" value="Y" {{checkIfYes willPerformTreatment}}/>
+                    <label for="will-perform-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes willPerformTreatment}}">Yes</label>
+                    <input id="will-perform-treatment-no" type="radio" name="willPerformTreatment" value="N" {{checkIfNo willPerformTreatment}}/>
+                    <label for="will-perform-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo willPerformTreatment}}">No</label>
                 </div>
 
                 <label>Is this your final mite count of the season?</label>
                 <div class="radio-container">
-                    <input id="final-mite-count-of-season-yes" type="radio" name="finalMiteCountOfSeason" value="Y"/>
-                    <label for="final-mite-count-of-season-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="final-mite-count-of-season-no" type="radio" name="finalMiteCountOfSeason" value="N"/>
-                    <label for="final-mite-count-of-season-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="final-mite-count-of-season-yes" type="radio" name="finalMiteCountOfSeason" value="Y" {{checkIfYes finalMiteCountOfSeason}}/>
+                    <label for="final-mite-count-of-season-yes" role="checkbox" aria-checked="{{ariaCheckIfYes finalMiteCountOfSeason}}">Yes</label>
+                    <input id="final-mite-count-of-season-no" type="radio" name="finalMiteCountOfSeason" value="N" {{checkIfNo finalMiteCountOfSeason}}/>
+                    <label for="final-mite-count-of-season-no" role="checkbox" aria-checked="{{ariaCheckIfNo finalMiteCountOfSeason}}">No</label>
                 </div>
 
                 <div class="navigation-footer">
@@ -326,60 +330,60 @@
                     responded.</p>
                 <label>Did you perform a treatment?</label>
                 <div class="radio-container">
-                    <input id="did-you-perform-treatment-yes" type="radio" name="didYouPerformTreatment" value="Y"/>
-                    <label for="did-you-perform-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="did-you-perform-treatment-no" type="radio" name="didYouPerformTreatment" value="N"/>
-                    <label for="did-you-perform-treatment-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="did-you-perform-treatment-yes" type="radio" name="didYouPerformTreatment" value="Y" {{checkIfYes didYouPerformTreatment}}/>
+                    <label for="did-you-perform-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes didYouPerformTreatment}}">Yes</label>
+                    <input id="did-you-perform-treatment-no" type="radio" name="didYouPerformTreatment" value="N" {{checkIfNo didYouPerformTreatment}}/>
+                    <label for="did-you-perform-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo didYouPerformTreatment}}">No</label>
                 </div>
                 <label>Requeen with resistant stock?</label>
                 <div class="radio-container">
-                    <input id="requeen-yes" type="radio" name="requeen" value="Y"/>
-                    <label for="requeen-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="requeen-no" type="radio" name="requeen" value="N"/>
-                    <label for="requeen-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="requeen-yes" type="radio" name="requeen" value="Y" {{checkIfYes requeen}}/>
+                    <label for="requeen-yes" role="checkbox" aria-checked="{{ariaCheckIfYes requeen}}">Yes</label>
+                    <input id="requeen-no" type="radio" name="requeen" value="N" {{checkIfNo requeen}}/>
+                    <label for="requeen-no" role="checkbox" aria-checked="{{ariaCheckIfNo requeen}}">No</label>
                 </div>
                 <label>Did you remove drone brood?</label>
                 <div class="radio-container">
-                    <input id="remove-drone-brood-yes" type="radio" name="removeDroneBrood" value="Y"/>
-                    <label for="remove-drone-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="remove-drone-brood-no" type="radio" name="removeDroneBrood" value="N"/>
-                    <label for="remove-drone-brood-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="remove-drone-brood-yes" type="radio" name="removeDroneBrood" value="Y" {{checkIfYes removeDroneBrood}}/>
+                    <label for="remove-drone-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes removeDroneBrood}}">Yes</label>
+                    <input id="remove-drone-brood-no" type="radio" name="removeDroneBrood" value="N" {{checkIfNo removeDroneBrood}}/>
+                    <label for="remove-drone-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo removeDroneBrood}}">No</label>
                 </div>
                 <label>Did you interrupt drone brood?</label>
                 <div class="radio-container">
-                    <input id="brood-interruption-yes" type="radio" name="broodInterruption" value="Y"/>
-                    <label for="brood-interruption-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="brood-interruption-no" type="radio" name="broodInterruption" value="N"/>
-                    <label for="brood-interruption-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="brood-interruption-yes" type="radio" name="broodInterruption" value="Y" {{checkIfYes broodInterruption}}/>
+                    <label for="brood-interruption-yes" role="checkbox" aria-checked="{{ariaCheckIfYes broodInterruption}}">Yes</label>
+                    <input id="brood-interruption-no" type="radio" name="broodInterruption" value="N" {{checkIfNo broodInterruption}}/>
+                    <label for="brood-interruption-no" role="checkbox" aria-checked="{{ariaCheckIfNo broodInterruption}}">No</label>
                 </div>
                 <label>Did you use a screen bottom board?</label>
                 <div class="radio-container">
-                    <input id="screen-bottom-board-yes" type="radio" name="screenBottomBoard" value="Y"/>
-                    <label for="screen-bottom-board-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="screen-bottom-board-no" type="radio" name="screenBottomBoard" value="N"/>
-                    <label for="screen-bottom-board-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="screen-bottom-board-yes" type="radio" name="screenBottomBoard" value="Y" {{checkIfYes screenBottomBoard}}/>
+                    <label for="screen-bottom-board-yes" role="checkbox" aria-checked="{{ariaCheckIfYes screenBottomBoard}}">Yes</label>
+                    <input id="screen-bottom-board-no" type="radio" name="screenBottomBoard" value="N" {{checkIfNo screenBottomBoard}}/>
+                    <label for="screen-bottom-board-no" role="checkbox" aria-checked="{{ariaCheckIfNo screenBottomBoard}}">No</label>
                 </div>
                 <label>Did you apply a soft or hard chemical treatment?</label>
                 <div class="radio-container">
-                    <input id="soft-or-hard-treatment-yes" type="radio" name="softOrHardTreatment" value="Y"/>
-                    <label for="soft-or-hard-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="soft-or-hard-treatment-no" type="radio" name="softOrHardTreatment" value="N"/>
-                    <label for="soft-or-hard-treatment-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="soft-or-hard-treatment-yes" type="radio" name="softOrHardTreatment" value="Y" {{checkIfYes softOrHardTreatment}}/>
+                    <label for="soft-or-hard-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes softOrHardTreatment}}">Yes</label>
+                    <input id="soft-or-hard-treatment-no" type="radio" name="softOrHardTreatment" value="N" {{checkIfNo softOrHardTreatment}}/>
+                    <label for="soft-or-hard-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo softOrHardTreatment}}">No</label>
                 </div>
 
                 <label for="kind-of-chemical">If yes, which kind of chemical?</label>
-                <input id="kind-of-chemical" type="text" name="kindOfChemical" placeholder="Enter chemical"/>
+                <input id="kind-of-chemical" type="text" name="kindOfChemical" placeholder="Enter chemical" value="{{kindOfChemical}}"/>
 
                 <label>Did your hive survive treatment?</label>
                 <div class="radio-container">
-                    <input id="survive-treatment-yes" type="radio" name="surviveTreatment" value="Y"/>
-                    <label for="survive-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
-                    <input id="survive-treatment-no" type="radio" name="surviveTreatment" value="N"/>
-                    <label for="survive-treatment-no" role="checkbox" aria-checked="false">No</label>
+                    <input id="survive-treatment-yes" type="radio" name="surviveTreatment" value="Y" {{checkIfYes surviveTreatment}}/>
+                    <label for="survive-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes surviveTreatment}}">Yes</label>
+                    <input id="survive-treatment-no" type="radio" name="surviveTreatment" value="N" {{checkIfNo surviveTreatment}}/>
+                    <label for="survive-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo surviveTreatment}}">No</label>
                 </div>
 
                 <label for="survive-treatment-description">If no, describe:</label>
-                <textarea id="survive-treatment-description" name="surviveTreatmentDescription"></textarea>
+                <textarea id="survive-treatment-description" name="surviveTreatmentDescription">{{surviveTreatmentDescription}}</textarea>
 
                 <div class="navigation-footer">
                     <div class="section-indicator">
@@ -399,7 +403,7 @@
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
-                    <input id="number-of-mites" type="number" name="followUpNumberOfMites"
+                    <input id="number-of-mites" type="number" name="followUpNumberOfMites" value="{{followUpNumberOfMites}}"
                            placeholder="Enter number"/>
                 </div>
                 <div id="mites-per-bees-calc" class="hidden" tabindex="0"></div>
@@ -408,7 +412,11 @@
                 <button id="follow-up-add-mites-photo" class="add-photo" data-key-name="followUpMiteCountPhotoUri">Add
                     Photo +
                 </button>
+                {{#if followUpMiteCountPhotoUri}}
+                <img id="mites-photo-preview" src="{{followUpMiteCountPhotoUri}}">
+                {{else}}
                 <img id="mites-photo-preview" class="hidden">
+                {{/if}}
 
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
@@ -440,31 +448,31 @@
             </div>
             <label>Was the honey collected after supers removed?</label>
             <div class="radio-container">
-                <input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y"/>
-                <label for="honey-supers-removed-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N"/>
-                <label for="honey-supers-removed-no" role="checkbox" aria-checked="false">No</label>
+                <input id="honey-supers-removed-yes" type="radio" name="honeySupersRemoved" value="Y" {{checkIfYes honeySupersRemoved}}/>
+                <label for="honey-supers-removed-yes" role="checkbox" aria-checked="{{ariaCheckIfYes honeySupersRemoved}}">Yes</label>
+                <input id="honey-supers-removed-no" type="radio" name="honeySupersRemoved" value="N" {{checkIfNo honeySupersRemoved}}/>
+                <label for="honey-supers-removed-no" role="checkbox" aria-checked="{{ariaCheckIfNo honeySupersRemoved}}">No</label>
             </div>
             <label>Are you feeding your bees supplementary sugar?</label>
             <div class="radio-container">
-                <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y"/>
-                <label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N"/>
-                <label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="false">No</label>
+                <input id="feeding-supplementary-sugar-yes" type="radio" name="feedingSupplementarySugar" value="Y" {{checkIfYes feedingSupplementarySugar}}/>
+                <label for="feeding-supplementary-sugar-yes" role="checkbox" aria-checked="{{ariaCheckIfYes feedingSupplementarySugar}}">Yes</label>
+                <input id="feeding-supplementary-sugar-no" type="radio" name="feedingSupplementarySugar" value="N" {{checkIfNo feedingSupplementarySugar}}/>
+                <label for="feeding-supplementary-sugar-no" role="checkbox" aria-checked="{{ariaCheckIfNo feedingSupplementarySugar}}">No</label>
             </div>
             <label>Was the honey collected from sealed honey cells?</label>
             <div class="radio-container">
-                <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y"/>
-                <label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N"/>
-                <label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="false">No</label>
+                <input id="honey-from-sealed-cells-yes" type="radio" name="honeyFromSealedCells" value="Y" {{checkIfYes honeyFromSealedCells}}/>
+                <label for="honey-from-sealed-cells-yes" role="checkbox" aria-checked="{{ariaCheckIfYes honeyFromSealedCells}}">Yes</label>
+                <input id="honey-from-sealed-cells-no" type="radio" name="honeyFromSealedCells" value="N" {{checkIfNo honeyFromSealedCells}}/>
+                <label for="honey-from-sealed-cells-no" role="checkbox" aria-checked="{{ariaCheckIfNo honeyFromSealedCells}}">No</label>
             </div>
             <label>Was the honey collected from a brood nest?</label>
             <div class="radio-container">
-                <input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y"/>
-                <label for="honey-from-brood-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N"/>
-                <label for="honey-from-brood-no" role="checkbox" aria-checked="false">No</label>
+                <input id="honey-from-brood-yes" type="radio" name="honeyFromBrood" value="Y" {{checkIfYes honeyFromBrood}}/>
+                <label for="honey-from-brood-yes" role="checkbox" aria-checked="{{ariaCheckIfYes honeyFromBrood}}">Yes</label>
+                <input id="honey-from-brood-no" type="radio" name="honeyFromBrood" value="N" {{checkIfNo honeyFromBrood}}/>
+                <label for="honey-from-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo honeyFromBrood}}">No</label>
             </div>
             <div class="navigation-footer">
                 <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
@@ -479,24 +487,24 @@
             <p>We'll need you to report on the survivorship of your hive over the winter.</p>
             <label>Did your hive survive the winter?</label>
             <div class="radio-container">
-                <input id="survived-winter-yes" type="radio" name="survivedWinter" value="Y"/>
-                <label for="survived-winter-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="survived-winter-no" type="radio" name="survivedWinter" value="N"/>
-                <label for="survived-winter-no" role="checkbox" aria-checked="false">No</label>
+                <input id="survived-winter-yes" type="radio" name="survivedWinter" value="Y" {{checkIfYes survivedWinter}}/>
+                <label for="survived-winter-yes" role="checkbox" aria-checked="{{ariaCheckIfYes survivedWinter}}">Yes</label>
+                <input id="survived-winter-no" type="radio" name="survivedWinter" value="N" {{checkIfNo survivedWinter}}/>
+                <label for="survived-winter-no" role="checkbox" aria-checked="{{ariaCheckIfNo survivedWinter}}">No</label>
             </div>
             <label>Did you split/combine the colony after sampling in the fall?</label>
             <div class="radio-container">
-                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y"/>
-                <label for="split-or-combine-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N"/>
-                <label for="split-or-combine-no" role="checkbox" aria-checked="false">No</label>
+                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y" {{checkIfYes splitOrCombine}}/>
+                <label for="split-or-combine-yes" role="checkbox" aria-checked="{{ariaCheckIfYes splitOrCombine}}">Yes</label>
+                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N" {{checkIfNo splitOrCombine}}/>
+                <label for="split-or-combine-no" role="checkbox" aria-checked="{{ariaCheckIfNo splitOrCombine}}">No</label>
             </div>
             <label>Did you treat your hive for varroa mites over winter?</label>
             <div class="radio-container">
-                <input id="winter-treatment-yes" type="radio" name="winterTreatment" value="Y"/>
-                <label for="winter-treatment-yes" role="checkbox" aria-checked="false">Yes</label>
-                <input id="winter-treatment-no" type="radio" name="winterTreatment" value="N"/>
-                <label for="winter-treatment-no" role="checkbox" aria-checked="false">No</label>
+                <input id="winter-treatment-yes" type="radio" name="winterTreatment" value="Y" {{checkIfYes winterTreatment}}/>
+                <label for="winter-treatment-yes" role="checkbox" aria-checked="{{ariaCheckIfYes winterTreatment}}">Yes</label>
+                <input id="winter-treatment-no" type="radio" name="winterTreatment" value="N" {{checkIfNo winterTreatment}}/>
+                <label for="winter-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo winterTreatment}}">No</label>
             </div>
             <div class="navigation-footer">
                 <input type="submit" value="Submit" aria-label="Submit the overwintering report"/>

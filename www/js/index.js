@@ -2,7 +2,7 @@ import _ from "underscore";
 import $ from "jquery";
 import Handlebars from "handlebars";
 import DB from "./db";
-import {formatAttributes} from "./helpers";
+import {formatAttributes, checkIfYes, checkIfNo, ariaCheckIfYes, ariaCheckIfNo} from "./helpers";
 import ProfileRepository from "./repositories/profile_repository";
 import SurveyRepository from "./repositories/survey_repository";
 import GeoPlatformGateway from "./geo_platform/geo_platform_gateway";
@@ -24,18 +24,32 @@ let followUpFormTemplate;
 let honeyFormTemplate;
 let overwinteringFormTemplate;
 
-let profileAttributes = {};
-let surveyAttributes = {};
-let miteCountPhotoUri;
-
 let profileRepository;
 let surveyRepository;
 
 let cameraService;
 let fileService;
 
+// State
+let onResumeOccurred = false;
+let onResumeEvent = null;
+let currentSurvey = null;
+let currentSection = null;
+let profileAttributes = {};
+let surveyAttributes = {};
+let photoButtonKey = null;
+let copiedFileUri = null;
+let miteCountPhotoUri = {};
+
+const APP_STORAGE_KEY = 'epa-beekeeping-survey';
+
 let app = {
   initialize: function () {
+    Handlebars.registerHelper('checkIfYes', checkIfYes);
+    Handlebars.registerHelper('checkIfNo', checkIfNo);
+    Handlebars.registerHelper('ariaCheckIfYes', ariaCheckIfYes);
+    Handlebars.registerHelper('ariaCheckIfNo', ariaCheckIfNo);
+
     profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
     surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
     dataViewTemplate = Handlebars.compile($("#data-view-template").html());
@@ -44,7 +58,10 @@ let app = {
     followUpFormTemplate = Handlebars.compile($("#follow-up-form-template").html());
     honeyFormTemplate = Handlebars.compile($("#honey-form-template").html());
     overwinteringFormTemplate = Handlebars.compile($("#overwintering-form-template").html());
+
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
+    document.addEventListener("pause", this.onPause.bind(this), false);
+    document.addEventListener("resume", this.onResume.bind(this), false);
   },
 
   onDeviceReady: async function () {
@@ -52,6 +69,16 @@ let app = {
     cameraService = new CameraService(navigator.camera);
     fileService = new FileService(window, FileReader, Blob);
     await this._setupDatabase();
+
+    if (onResumeOccurred) {
+      await this._setupStateFromOnResume();
+    }
+
+    if (_.includes(["survey-form", "follow-up-form"], currentSurvey)) {
+      this._restorePage();
+      return;
+    }
+
     if (await this._profileExists()) {
       const surveys = await surveyRepository.findAll();
       if (surveys.length > 0) {
@@ -62,6 +89,56 @@ let app = {
     } else {
       this.renderProfileForm();
     }
+  },
+
+  _setupStateFromOnResume: async function () {
+    const state = JSON.parse(window.localStorage.getItem(APP_STORAGE_KEY));
+    currentSurvey = state.currentSurvey;
+    currentSection = state.currentSection;
+    surveyAttributes = state.surveyAttributes;
+    photoButtonKey = state.photoButtonKey;
+    copiedFileUri = state.copiedFileUri;
+
+    if (onResumeEvent.pendingResult && onResumeEvent.pendingResult.pluginStatus === "OK") {
+      if (onResumeEvent.pendingResult.pluginServiceName === "Camera") {
+        copiedFileUri = await this._copyImageToDataDirectory(
+          onResumeEvent.pendingResult.result,
+          photoButtonKey
+        );
+      }
+    }
+    const photoAttributes = {};
+    photoAttributes[photoButtonKey] = copiedFileUri;
+    _.extend(surveyAttributes, photoAttributes);
+  },
+
+  _restorePage: function () {
+    if (currentSurvey.match(/survey/)) {
+      this.renderSurveyForm();
+    } else {
+      this.renderFollowUpForm(surveyAttributes.id);
+    }
+    $("#survey-section-1").hide();
+    $(`#${currentSection}`).show();
+    let pageNumber = Number(currentSection.match(/(\d)$/)[0]);
+    $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
+      .css("background-color", "rgba(255,255,255,1.0)");
+  },
+
+  onPause: function () {
+    window.localStorage.setItem(APP_STORAGE_KEY, JSON.stringify({
+      currentSurvey: $("form").attr("id"),
+      currentSection: $("form section:visible").attr("id"),
+      surveyAttributes: formatAttributes($("form").serializeArray()),
+      photoButtonKey: photoButtonKey,
+      copiedFileUri: copiedFileUri
+    }));
+  },
+
+  // This will run before onDeviceReady if the app is being resumed.
+  onResume: async function (event) {
+    onResumeOccurred = true;
+    onResumeEvent = event;
   },
 
   renderProfileForm: function () {
@@ -91,7 +168,7 @@ let app = {
   renderSurveyForm: function () {
     body.removeClass("white-background");
     body.addClass("gray-background");
-    $("#main-container").html(surveyFormTemplate());
+    $("#main-container").html(surveyFormTemplate(surveyAttributes));
     document.location.href = "#top";
 
     this._setupPagination();
@@ -106,6 +183,8 @@ let app = {
       const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
       _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
       await surveyRepository.createRecord(surveyAttributes);
+
+      surveyAttributes = {};
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
@@ -156,7 +235,8 @@ let app = {
   renderFollowUpForm: function (surveyId) {
     body.removeClass("white-background");
     body.addClass("gray-background");
-    $("#main-container").html(followUpFormTemplate({surveyId: surveyId}));
+    _.assign(surveyAttributes, {surveyId: surveyId});
+    $("#main-container").html(followUpFormTemplate(surveyAttributes));
     document.location.href = "#top";
 
     this._setupPagination();
@@ -171,6 +251,8 @@ let app = {
       surveyAttributes.followUpSubmittedOn = (new Date()).toLocaleDateString();
       _.extend(surveyAttributes, miteCountPhotoUri);
       await surveyRepository.updateRecord(surveyAttributes);
+
+      surveyAttributes = {};
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
@@ -196,6 +278,8 @@ let app = {
       surveyAttributes.honeyReportSubmittedOn = (new Date()).toLocaleDateString();
       await surveyRepository.updateRecord(surveyAttributes);
 
+      surveyAttributes = {};
+
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
       this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
@@ -219,6 +303,8 @@ let app = {
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.overwinteringReportSubmittedOn = (new Date()).toLocaleDateString();
       await surveyRepository.updateRecord(surveyAttributes);
+
+      surveyAttributes = {};
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
@@ -297,15 +383,20 @@ let app = {
 
   _setupAddMitesPhotoButton: function () {
     $(".add-photo").on("click", async(event) => {
+      photoButtonKey = $(event.currentTarget).data("key-name");
       event.preventDefault();
       const imageUri = await cameraService.getImageUri();
-      const fileEntry = await fileService.getFile(imageUri);
-      const copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
-      const key = $(event.currentTarget).data("key-name");
-      miteCountPhotoUri = {};
-      miteCountPhotoUri[key] = copiedFileUri;
+      const copiedFileUri = await this._copyImageToDataDirectory(imageUri, key);
       $("#mites-photo-preview").attr('src', copiedFileUri).show();
     });
+  },
+
+  _copyImageToDataDirectory: async function (imageUri, key) {
+    const fileEntry = await fileService.getFile(imageUri);
+    const copiedFileUri = await fileService.copyFile(fileEntry, cordova.file.dataDirectory);
+    miteCountPhotoUri = {};
+    miteCountPhotoUri[key] = copiedFileUri;
+    return copiedFileUri;
   },
 
   _setupNumberOfMitesCalculator: function () {
