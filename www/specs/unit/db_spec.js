@@ -69,6 +69,9 @@ describe("DB", () => {
         queen_right VARCHAR(1),
         queen_drone_laying VARCHAR(1),
         age_of_queen INTEGER,
+        abnormal_brood_pattern VARCHAR(1),
+        abnormal_cappings VARCHAR(1),
+        abnormal_odor VARCHAR(1),
         hive_beetles VARCHAR(1),
         wax_moths VARCHAR(1),
         deformed_wings VARCHAR(1),
@@ -76,8 +79,8 @@ describe("DB", () => {
         american_foul_brood VARCHAR(1),
         european_foul_brood VARCHAR(1),
         chalk_brood VARCHAR(1),
+        snotty_brood VARCHAR(1),
         parasitic_mite_syndrome VARCHAR(1),
-        abnormal_cappings VARCHAR(1),
         dried_remains VARCHAR(1),
         dysentery VARCHAR(1),
         spotty_brood_pattern VARCHAR(1),
@@ -88,6 +91,7 @@ describe("DB", () => {
         honey_from_brood VARCHAR(1),
         split_or_combine VARCHAR(1),
         sample_tube_code INTEGER,
+        hive_healthy VARCHAR(1),
         will_perform_treatment VARCHAR(1),
         final_mite_count_of_season VARCHAR(1),
         mite_count_photo_uri VARCHAR(255),
@@ -107,7 +111,9 @@ describe("DB", () => {
         honey_report_submitted_on TEXT,
         survived_winter VARCHAR(1),
         winter_treatment VARCHAR(1),
-        overwintering_report_submitted_on TEXT
+        overwintering_report_submitted_on TEXT,
+        honey_or_pollen VARCHAR(1),
+        why_hive_failed TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -157,6 +163,9 @@ describe("DB", () => {
           queen_right,
           queen_drone_laying,
           age_of_queen,
+          abnormal_brood_pattern,
+          abnormal_cappings,
+          abnormal_odor,
           hive_beetles,
           wax_moths,
           deformed_wings,
@@ -164,8 +173,8 @@ describe("DB", () => {
           american_foul_brood,
           european_foul_brood,
           chalk_brood,
+          snotty_brood,
           parasitic_mite_syndrome,
-          abnormal_cappings,
           dried_remains,
           dysentery,
           spotty_brood_pattern,
@@ -176,6 +185,7 @@ describe("DB", () => {
           honey_from_brood,
           split_or_combine,
           sample_tube_code,
+          hive_healthy,
           will_perform_treatment,
           final_mite_count_of_season,
           mite_count_photo_uri,
@@ -195,16 +205,22 @@ describe("DB", () => {
           honey_report_submitted_on,
           survived_winter,
           winter_treatment,
-          overwintering_report_submitted_on
+          overwintering_report_submitted_on,
+          honey_or_pollen,
+          why_hive_failed
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+          ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
           queenDroneLaying: "N",
           ageOfQueen: 8,
+          abnormalBroodPattern: "N",
+          abnormalCappings: "N",
+          abnormalOdor: "N",
           hiveBeetles: "N",
           waxMoths: "Y",
           deformedWings: "N",
@@ -212,8 +228,8 @@ describe("DB", () => {
           americanFoulBrood: "N",
           europeanFoulBrood: "Y",
           chalkBrood: "Y",
+          snottyBrood: "Y",
           parasiticMiteSyndrome: "N",
-          abnormalCappings: "N",
           driedRemains: "Y",
           dysentery: "N",
           spottyBroodPattern: "Y",
@@ -224,6 +240,7 @@ describe("DB", () => {
           honeyFromBrood: "Y",
           splitOrCombine: "N",
           sampleTubeCode: 1234567890,
+          hiveHealthy: "N",
           willPerformTreatment: "Y",
           finalMiteCountOfSeason: "N",
           miteCountPhotoUri: "testphotouri",
@@ -244,7 +261,9 @@ describe("DB", () => {
           honeyReportSubmittedOn: "1/18/17",
           survivedWinter: "Y",
           winterTreatment: "N",
-          overwinteringReportSubmittedOn: "1/19/17"
+          overwinteringReportSubmittedOn: "1/19/17",
+          honeyOrPollen: "N",
+          whyHiveFailed:"It failed."
         };
 
         surveyRepository.createRecord(attributes);
@@ -253,6 +272,9 @@ describe("DB", () => {
           attributes.queenRight,
           attributes.queenDroneLaying,
           attributes.ageOfQueen,
+          attributes.abnormalBroodPattern,
+          attributes.abnormalCappings,
+          attributes.abnormalOdor,
           attributes.hiveBeetles,
           attributes.waxMoths,
           attributes.deformedWings,
@@ -260,8 +282,8 @@ describe("DB", () => {
           attributes.americanFoulBrood,
           attributes.europeanFoulBrood,
           attributes.chalkBrood,
+          attributes.snottyBrood,
           attributes.parasiticMiteSyndrome,
-          attributes.abnormalCappings,
           attributes.driedRemains,
           attributes.dysentery,
           attributes.spottyBroodPattern,
@@ -272,6 +294,7 @@ describe("DB", () => {
           attributes.honeyFromBrood,
           attributes.splitOrCombine,
           attributes.sampleTubeCode,
+          attributes.hiveHealthy,
           attributes.willPerformTreatment,
           attributes.finalMiteCountOfSeason,
           attributes.miteCountPhotoUri,
@@ -293,6 +316,8 @@ describe("DB", () => {
           attributes.survivedWinter,
           attributes.winterTreatment,
           attributes.overwinteringReportSubmittedOn,
+          attributes.honeyOrPollen,
+          attributes.whyHiveFailed
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

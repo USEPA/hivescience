@@ -15,6 +15,9 @@ export default class SurveyRepository extends AbstractRepository {
       ["queen_right", "VARCHAR(1)"],
       ["queen_drone_laying", "VARCHAR(1)"],
       ["age_of_queen", "INTEGER"],
+      ["abnormal_brood_pattern", "VARCHAR(1)"],
+      ["abnormal_cappings", "VARCHAR(1)"],
+      ["abnormal_odor", "VARCHAR(1)"],
       ["hive_beetles", "VARCHAR(1)"],
       ["wax_moths", "VARCHAR(1)"],
       ["deformed_wings", "VARCHAR(1)"],
@@ -22,8 +25,8 @@ export default class SurveyRepository extends AbstractRepository {
       ["american_foul_brood", "VARCHAR(1)"],
       ["european_foul_brood", "VARCHAR(1)"],
       ["chalk_brood", "VARCHAR(1)"],
+      ["snotty_brood", "VARCHAR(1)"],
       ["parasitic_mite_syndrome", "VARCHAR(1)"],
-      ["abnormal_cappings", "VARCHAR(1)"],
       ["dried_remains", "VARCHAR(1)"],
       ["dysentery", "VARCHAR(1)"],
       ["spotty_brood_pattern", "VARCHAR(1)"],
@@ -34,6 +37,7 @@ export default class SurveyRepository extends AbstractRepository {
       ["honey_from_brood", "VARCHAR(1)"],
       ["split_or_combine", "VARCHAR(1)"],
       ["sample_tube_code", "INTEGER"],
+      ["hive_healthy", "VARCHAR(1)"],
       ["will_perform_treatment", "VARCHAR(1)"],
       ["final_mite_count_of_season", "VARCHAR(1)"],
       ["mite_count_photo_uri", "VARCHAR(255)"],
@@ -57,7 +61,9 @@ export default class SurveyRepository extends AbstractRepository {
       // Overwintering survey
       ["survived_winter", "VARCHAR(1)"],
       ["winter_treatment", "VARCHAR(1)"],
-      ["overwintering_report_submitted_on", "TEXT"]
+      ["overwintering_report_submitted_on", "TEXT"],
+      ["honey_or_pollen", "VARCHAR(1)"],
+      ["why_hive_failed", "TEXT"]
     ];
   }
 }
