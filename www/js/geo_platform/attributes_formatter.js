@@ -37,7 +37,6 @@ export default class AttributesFormatter {
       monitor_varroa_mites_count: "Times_Year_Monitor",
       treatment_methods: "Management_Strategy",
       queen_right: "Queen_Right",
-      queen_drone_laying: "Drone_Laying_Queen",
       honey_supers_removed: "Honey_Supers",
       honey_from_sealed_cells: "Sealed_Honey_Cells",
       honey_from_brood: "Brood_Nest",

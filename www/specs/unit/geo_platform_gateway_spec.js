@@ -29,7 +29,7 @@ describe("GeoPlatformGateway", () => {
     };
     const survey = {
       queen_right: "Y",
-      queen_drone_laying: "Y",
+      queen_poor_performance: "Y",
       honey_supers_removed: "N",
       feeding_supplementary_sugar: "",
       honey_from_sealed_cells: "Y",
@@ -55,7 +55,6 @@ describe("GeoPlatformGateway", () => {
           "Colonies_in_Apiary": "205",
           "Deformed_Wings": "",
           "Dried_Remains": "",
-          "Drone_Laying_Queen": "Y",
           "Dysentery": "",
           "European_Foul_Brood": "",
           "Filled_Tube": "12345",
@@ -84,6 +83,7 @@ describe("GeoPlatformGateway", () => {
           "email": "belinda@beekeeping.us",
           "feeding_supplementary_sugar": "",
           "final_mite_count_of_season": "20",
+          "queen_poor_performance": "Y",
           "zip_code": "22202",
         }
         // ,

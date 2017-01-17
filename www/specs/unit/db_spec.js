@@ -67,7 +67,7 @@ describe("DB", () => {
       CREATE TABLE IF NOT EXISTS surveys (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         queen_right VARCHAR(1),
-        queen_drone_laying VARCHAR(1),
+        queen_poor_performance VARCHAR(1),
         age_of_queen INTEGER,
         abnormal_brood_pattern VARCHAR(1),
         abnormal_cappings VARCHAR(1),
@@ -161,7 +161,7 @@ describe("DB", () => {
         const sqlStatement = `
         INSERT INTO surveys (
           queen_right,
-          queen_drone_laying,
+          queen_poor_performance,
           age_of_queen,
           abnormal_brood_pattern,
           abnormal_cappings,
@@ -216,7 +216,7 @@ describe("DB", () => {
 
         const attributes = {
           queenRight: "Y",
-          queenDroneLaying: "N",
+          queenPoorPerformance: "N",
           ageOfQueen: 8,
           abnormalBroodPattern: "N",
           abnormalCappings: "N",
@@ -270,7 +270,7 @@ describe("DB", () => {
 
         const expectedAttributes = [
           attributes.queenRight,
-          attributes.queenDroneLaying,
+          attributes.queenPoorPerformance,
           attributes.ageOfQueen,
           attributes.abnormalBroodPattern,
           attributes.abnormalCappings,
