@@ -56,7 +56,8 @@ describe("DB", () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         email VARCHAR(100),
         zip_code VARCHAR(20),
-        race_of_bees TEXT
+        race_of_bees TEXT,
+        full_name TEXT
       );`.replace(/\s+/g, " ");
       sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement);
     });
@@ -134,14 +135,16 @@ describe("DB", () => {
         INSERT INTO profiles (
           email,
           zip_code,
-          race_of_bees 
+          race_of_bees,
+          full_name
         )
-        VALUES (?, ?, ?);`.replace(/\s+/g, " ");
+        VALUES (?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           email: "belinda@beekeepers.us",
           zipCode: "12345-5555",
-          raceOfBees: "Italian"
+          raceOfBees: "Italian",
+          fullName: "John Doe"
         };
 
         profileRepository.createRecord(attributes);
@@ -149,7 +152,8 @@ describe("DB", () => {
         const expectedAttributes = [
           attributes.email,
           attributes.zipCode,
-          attributes.raceOfBees
+          attributes.raceOfBees,
+          attributes.fullName
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);

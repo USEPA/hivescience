@@ -15,7 +15,8 @@ export default class ProfileRepository extends AbstractRepository {
       // queries to work.
       ["email", "VARCHAR(100)"],
       ["zip_code", "VARCHAR(20)"],
-      ["race_of_bees", "TEXT"]
+      ["race_of_bees", "TEXT"],
+      ["full_name", "TEXT"]
     ];
   };
 }
