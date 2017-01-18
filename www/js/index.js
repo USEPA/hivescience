@@ -383,10 +383,10 @@ let app = {
 
   _setupAddMitesPhotoButton: function () {
     $(".add-photo").on("click", async(event) => {
-      photoButtonKey = $(event.currentTarget).data("key-name");
       event.preventDefault();
+      photoButtonKey = $(event.currentTarget).data("key-name");
       const imageUri = await cameraService.getImageUri();
-      const copiedFileUri = await this._copyImageToDataDirectory(imageUri, key);
+      const copiedFileUri = await this._copyImageToDataDirectory(imageUri, photoButtonKey);
       $("#mites-photo-preview").attr('src', copiedFileUri).show();
     });
   },
