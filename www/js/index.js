@@ -200,7 +200,7 @@ let app = {
     body.addClass("white-background");
     surveys = surveys.map((survey) => {
       survey.renderFollowUpButton = survey.will_perform_treatment === "Y";
-      survey.followUpSubmitted = survey.follow_up_number_of_mites != null;
+      survey.followUpSubmitted = survey.follow_up_submitted_on != null;
       survey.renderHoneyReportButton = survey.final_mite_count_of_season === "Y";
       survey.honeyReportSubmitted = survey.honey_report_submitted_on != null;
       survey.renderOverwinterReportButton = survey.honeyReportSubmitted;
