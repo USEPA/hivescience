@@ -29,6 +29,10 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
-    <plugin name="cordova-plugin-camera" spec="~2.3.1" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
+    <plugin name="cordova-plugin-camera" spec="~2.3.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
+    </plugin>
     <plugin name="cordova-plugin-file" spec="~4.3.1" />
 </widget>

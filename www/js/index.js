@@ -357,6 +357,7 @@ let app = {
       $(`#survey-section-${pageNumber}`).show();
       $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
         .css("background-color", "rgba(255,255,255,1.0)");
+      document.location.href = "#top";
     });
 
     $(".next-section-button").on("click", (event) => {
@@ -412,6 +413,7 @@ let app = {
       }
     });
   }
+
 };
 
 app.initialize();

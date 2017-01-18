@@ -17,7 +17,7 @@
     <meta name="viewport"
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Show Me The Honey</title>
+    <title>HiveScience</title>
 </head>
 
 <body class="gray-background">
@@ -63,7 +63,7 @@
             <p>You can submit reports to the EPA on your chosen hive as often as you like.</p>
             <img src="img/create-a-report.svg" alt="" aria-hidden="true" id="create-report-marker"/>
             <div class="navigation-footer">
-                <a href="" class="create-report"><span aria-label="Create a Report">+</span></a>
+                <a href="" class="create-report" aria-label="Create a Report"><span aria-hidden="true">+</span></a>
             </div>
         </div>
     </script>
@@ -345,7 +345,7 @@
                 {{else}}
                 <li class="follow-up-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create treatment follow up report</span>
-                    <span>+</span>
+                    <span aria-hidden="true">+</span>
                 </li>
                 {{/if}}
                 {{/if}}
@@ -361,7 +361,7 @@
                 {{else}}
                 <li class="honey-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create a honey report</span>
-                    <span>+</span>
+                    <span aria-hidden="true">+</span>
                 </li>
                 {{/if}}
                 {{/if}}
@@ -377,14 +377,14 @@
                 {{else}}
                 <li class="overwintering-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create overwintering report</span>
-                    <span>+</span>
+                    <span aria-hidden="true">+</span>
                 </li>
                 {{/if}}
                 {{/if}}
                 {{/each}}
             </ul>
             <div class="navigation-footer">
-                <a href="" aria-label="Create a Report" class="create-report">+</a>
+                <a href="" aria-label="Create a Report" class="create-report"><span aria-hidden="true">+</span></a>
             </div>
         </div>
     </script>
@@ -462,9 +462,6 @@
                 <input id="kind-of-chemical" type="text" name="kindOfChemical" placeholder="Enter chemical"
                        value="{{kindOfChemical}}"/>
                 <div class="navigation-footer">
-                    <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
-                        Back
-                    </button>
                     <div class="section-indicator">
                         <span class="circle"></span>
                         <span class="circle"></span>
