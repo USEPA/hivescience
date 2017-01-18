@@ -16,12 +16,13 @@ export default class GeoPlatformGateway {
   }
 
   static get surveyUrl() {
-    return "https://services.arcgis.com/cJ9YHowT8TU7DUyn/" +
-      "arcgis/rest/services/Show_Me_The_Honey/FeatureServer/0/addFeatures";
+    return "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/" +
+      "rest/services/HiveScience/FeatureServer/0/addFeatures";
   }
 
   static photoUrl(id) {
-    return `https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Show_Me_The_Honey/FeatureServer/0/${id}/addAttachment`;
+    return "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/" +
+      "rest/services/HiveScience/FeatureServer/0/" + id + "/addAttachment";
   }
 
   constructor(attributes) {
