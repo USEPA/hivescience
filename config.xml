@@ -4,7 +4,7 @@
     <description>
         An application for submitting survey's to the EPA.
     </description>
-    <author email="" href="https://www.epa.gov/">
+    <author email="hivescience@epa.gov" href="https://www.epa.gov/node/168923">
       EPA
     </author>
     <content src="index.html" />
