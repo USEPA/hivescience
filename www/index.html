@@ -40,7 +40,7 @@
                 <label for="race-of-bees">Race of bees in your hive (e.g., Italian, unknown)</label>
                 <input id="race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees"/>
 
-                <label for="full-name">Full name</label>
+                <label for="full-name">Full Name</label>
                 <input id="full-name" type="text" name="fullName" placeholder="Enter full name"/>
 
                 <label for="email">Email Address</label>
@@ -48,7 +48,7 @@
 
                 <p>
                     If you haven't already received a sample kit package, please email
-                    <a href="mailto:hivescience@epa.gov">hivescience@epa.gov</a>
+                    <a href="mailto:hivescience@epa.gov">hivescience@epa.gov</a>.
                 </p>
 
                 <input type="submit" value="Get Started"/>
@@ -83,7 +83,8 @@
                 <label>Do you have evidence of poor queen performance (i.e, spotty brood pattern, supersedure cells,
                     excessive drone cells)?</label>
                 <div class="radio-container">
-                    <input id="queen-poor-performance-yes" type="radio" name="queenPoorPerformance" value="Y" {{checkIfYes
+                    <input id="queen-poor-performance-yes" type="radio" name="queenPoorPerformance" value="Y"
+                           {{checkIfYes
                            queenPoorPerformance}}/>
                     <label for="queen-poor-performance-yes" role="checkbox"
                            aria-checked="{{ariaCheckIfYes queenPoorPerformance}}">Yes</label>
@@ -96,7 +97,6 @@
                 <label for="age-of-queen">Age of queen?</label>
                 <input id="age-of-queen" type="number" name="ageOfQueen" placeholder="Enter age"
                        value="{{ageOfQueen}}"/>
-
                 <div class="navigation-footer">
                     <div class="section-indicator">
                         <span class="circle"></span>
@@ -124,7 +124,7 @@
                     <label for="abnormal-brood-pattern-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo abnormalBroodPattern}}">No</label>
                 </div>
-                <label>Abnormal cappings(e.g., sunken, perforated, greasy)?</label>
+                <label>Abnormal cappings (e.g., sunken, perforated, greasy)?</label>
                 <div class="radio-container">
                     <input id="abnormal-cappings-yes" type="radio" name="abnormalCappings" value="Y" {{checkIfYes
                            abnormalCappings}}/>
@@ -144,15 +144,18 @@
                     <label for="abnormal-odor-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo abnormalOdor}}">No</label>
                 </div>
-                <label>Hive beetles (larvae or adult)?</label>
+                <label> Small hive beetles (larvae or adult)?</label>
                 <div class="radio-container">
-                    <input id="hive-beetles-yes" type="radio" name="hiveBeetles" value="Y" {{checkIfYes hiveBeetles}}/>
-                    <label for="hive-beetles-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes hiveBeetles}}">Yes</label>
-                    <input id="hive-beetles-no" type="radio" name="hiveBeetles" value="N" {{checkIfNo hiveBeetles}}/>
-                    <label for="hive-beetles-no" role="checkbox" aria-checked="{{ariaCheckIfNo hiveBeetles}}">No</label>
+                    <input id="small-hive-beetles-yes" type="radio" name="smallHiveBeetles" value="Y" {{checkIfYes
+                           smallHiveBeetles}}/>
+                    <label for="small-hive-beetles-yes" role="checkbox"
+                           aria-checked="{{ariaCheckIfYes smallHiveBeetles}}">Yes</label>
+                    <input id="small-hive-beetles-no" type="radio" name="smallHiveBeetles" value="N" {{checkIfNo
+                           smallHiveBeetles}}/>
+                    <label for="small-hive-beetles-no" role="checkbox"
+                           aria-checked="{{ariaCheckIfNo hiveBeetles}}">No</label>
                 </div>
-                <label>Wax moths?</label>
+                <label>Wax moths (larvae or adult)?</label>
                 <div class="radio-container">
                     <input id="wax-moths-yes" type="radio" name="waxMoths" value="Y" {{checkIfYes waxMoths}}/>
                     <label for="wax-moths-yes" role="checkbox" aria-checked="{{ariaCheckIfYes waxMoths}}">Yes</label>
@@ -170,7 +173,7 @@
                     <label for="deformed-wings-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo deformedWings}}">No</label>
                 </div>
-                <label>Black shiny bees (Greasy bees)?</label>
+                <label>Black shiny bees (i.e., greasy bees)?</label>
                 <div class="radio-container">
                     <input id="black-shiny-bees-yes" type="radio" name="blackShinyBees" value="Y" {{checkIfYes
                            blackShinyBees}}/>
@@ -180,35 +183,35 @@
                     <label for="black-shiny-bees-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo blackShinyBees}}">No</label>
                 </div>
-                <label>American foul brood?</label>
+                <label>American foulbrood?</label>
                 <div class="radio-container">
-                    <input id="american-foul-brood-yes" type="radio" name="americanFoulBrood" value="Y" {{checkIfYes
+                    <input id="american-foulbrood-yes" type="radio" name="americanFoulbrood" value="Y" {{checkIfYes
                            americanFoulBrood}}/>
-                    <label for="american-foul-brood-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes americanFoulBrood}}">Yes</label>
-                    <input id="american-foul-brood-no" type="radio" name="americanFoulBrood" value="N" {{checkIfNo
+                    <label for="american-foulbrood-yes" role="checkbox"
+                           aria-checked="{{ariaCheckIfYes americanFoulbrood}}">Yes</label>
+                    <input id="american-foulbrood-no" type="radio" name="americanFoulbrood" value="N" {{checkIfNo
                            americanFoulBrood}}/>
-                    <label for="american-foul-brood-no" role="checkbox"
-                           aria-checked="{{ariaCheckIfNo americanFoulBrood}}">No</label>
+                    <label for="american-foulbrood-no" role="checkbox"
+                           aria-checked="{{ariaCheckIfNo americanFoulbrood}}">No</label>
                 </div>
-                <label>European foul brood?</label>
+                <label>European foulbrood?</label>
                 <div class="radio-container">
-                    <input id="european-foul-brood-yes" type="radio" name="europeanFoulBrood" value="Y" {{checkIfYes
-                           europeanFoulBrood}}/>
-                    <label for="european-foul-brood-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes europeanFoulBrood}}">Yes</label>
-                    <input id="european-foul-brood-no" type="radio" name="europeanFoulBrood" value="N" {{checkIfNo
-                           europeanFoulBrood}}/>
-                    <label for="european-foul-brood-no" role="checkbox"
-                           aria-checked="{{ariaCheckIfNo europeanFoulBrood}}">No</label>
+                    <input id="european-foulbrood-yes" type="radio" name="europeanFoulbrood" value="Y" {{checkIfYes
+                           europeanFoulbrood}}/>
+                    <label for="european-foulbrood-yes" role="checkbox"
+                           aria-checked="{{ariaCheckIfYes europeanFoulbrood}}">Yes</label>
+                    <input id="european-foulbrood-no" type="radio" name="europeanFoulbrood" value="N" {{checkIfNo
+                           europeanFoulbrood}}/>
+                    <label for="european-foulbrood-no" role="checkbox"
+                           aria-checked="{{ariaCheckIfNo europeanFoulbrood}}">No</label>
                 </div>
-                <label>Chalk brood (e.g., dried mummies)?</label>
+                <label>Chalkbrood (i.e., dried mummies)?</label>
                 <div class="radio-container">
-                    <input id="chalk-brood-yes" type="radio" name="chalkBrood" value="Y" {{checkIfYes chalkBrood}}/>
-                    <label for="chalk-brood-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes chalkBrood}}">Yes</label>
-                    <input id="chalk-brood-no" type="radio" name="chalkBrood" value="N" {{checkIfNo chalkBrood}}/>
-                    <label for="chalk-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo chalkBrood}}">No</label>
+                    <input id="chalkbrood-yes" type="radio" name="chalkbrood" value="Y" {{checkIfYes chalkbrood}}/>
+                    <label for="chalkbrood-yes" role="checkbox"
+                           aria-checked="{{ariaCheckIfYes chalkbrood}}">Yes</label>
+                    <input id="chalkbrood-no" type="radio" name="chalkbrood" value="N" {{checkIfNo chalkbrood}}/>
+                    <label for="chalkbrood-no" role="checkbox" aria-checked="{{ariaCheckIfNo chalkbrood}}">No</label>
                 </div>
                 <label>Snotty brood?</label>
                 <div class="radio-container">
@@ -229,7 +232,7 @@
                     <label for="parasitic-mite-syndrome-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo parasiticMiteSyndrome}}">No</label>
                 </div>
-                <label>Dried remains of pulpae/larvae (e.g., scales)?</label>
+                <label>Dried remains of pulpae/larvae (i.e., scales)?</label>
                 <div class="radio-container">
                     <input id="dried-remains-yes" type="radio" name="driedRemains" value="Y" {{checkIfYes
                            driedRemains}}/>
@@ -239,25 +242,13 @@
                     <label for="dried-remains-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo driedRemains}}">No</label>
                 </div>
-                <label>Dysentery (e.g., Nosema)?</label>
+                <label>Dysentery (i.e., Nosema)?</label>
                 <div class="radio-container">
                     <input id="dysentery-yes" type="radio" name="dysentery" value="Y" {{checkIfYes dysentery}}/>
                     <label for="dysentery-yes" role="checkbox" aria-checked="{{ariaCheckIfYes dysentery}}">Yes</label>
                     <input id="dysentery-no" type="radio" name="dysentery" value="N" {{checkIfNo dysentery}}/>
                     <label for="dysentery-no" role="checkbox" aria-checked="{{ariaCheckIfNo dysentery}}">No</label>
                 </div>
-                <label>Spotty brood pattern?</label>
-                <div class="radio-container">
-                    <input id="spotty-brood-pattern-yes" type="radio" name="spottyBroodPattern" value="Y" {{checkIfYes
-                           spottyBroodPattern}}/>
-                    <label for="spotty-brood-pattern-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes spottyBroodPattern}}">Yes</label>
-                    <input id="spotty-brood-pattern-no" type="radio" name="spottyBroodPattern" value="N" {{checkIfNo
-                           spottyBroodPattern}}/>
-                    <label for="spotty-brood-pattern-no" role="checkbox"
-                           aria-checked="{{ariaCheckIfNo spottyBroodPattern}}">No</label>
-                </div>
-
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
                         Back
@@ -276,7 +267,7 @@
                 <h2>Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count using the powdered sugar shake method. For instructions
                     please
-                    <a href="https://www.epa.gov/node/168925">watch this video</a>.
+                    <a href="https://www.epa.gov/node/168925">view this webpage</a>.
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
@@ -316,7 +307,6 @@
                     <label for="final-mite-count-of-season-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo finalMiteCountOfSeason}}">No</label>
                 </div>
-
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="2" aria-label="Go to the previous section">
                         Back
@@ -393,7 +383,6 @@
                 {{/if}}
                 {{/each}}
             </ul>
-
             <div class="navigation-footer">
                 <a href="" aria-label="Create a Report" class="create-report">+</a>
             </div>
@@ -469,26 +458,13 @@
                     <label for="soft-or-hard-treatment-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo softOrHardTreatment}}">No</label>
                 </div>
-
                 <label for="kind-of-chemical">If yes, which chemical(s)?</label>
                 <input id="kind-of-chemical" type="text" name="kindOfChemical" placeholder="Enter chemical"
                        value="{{kindOfChemical}}"/>
-
-                <label>Did your hive survive treatment?</label>
-                <div class="radio-container">
-                    <input id="survive-treatment-yes" type="radio" name="surviveTreatment" value="Y" {{checkIfYes
-                           surviveTreatment}}/>
-                    <label for="survive-treatment-yes" role="checkbox"
-                           aria-checked="{{ariaCheckIfYes surviveTreatment}}">Yes</label>
-                    <input id="survive-treatment-no" type="radio" name="surviveTreatment" value="N" {{checkIfNo
-                           surviveTreatment}}/>
-                    <label for="survive-treatment-no" role="checkbox" aria-checked="{{ariaCheckIfNo surviveTreatment}}">No</label>
-                </div>
-
-                <label for="survive-treatment-description">If no, describe:</label>
-                <textarea id="survive-treatment-description" name="surviveTreatmentDescription">{{surviveTreatmentDescription}}</textarea>
-
                 <div class="navigation-footer">
+                    <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
+                        Back
+                    </button>
                     <div class="section-indicator">
                         <span class="circle"></span>
                         <span class="circle"></span>
@@ -502,7 +478,7 @@
                 <h2>Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count by doing a powdered sugar shake. For instructions
                     please
-                    <a href="https://www.epa.gov/node/168925">watch this video</a>.
+                    <a href="https://www.epa.gov/node/168925">view this webpage</a>.
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
@@ -521,7 +497,6 @@
                 {{else}}
                 <img id="mites-photo-preview" class="hidden">
                 {{/if}}
-
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
                         Back
@@ -542,7 +517,11 @@
             <h2>Honey sample collection</h2>
             <p>Because you've completed your final mite count of the season, we'd like you to provide a honey
                 sample.</p>
-            <p>If you haven't already received a sample kit package please email <a href="mailto:hivescience@epa.gov">hivescience@epa.gov</a>
+            <p>If you haven't already received a sample kit package please email
+                <a href="mailto:hivescience@epa.gov">hivescience@epa.gov</a>.
+            </p>
+            <p>For instructions please
+                <a href="https://www.epa.gov/node/168925">view this webpage</a>.
             </p>
             <div>
                 <label for="sample-tube-code">Honey sample collection tube code</label>
@@ -673,6 +652,7 @@
             <h2>Profile:</h2>
             <div><strong>Zip code of the hive you'll be reporting on:</strong> {{zip_code}}</div>
             <div><strong>Race of bees in your hive (e.g., Italian, unknown):</strong> {{race_of_bees}}</div>
+            <div><strong>Full Name:</strong> {{full_name}}</strong></div>
             <div><strong>Email Address:</strong> {{email}}</div>
 
             <h2>Survey:</h2>
@@ -684,18 +664,17 @@
             <div><strong>Abnormal brood pattern (e.g., spotty)?</strong> {{abnormal_brood_pattern}}</div>
             <div><strong>Abnormal cappings (e.g., sunken, perforated, greasy)?</strong> {{abnormal_cappings}}</div>
             <div><strong>Abnormal odor?</strong> {{abnormal_odor}}</div>
-            <div><strong>Hive beetles (larvae or adult)?</strong> {{hive_beetles}}</div>
-            <div><strong>Wax moths?</strong> {{wax_moths}}</div>
+            <div><strong>Small hive beetles (larvae or adult)?</strong> {{small_hive_beetles}}</div>
+            <div><strong>Wax moths(larvae or adult)?</strong> {{wax_moths}}</div>
             <div><strong>Deformed wings?</strong> {{deformed_wings}}</div>
-            <div><strong>Black shiny bees (Greasy bees)?</strong> {{black_shiny_bees}}</div>
-            <div><strong>American foul brood?</strong> {{american_foul_brood}}</div>
-            <div><strong>European foul brood?</strong> {{european_foul_brood}}</div>
-            <div><strong>Chalk brood (e.g., dried mummies)?</strong> {{chalk_brood}}</div>
+            <div><strong>Black shiny bees (i.e., greasy bees)?</strong> {{black_shiny_bees}}</div>
+            <div><strong>American foulbrood?</strong> {{american_foulbrood}}</div>
+            <div><strong>European foulbrood?</strong> {{european_foulbrood}}</div>
+            <div><strong>Chalkbrood (i.e., dried mummies)?</strong> {{chalkbrood}}</div>
             <div><strong>Snotty brood?</strong> {{snotty_brood}}</div>
             <div><strong>Parasitic mite syndrome?</strong> {{parasitic_mite_syndrome}}</div>
-            <div><strong>Dried remains of pulpae/larvae (e.g., scales)?</strong> {{dried_remains}}</div>
-            <div><strong>Dysentery (e.g., Nosema)?</strong> {{dysentery}}</div>
-            <div><strong>Spotty brood pattern?</strong> {{spotty_brood_pattern}}</div>
+            <div><strong>Dried remains of pulpae/larvae (i.e., scales)?</strong> {{dried_remains}}</div>
+            <div><strong>Dysentery (i.e., Nosema)?</strong> {{dysentery}}</div>
             <div><strong>Total number of mites after powdered sugar shake</strong> {{number_of_mites}}</div>
             <div><strong>Will you perform a Varroa mite treatment?</strong> {{will_perform_treatment}}</div>
             <div><strong>Is this your final mite count of the season?</strong> {{final_mite_count_of_season}}</div>
@@ -708,8 +687,6 @@
             <div><strong>Did you use a screen bottom board?</strong> {{screen_bottom_board}}</div>
             <div><strong>Did you apply a soft or hard chemical treatment?</strong> {{soft_or_hard_treatment}}</div>
             <div><strong>If yes, which chemical(s)?</strong> {{kind_of_chemical}}</div>
-            <div><strong>Did your hive survive treatment?</strong> {{survive_treatment}}</div>
-            <div><strong>If no, describe:</strong> {{survive_treatment_description}}</div>
             <div><strong>Total number of mites after powdered sugar shake:</strong> {{follow_up_number_of_mites}}</div>
 
             <h2>Honey sample collection:</h2>

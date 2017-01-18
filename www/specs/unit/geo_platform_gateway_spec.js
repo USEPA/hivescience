@@ -73,7 +73,6 @@ describe("GeoPlatformGateway", () => {
           "Sealed_Honey_Cells": "Y",
           "Small_Hive_Beetle": "",
           "Split_Combine_Colony": "Y",
-          "Spotty_Brood_Pattern": "",
           "Times_Year_Monitor": "23",
           "Total_Number_of_Bees": "",
           "Treatment_Required": "",
