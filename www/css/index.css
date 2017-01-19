@@ -10,7 +10,6 @@
 
 @font-face {
     font-family: 'Open Sans Bold';
-    src: url('../fonts/OpenSans-Bold.ttf');
 }
 
 @font-face {
@@ -26,6 +25,22 @@
 @font-face {
     font-family: 'Droid Sans Bold';
     src: url('../fonts/DroidSans-Bold.ttf');
+}
+
+::-webkit-input-placeholder {
+    color: #686868;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #686868;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #686868;
+}
+
+:-ms-input-placeholder {
+    color: #686868;
 }
 
 html {
@@ -78,8 +93,9 @@ h2 {
 }
 
 a {
-    color: rgb(43, 170, 225);
+    color: #2799CA;
     text-decoration: none;
+    font-weight: bold;
 }
 
 label, legend {
@@ -97,7 +113,6 @@ input[type=text], [type=email], [type=number], [type=date], textarea {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     border-style: solid;
-    color: rgb(146, 149, 156);
     font-size: 12pt;
     height: 35px;
     padding: 5px 0 5px 15px;
@@ -123,14 +138,14 @@ input[type=number]#number-of-mites {
 }
 
 #mites-per-bees-calc {
-    color: rgb(148, 151, 157);
+    color: #494b4f;
     font-style: italic;
     margin-bottom: 35px;
     text-align: right;
 }
 
 .add-photo {
-    background-color: rgb(43, 170, 225);
+    background-color: #2799CA;
     border: none;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -154,7 +169,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked {
-    background-color: rgb(55, 187, 155);
+    background-color: #31A68A;
 }
 
 legend {
@@ -187,7 +202,7 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 #profile-form input[type=submit] {
-    background-color: rgb(55, 187, 155);
+    background-color: #31A68A;
     border: none;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -250,8 +265,8 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .radio-container input[type=radio]:checked + label {
-    border-color: rgb(43, 170, 225);
-    background-color: rgb(43, 170, 225);
+    border-color: #2799CA;
+    background-color: #2799CA;
     color: white;
 }
 
@@ -280,7 +295,7 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .navigation-footer input[type=submit] {
-    background-color: rgb(55, 187, 155);
+    background-color: #31A68A;
     border: none;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -383,8 +398,8 @@ ul.surveys {
 
 .report-button span {
     font-size: 9pt;
-    color: rgb(55, 187, 155);
-    font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
+    color: #2C967D;
+    font-family: 'Open Sans Bold', Helvetica, Arial, sans-serif;
 }
 
 .report-button .sub-row {
@@ -404,14 +419,14 @@ ul.surveys {
 
 .additional-report-button {
     background-color: white;
-    border: 2px dashed rgb(43, 170, 225);
+    border: 2px dashed #2799CA;
     margin-bottom: 15px;
     height: 60px;
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
     align-items: center;
-    color: rgb(43, 170, 225);
+    color: #2799CA;
     font-family: 'Open Sans Semibold', Helvetica, Arial, sans-serif;
 }
 
@@ -424,8 +439,10 @@ ul.surveys {
 }
 
 .success-banner {
-    background-color: rgb(55, 187, 155);
+    background-color: #31A68A;
     color: #ffffff;
     padding: 23px 0;
     text-align: center;
+    font-size: 19px;
+    font-weight: 600;
 }
