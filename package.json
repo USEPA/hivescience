@@ -1,11 +1,17 @@
 {
-  "name": "buzz_buzz",
+  "name": "HiveScience",
   "version": "0.0.1",
   "description": "Survey App for EPA",
   "main": "index.js",
   "dependencies": {
     "moment": "^2.17.1",
-    "whatwg-fetch": "^2.0.1"
+    "whatwg-fetch": "^2.0.1",
+    "jquery": "^3.1.1",
+    "handlebars": "^4.0.6",
+    "q": "^1.4.1",
+    "underscore": "^1.8.3",
+    "cordova-common": "^1.5.1",
+    "cordova-serve": "^1.0.0"
   },
   "devDependencies": {
     "adm-zip": "^0.4.7",
@@ -15,19 +21,13 @@
     "babel-preset-stage-0": "^6.16.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
-    "cordova-common": "^1.5.1",
-    "cordova-serve": "^1.0.0",
     "expect.js": "^0.3.1",
     "fetch-mock": "^5.8.0",
     "ghostjs": "^1.7.1",
-    "handlebars": "^4.0.6",
     "ios-sim": "^5.0.13",
-    "jquery": "^3.1.1",
     "properties-parser": "^0.3.1",
-    "q": "^1.4.1",
     "shelljs": "^0.7.5",
     "sinon": "^1.17.6",
-    "underscore": "^1.8.3",
     "unorm": "^1.4.1",
     "xcode": "^0.9.0"
   },
