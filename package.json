@@ -4,6 +4,7 @@
   "description": "Survey App for EPA",
   "main": "index.js",
   "dependencies": {
+    "moment": "^2.17.1",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {

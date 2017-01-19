@@ -11,6 +11,7 @@ import CameraService from "./services/camera_service";
 import FileService from "./services/file_service";
 import "babel-core/register";
 import "babel-polyfill";
+import moment from "moment";
 
 let db;
 let body;
@@ -235,8 +236,10 @@ let app = {
   renderFollowUpForm: function (surveyId) {
     body.removeClass("white-background");
     body.addClass("gray-background");
-    _.assign(surveyAttributes, {surveyId: surveyId});
+
+    _.assign(surveyAttributes, {surveyId: surveyId, currentDate: moment().format("LL")});
     $("#main-container").html(followUpFormTemplate(surveyAttributes));
+
     document.location.href = "#top";
 
     this._setupPagination();

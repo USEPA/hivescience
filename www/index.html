@@ -326,7 +326,6 @@
         <h1>Reports</h1>
         <div class="success-banner">Thank you for your submission!</div>
         <div class="container">
-
             <ul class="surveys">
                 {{#each surveys}}
                 <li class="report-button">
@@ -390,6 +389,7 @@
     </script>
 
     <script id="follow-up-form-template" type="text/template">
+        <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         <form action="#" id="follow-up-form">
             <section id="survey-section-1">
                 <input type="hidden" name="id" value="{{surveyId}}">
