@@ -169,7 +169,10 @@ let app = {
   renderSurveyForm: function () {
     body.removeClass("white-background");
     body.addClass("gray-background");
+
+    _.assign(surveyAttributes, {currentDate: moment().format("LL")});
     $("#main-container").html(surveyFormTemplate(surveyAttributes));
+
     document.location.href = "#top";
 
     this._setupPagination();
