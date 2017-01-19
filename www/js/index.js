@@ -272,7 +272,8 @@ let app = {
   renderHoneyForm: function (surveyId) {
     body.removeClass("white-background");
     body.addClass("gray-background");
-    $("#main-container").html(honeyFormTemplate({surveyId: surveyId}));
+
+    $("#main-container").html(honeyFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
     document.location.href = "#top";
 
     this._setupRadioButtons();
