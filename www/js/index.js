@@ -299,7 +299,8 @@ let app = {
   renderOverwinteringForm: function (surveyId) {
     body.removeClass("white-background");
     body.addClass("gray-background");
-    $("#main-container").html(overwinteringFormTemplate({surveyId: surveyId}));
+
+    $("#main-container").html(overwinteringFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
     document.location.href = "#top";
 
     this._setupRadioButtons();
