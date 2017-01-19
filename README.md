@@ -1,0 +1,2 @@
+# hivescience
+The HiveScience mobile App is designed for citizen scientist beekeepers to collect and share data related to the health of their honey bee colonies.  Using this App, beekeepers can easily enter hive health and Varroa mite monitoring data on-site and in real-time.  These data will help us better understand factors affecting the health of honey bees and their ability to survive the winter.  For more info, check out https://www.epa.gov/citizen-science/hivescience
