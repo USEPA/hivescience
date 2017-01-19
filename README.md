@@ -4,7 +4,7 @@ The HiveScience mobile App is designed for citizen scientist beekeepers to colle
 ## Install
 - install `cordova 6+`
 - install `npm`
-- install cordova platforms and plugins
+- install cordova platforms and plugins with `cordova prepare`
 - `npm install`
 
 ## Build
