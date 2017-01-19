@@ -144,7 +144,8 @@ let app = {
 
   renderProfileForm: function () {
     $("#main-container").html(profileFormTemplate());
-    document.location.href = "#top";
+
+    this._focusOnPageHeader("h1");
 
     this._setupRadioButtons();
 
@@ -160,6 +161,7 @@ let app = {
 
   renderWelcomeTemplate() {
     $("#main-container").html(welcomeTemplate());
+
     $(".create-report").on("click", (event) => {
       event.preventDefault();
       this.renderSurveyForm();
@@ -173,7 +175,7 @@ let app = {
     _.assign(surveyAttributes, {currentDate: moment().format("LL")});
     $("#main-container").html(surveyFormTemplate(surveyAttributes));
 
-    document.location.href = "#top";
+    this._focusOnPageHeader();
 
     this._setupPagination();
     this._setupRadioButtons();
@@ -211,7 +213,10 @@ let app = {
       survey.overwinteringReportSubmitted = survey.overwintering_report_submitted_on != null;
       return survey;
     });
+
     $("#main-container").html(reportsTemplate({surveys: surveys}));
+
+    this._focusOnPageHeader("h1");
 
     $(".follow-up-button").on("click", (event) => {
       event.preventDefault();
@@ -233,7 +238,6 @@ let app = {
       this.renderSurveyForm();
     });
 
-    document.location.href = "#top";
   },
 
   renderFollowUpForm: function (surveyId) {
@@ -243,7 +247,7 @@ let app = {
     _.assign(surveyAttributes, {surveyId: surveyId, currentDate: moment().format("LL")});
     $("#main-container").html(followUpFormTemplate(surveyAttributes));
 
-    document.location.href = "#top";
+    this._focusOnPageHeader();
 
     this._setupPagination();
     this._setupRadioButtons();
@@ -274,7 +278,8 @@ let app = {
     body.addClass("gray-background");
 
     $("#main-container").html(honeyFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
-    document.location.href = "#top";
+
+    this._focusOnPageHeader();
 
     this._setupRadioButtons();
 
@@ -301,7 +306,8 @@ let app = {
     body.addClass("gray-background");
 
     $("#main-container").html(overwinteringFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
-    document.location.href = "#top";
+
+    this._focusOnPageHeader();
 
     this._setupRadioButtons();
 
@@ -359,23 +365,26 @@ let app = {
 
     $(".previous-section-button").on("click", (event) => {
       event.preventDefault();
+
       const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      document.location.href = "#top";
       $(`#survey-section-${pageNumber + 1}`).hide();
       $(`#survey-section-${pageNumber}`).show();
       $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
         .css("background-color", "rgba(255,255,255,1.0)");
-      document.location.href = "#top";
+
+      this._focusOnPageHeader();
     });
 
     $(".next-section-button").on("click", (event) => {
       event.preventDefault();
+
       const pageNumber = parseInt($(event.target).data("next-page"), 10);
-      document.location.href = "#top";
       $(`#survey-section-${pageNumber - 1}`).hide();
       $(`#survey-section-${pageNumber}`).show();
       $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
         .css("background-color", "rgba(255,255,255,1.0)");
+
+      this._focusOnPageHeader();
     });
   },
 
@@ -420,6 +429,11 @@ let app = {
         $("#mites-per-bees-calc").show();
       }
     });
+  },
+
+  _focusOnPageHeader: function (headerTag="h2") {
+    document.location.href = "#top";
+    $(`${headerTag}:visible`).first().focus();
   }
 
 };

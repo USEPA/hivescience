@@ -25,7 +25,7 @@
     <a id="#top" class="hidden"></a>
     <script id="profile-form-template" type="text/template">
         <div id="profile-form-page-1">
-            <h1>HiveScience</h1>
+            <h1 tabindex="0">HiveScience</h1>
             <form action="#" id="profile-form" novalidate>
                 <h2 class="profile-header">Welcome to the EPA Citizen Scientist Beekeeper Program</h2>
 
@@ -72,7 +72,7 @@
         <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         <form action="#" id="survey-form">
             <section id="survey-section-1">
-                <h2 class="survey-header">The queen</h2>
+                <h2 class="survey-header" tabindex="0">The queen</h2>
                 <label>Is your hive queen right (queen or eggs present)?</label>
                 <div class="radio-container">
                     <input id="queen-right-yes" type="radio" name="queenRight" value="Y" {{checkIfYes queenRight}}/>
@@ -113,7 +113,7 @@
             </section>
 
             <section id="survey-section-2" class="hidden">
-                <h2>Disease & pest presence</h2>
+                <h2 tabindex="0">Disease & pest presence</h2>
                 <label>Abnormal brood pattern (e.g., spotty)?</label>
                 <div class="radio-container">
                     <input id="abnormal-brood-pattern-yes" type="radio" name="abnormalBroodPattern" value="Y"
@@ -265,7 +265,7 @@
             </section>
 
             <section id="survey-section-3" class="hidden">
-                <h2>Varroa mite count</h2>
+                <h2 tabindex="0">Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count using the powdered sugar shake method. For instructions
                     please
                     <a href="https://www.epa.gov/node/168925">view this webpage</a>.
@@ -324,7 +324,7 @@
     </script>
 
     <script id="reports-template" type="text/template">
-        <h1>Reports</h1>
+        <h1 tabindex="0">Reports</h1>
         <div class="success-banner">Thank you for your submission!</div>
         <div class="container">
             <ul class="surveys">
@@ -394,7 +394,7 @@
         <form action="#" id="follow-up-form">
             <section id="survey-section-1">
                 <input type="hidden" name="id" value="{{surveyId}}">
-                <h2>Treatment follow up</h2>
+                <h2 tabindex="0">Treatment follow up</h2>
                 <p>Because you performed a treatment on your hive, we'd like you to report on how your hive
                     responded.</p>
                 <label>Did you perform a Varroa mite treatment?</label>
@@ -473,7 +473,7 @@
             </section>
 
             <section id="survey-section-2" class="hidden">
-                <h2>Varroa mite count</h2>
+                <h2 tabindex="0">Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count by doing a powdered sugar shake. For instructions
                     please
                     <a href="https://www.epa.gov/node/168925">view this webpage</a>.
@@ -513,7 +513,7 @@
         <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         <form action="#" id="honey-form">
             <input type="hidden" name="id" value="{{surveyId}}">
-            <h2>Honey sample collection</h2>
+            <h2 tabindex="0">Honey sample collection</h2>
             <p>Because you've completed your final mite count of the season, we'd like you to provide a honey
                 sample.</p>
             <p>If you haven't already received a sample kit package please email
@@ -592,7 +592,7 @@
         <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         <form action="#" id="overwintering-form">
             <input type="hidden" name="id" value="{{surveyId}}">
-            <h2>Overwintering</h2>
+            <h2 tabindex="0">Overwintering</h2>
             <p>We'll need you to report on the survivorship of your hive over the winter.</p>
             <label>Did your hive survive the winter?</label>
             <div class="radio-container">
