@@ -1,8 +1,9 @@
 import _ from "underscore";
 import $ from "jquery";
+import Q from "Q";
 import Handlebars from "handlebars";
 import DB from "./db";
-import { formatAttributes, checkIfYes, checkIfNo, ariaCheckIfYes, ariaCheckIfNo } from "./helpers";
+import {formatAttributes, checkIfYes, checkIfNo, ariaCheckIfYes, ariaCheckIfNo} from "./helpers";
 import ProfileRepository from "./repositories/profile_repository";
 import SurveyRepository from "./repositories/survey_repository";
 import GeoPlatformGateway from "./geo_platform/geo_platform_gateway";
@@ -179,7 +180,7 @@ let app = {
     body.removeClass("white-background");
     body.addClass("gray-background");
 
-    _.assign(surveyAttributes, { currentDate: moment().format("LL") });
+    _.assign(surveyAttributes, {currentDate: moment().format("LL")});
     $("#main-container").html(surveyFormTemplate(surveyAttributes));
 
     this._focusOnPageHeader();
@@ -190,18 +191,13 @@ let app = {
     this._setupNumberOfMitesCalculator();
 
     const form = $("#survey-form");
-    form.on("submit", async (event) => {
+    form.on("submit", async(event) => {
       event.preventDefault();
       const geolocation = {spatialReference: {wkid: 4326}};
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          geolocation.x = position.coords.longitude;
-          geolocation.y = position.coords.latitude;
-        },
-        (error) => console.log(error)
-      );
+      await this._getGeolocation(geolocation);
+      console.log(geolocation)
       surveyAttributes = formatAttributes(form.serializeArray());
-      const baseAttributes = { createdOn: (new Date()).toLocaleDateString() };
+      const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
       _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
       await surveyRepository.createRecord(surveyAttributes);
 
@@ -229,7 +225,7 @@ let app = {
       return survey;
     });
 
-    $("#main-container").html(reportsTemplate({ surveys: surveys }));
+    $("#main-container").html(reportsTemplate({surveys: surveys}));
 
     this._focusOnPageHeader("h1");
 
@@ -259,7 +255,7 @@ let app = {
     body.removeClass("white-background");
     body.addClass("gray-background");
 
-    _.assign(surveyAttributes, { surveyId: surveyId, currentDate: moment().format("LL") });
+    _.assign(surveyAttributes, {surveyId: surveyId, currentDate: moment().format("LL")});
     $("#main-container").html(followUpFormTemplate(surveyAttributes));
 
     this._focusOnPageHeader();
@@ -270,7 +266,7 @@ let app = {
     this._setupNumberOfMitesCalculator();
 
     const form = $("#follow-up-form");
-    form.on("submit", async (event) => {
+    form.on("submit", async(event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.followUpSubmittedOn = (new Date()).toLocaleDateString();
@@ -292,14 +288,14 @@ let app = {
     body.removeClass("white-background");
     body.addClass("gray-background");
 
-    $("#main-container").html(honeyFormTemplate({ surveyId: surveyId, currentDate: moment().format("LL") }));
+    $("#main-container").html(honeyFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
 
     this._focusOnPageHeader();
 
     this._setupRadioButtons();
 
     const form = $("#honey-form");
-    form.on("submit", async (event) => {
+    form.on("submit", async(event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.honeyReportSubmittedOn = (new Date()).toLocaleDateString();
@@ -320,14 +316,14 @@ let app = {
     body.removeClass("white-background");
     body.addClass("gray-background");
 
-    $("#main-container").html(overwinteringFormTemplate({ surveyId: surveyId, currentDate: moment().format("LL") }));
+    $("#main-container").html(overwinteringFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
 
     this._focusOnPageHeader();
 
     this._setupRadioButtons();
 
     const form = $("#overwintering-form");
-    form.on("submit", async (event) => {
+    form.on("submit", async(event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.overwinteringReportSubmittedOn = (new Date()).toLocaleDateString();
@@ -415,7 +411,7 @@ let app = {
   },
 
   _setupAddMitesPhotoButton: function () {
-    $(".add-photo").on("click", async (event) => {
+    $(".add-photo").on("click", async(event) => {
       event.preventDefault();
       photoButtonKey = $(event.currentTarget).data("key-name");
       const imageUri = await cameraService.getImageUri();
@@ -453,8 +449,21 @@ let app = {
     header.css({
       'outline-style': 'none',
       'box-shadow': 'none',
-      'boder-color': 'transparent'
+      'border-color': 'transparent'
     });
+  },
+
+  _getGeolocation: function (geolocation) {
+    const defer = Q.defer();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        geolocation.x = position.coords.longitude;
+        geolocation.y = position.coords.latitude;
+        defer.resolve();
+      },
+      defer.reject
+    );
+    return defer.promise;
   }
 
 };
