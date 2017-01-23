@@ -1,4 +1,0 @@
-npm install
-./run_tests
-build_status=$?
-exit $build_status
