@@ -7,59 +7,59 @@
     <author email="hivescience@epa.gov" href="https://www.epa.gov/node/168923">
         EPA
     </author>
-    <content src="index.html"/>
-    <access origin="*"/>
-    <allow-intent href="http://*/*"/>
-    <allow-intent href="https://*/*"/>
-    <allow-intent href="tel:*"/>
-    <allow-intent href="sms:*"/>
-    <allow-intent href="mailto:*"/>
-    <allow-intent href="geo:*"/>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <platform name="android">
-        <allow-intent href="market:*"/>
-        <icon density="ldpi" src="res/android/icons/ldpi.png"/>
-        <icon density="mdpi" src="res/android/icons/mdpi.png"/>
-        <icon density="hdpi" src="res/android/icons/hdpi.png"/>
-        <icon density="xhdpi" src="res/android/icons/xhdpi.png"/>
-        <icon density="xxhdpi" src="res/android/icons/xxhdpi.png"/>
-        <icon density="xxxhdpi" src="res/android/icons/xxxhdpi.png"/>
-
-        <splash src="res/android/splash/ldpi.png" density="port-ldpi"/>
-        <splash src="res/android/splash/mdpi.png" density="port-mdpi"/>
-        <splash src="res/android/splash/hdpi.png" density="port-hdpi"/>
-        <splash src="res/android/splash/xhdpi.png" density="port-xhdpi"/>
-        <splash src="res/android/splash/xxhdpi.png" density="port-xxhdpi"/>
-        <splash src="res/android/splash/xxhdpi.png" density="port-xxxhdpi"/>
+        <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/android/icons/ldpi.png" />
+        <icon density="mdpi" src="res/android/icons/mdpi.png" />
+        <icon density="hdpi" src="res/android/icons/hdpi.png" />
+        <icon density="xhdpi" src="res/android/icons/xhdpi.png" />
+        <icon density="xxhdpi" src="res/android/icons/xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/android/icons/xxxhdpi.png" />
+        <splash density="port-ldpi" src="res/android/splash/ldpi.png" />
+        <splash density="port-mdpi" src="res/android/splash/mdpi.png" />
+        <splash density="port-hdpi" src="res/android/splash/hdpi.png" />
+        <splash density="port-xhdpi" src="res/android/splash/xhdpi.png" />
+        <splash density="port-xxhdpi" src="res/android/splash/xxhdpi.png" />
+        <splash density="port-xxxhdpi" src="res/android/splash/xxhdpi.png" />
     </platform>
     <platform name="ios">
-        <allow-intent href="itms:*"/>
-        <allow-intent href="itms-apps:*"/>
-        <icon height="180" src="res/ios/icons/icon-60@3x.png" width="180"/>
-        <icon height="120" src="res/ios/icons/icon-60@2x.png" width="120"/>
-        <icon height="76" src="res/ios/icons/icon-76.png" width="76"/>
-        <icon height="152" src="res/ios/icons/icon-76@2x.png" width="152"/>
-        <icon height="40" src="res/ios/icons/icon-40.png" width="40"/>
-        <icon height="80" src="res/ios/icons/icon-40@2x.png" width="80"/>
-        <icon height="29" src="res/ios/icons/icon-small.png" width="29"/>
-        <icon height="58" src="res/ios/icons/icon-small@2x.png" width="58"/>
-        <icon height="167" src="res/ios/icons/icon-83.5@2x.png" width="167"/>
-
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="180" src="res/ios/icons/icon-60@3x.png" width="180" />
+        <icon height="120" src="res/ios/icons/icon-60@2x.png" width="120" />
+        <icon height="76" src="res/ios/icons/icon-76.png" width="76" />
+        <icon height="152" src="res/ios/icons/icon-76@2x.png" width="152" />
+        <icon height="40" src="res/ios/icons/icon-40.png" width="40" />
+        <icon height="80" src="res/ios/icons/icon-40@2x.png" width="80" />
+        <icon height="29" src="res/ios/icons/icon-small.png" width="29" />
+        <icon height="58" src="res/ios/icons/icon-small@2x.png" width="58" />
+        <icon height="167" src="res/ios/icons/icon-83.5@2x.png" width="167" />
         <splash src="res/ios/splash/Default@2x~universal~anyany.png" />
     </platform>
-    <preference name="ShowSplashScreenSpinner" value="false"/>
-    <preference name="orientation" value="portrait"/>
-    <engine name="android" spec="~6.0.0"/>
-    <engine name="ios" spec="~4.3.1"/>
-    <engine name="browser" spec="~4.1.0"/>
-    <plugin name="cordova-plugin-whitelist" spec="1"/>
-    <plugin name="cordova-sqlite-storage" spec="~2.0.0"/>
-    <plugin name="cordova-plugin-console" spec="~1.0.5"/>
-    <plugin name="phonegap-plugin-barcodescanner"
-            spec="https://github.com/phonegap/phonegap-plugin-barcodescanner.git"/>
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="orientation" value="portrait" />
+    <engine name="android" spec="~6.0.0" />
+    <engine name="ios" spec="~4.3.1" />
+    <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-sqlite-storage" spec="~2.0.0" />
+    <plugin name="cordova-plugin-console" spec="~1.0.5" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
     <plugin name="cordova-plugin-camera" spec="~2.3.1">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value=" "/>
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" "/>
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
-    <plugin name="cordova-plugin-file" spec="~4.3.1"/>
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
+    <plugin name="cordova-plugin-file" spec="~4.3.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.4.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="We're collecting data for a research project and it is important to have the region of where the data was collected." />
+    </plugin>
 </widget>

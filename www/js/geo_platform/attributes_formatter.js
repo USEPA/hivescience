@@ -1,18 +1,9 @@
 import _ from "underscore";
 
 export default class AttributesFormatter {
-  constructor(profile, survey) {
-    this.attributes = _.assign(profile, survey)
-  }
-
-  get baseAttributes() {
-    return {
-      // ,
-      // "geometry": {
-      //   "x": -102.4124797899999,
-      //   "y": 57.77063009800008
-      // }
-    };
+  constructor(profile, survey, geolocation) {
+    this.attributes = _.assign(profile, survey);
+    this.geolocation = geolocation;
   }
 
   get keyTranslation() {
@@ -31,10 +22,14 @@ export default class AttributesFormatter {
     return Object.keys(this.keyTranslation);
   }
 
-  execute(profile, survey) {
-    let finalAttributes = _.assign({}, this.baseAttributes, this.transformAttributes());
-    let sortedAttributes = this.sortKeys(finalAttributes);
-    return JSON.stringify([{"attributes": sortedAttributes}]);
+  execute() {
+    let sortedAttributes = this.sortKeys(this.transformAttributes());
+    return JSON.stringify([
+      {
+        "geometry": this.geolocation,
+        "attributes": sortedAttributes
+      }
+    ]);
   }
 
   // "Private" methods
@@ -61,7 +56,7 @@ export default class AttributesFormatter {
     keys.sort();
     let sortedAttributes = {};
     let key;
-    for(key in keys) {
+    for (key in keys) {
       sortedAttributes[keys[key]] = attributes[keys[key]];
     }
     return sortedAttributes;

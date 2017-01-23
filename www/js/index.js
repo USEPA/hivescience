@@ -192,6 +192,14 @@ let app = {
     const form = $("#survey-form");
     form.on("submit", async (event) => {
       event.preventDefault();
+      const geolocation = {spatialReference: {wkid: 4326}};
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          geolocation.x = position.coords.longitude;
+          geolocation.y = position.coords.latitude;
+        },
+        (error) => console.log(error)
+      );
       surveyAttributes = formatAttributes(form.serializeArray());
       const baseAttributes = { createdOn: (new Date()).toLocaleDateString() };
       _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
@@ -201,7 +209,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      this._syncToGeoPlatform(_.last(profiles), _.last(surveys), geolocation);
 
       $("#survey-form-template").hide();
       this.renderReportsView(surveys);
@@ -356,8 +364,8 @@ let app = {
     return profiles.length > 0;
   },
 
-  _syncToGeoPlatform: async function (profile, survey) {
-    const formatter = new AttributesFormatter(profile, survey);
+  _syncToGeoPlatform: async function (profile, survey, geolocation) {
+    const formatter = new AttributesFormatter(profile, survey, geolocation);
     const geoPlatform = new GeoPlatformGateway(formatter.execute());
     const surveyId = await geoPlatform.syncSurvey();
     if (survey["mite_count_photo_uri"] !== null || survey["follow_up_mite_count_photo_uri"] !== null) {

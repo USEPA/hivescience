@@ -1,5 +1,6 @@
 import expect from "expect.js";
 import fetchMock from "fetch-mock";
+import _ from "underscore";
 import GeoPlatformGateway from "../../js/geo_platform/geo_platform_gateway";
 import AttributesFormatter from "../../js/geo_platform/attributes_formatter";
 
@@ -40,40 +41,49 @@ describe("GeoPlatformGateway", () => {
       mite_count_photo_uri: "test_photo_uri",
       final_mite_count_of_season: 20
     };
+    const geolocation = {
+      y: 37.785834,
+      x: -122.406417,
+      spatialReference: {
+        wkid: 4326
+      }
+    };
     const surveyJSON = [
       {
+        "geometry": {
+          "y": 37.785834,
+          "x": -122.406417,
+          "spatialReference": {
+            "wkid": 4326
+          }
+        },
         "attributes": {
-          "email":"belinda@beekeeping.us",
-          "feeding_supplementary_sugar":"",
-          "final_mite_count_of_season":20,
-          "hive_beetles":"",
-          "honey_from_brood":"N",
-          "honey_from_sealed_cells":"Y",
-          "honey_supers_removed":"N",
-          "last_treatment_date":"2016-10-20",
-          "lost_colonies_over_winter":"Y",
-          "monitor_varroa_mites":"Y",
-          "monitor_varroa_mites_count":23,
+          "email": "belinda@beekeeping.us",
+          "feeding_supplementary_sugar": "",
+          "final_mite_count_of_season": 20,
+          "hive_beetles": "",
+          "honey_from_brood": "N",
+          "honey_from_sealed_cells": "Y",
+          "honey_supers_removed": "N",
+          "last_treatment_date": "2016-10-20",
+          "lost_colonies_over_winter": "Y",
+          "monitor_varroa_mites": "Y",
+          "monitor_varroa_mites_count": 23,
           "number_of_colonies": 205,
-          "number_of_mites":10,
-          "queen_poor_performance":"Y",
-          "queen_right":"Y",
-          "race_of_bees":"Africanized Buckfast",
-          "sample_tube_code":"12345",
-          "split_or_combine":"Y",
-          "treatment_methods":"Mite treatment applied",
-          "zip_code":"22202"
+          "number_of_mites": 10,
+          "queen_poor_performance": "Y",
+          "queen_right": "Y",
+          "race_of_bees": "Africanized Buckfast",
+          "sample_tube_code": "12345",
+          "split_or_combine": "Y",
+          "treatment_methods": "Mite treatment applied",
+          "zip_code": "22202"
         }
-        // ,
-        // "geometry": {
-        //   "x": -102.4124797899999,
-        //   "y": 57.77063009800008
-        // }
       }
     ];
 
     // profile, survey => translate Keys, merge
-    it("sends a POST request with all of the profile & survey data", async () => {
+    it("sends a POST request with all of the profile & survey data", async() => {
       const objectId = 1021;
 
       fetchMock.post(
@@ -91,7 +101,7 @@ describe("GeoPlatformGateway", () => {
 
       fetchMock.post(GeoPlatformGateway.photoUrl(objectId), {"foo": "bar"});
 
-      let formatter = new AttributesFormatter(profile, survey);
+      let formatter = new AttributesFormatter(profile, survey, geolocation);
       let formattedAttributes = formatter.execute();
 
       let fakeBlob = Symbol("fakeBlob");
