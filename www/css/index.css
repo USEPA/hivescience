@@ -446,3 +446,8 @@ ul.surveys {
     font-size: 19px;
     font-weight: 600;
 }
+
+#email-error-message {
+    display: none;
+    color: red;
+}

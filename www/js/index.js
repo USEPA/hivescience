@@ -153,6 +153,15 @@ let app = {
     form.on("submit", (event) => {
       event.preventDefault();
       profileAttributes = formatAttributes(form.serializeArray());
+      console.log(profileAttributes)
+      console.log(profileAttributes.email)
+      if(profileAttributes.email == "") {
+        $("#email").css("border", "1px solid red");
+        $("label[for=email]").css("color", "red");
+        $("#email-error-message").fadeIn(300);
+        return;
+      }
+
       profileRepository.createRecord(profileAttributes);
       $("#profile-form-template").hide();
       this.renderWelcomeTemplate();
