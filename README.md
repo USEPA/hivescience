@@ -6,6 +6,7 @@ The HiveScience mobile App is designed for citizen scientist beekeepers to colle
 - install `npm`
 - install cordova platforms and plugins with `cordova prepare`
 - `npm install`
+- `node setup_android.js`
 
 ## Build
 `npm run build`
@@ -21,4 +22,4 @@ The HiveScience mobile App is designed for citizen scientist beekeepers to colle
 - `npm run ios`
 
 ## Notes
-- On android, cordova may not copy over the icons and splash images into the platforms directory. So, you may have to copy from `res/android` into `platforms/android/res/mipmap-*` and `platforms/android/res/drawable-*` after cordova platform installation.
+- On android, cordova may not copy over the icons and splash images into the platforms directory. Run `node setup_android.js` to copy `res/android` into `platforms/android/res/mipmap-*` and `platforms/android/res/drawable-*` after cordova platform installation.

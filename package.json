@@ -23,6 +23,7 @@
     "browserify": "^13.1.1",
     "expect.js": "^0.3.1",
     "fetch-mock": "^5.8.0",
+    "fs-extra": "^2.0.0",
     "ghostjs": "^1.7.1",
     "ios-sim": "^5.0.13",
     "properties-parser": "^0.3.1",
