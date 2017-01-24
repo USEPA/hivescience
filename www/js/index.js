@@ -195,7 +195,6 @@ let app = {
       event.preventDefault();
       const geolocation = {spatialReference: {wkid: 4326}};
       await this._getGeolocation(geolocation);
-      console.log(geolocation)
       surveyAttributes = formatAttributes(form.serializeArray());
       const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
       _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
