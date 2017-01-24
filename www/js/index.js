@@ -45,6 +45,38 @@ let miteCountPhotoUri = {};
 
 const APP_STORAGE_KEY = 'epa-beekeeping-survey';
 
+const LOADING_IMAGE_SRC = `
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="120px" height="120px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-inf">
+<rect x="0" y="0" width="100" height="100" fill="none" class="bk"/>
+<path id="uil-inf-path" d="M24.3,30C11.4,30,5,43.3,5,50s6.4,20,19.3,20c19.3,0,32.1-40,51.4-40 C88.6,30,95,43.3,95,50s-6.4,20-19.3,20C56.4,70,43.6,30,24.3,30z" fill="none" stroke="#454545" stroke-width="1px" stroke-dasharray="5px"/>
+<circle cx="0" cy="0" r="5" fill="#FABA60">
+<animateMotion begin="0s" dur="1.5s" repeatCount="indefinite">
+<mpath xlink:href="#uil-inf-path"/>
+</animateMotion>
+</circle>
+<circle cx="0" cy="0" r="5" fill="#FABA60">
+<animateMotion begin="0.12s" dur="1.5s" repeatCount="indefinite">
+<mpath xlink:href="#uil-inf-path"/>
+</animateMotion>
+</circle>
+<circle cx="0" cy="0" r="5" fill="#FABA60">
+<animateMotion begin="0.25s" dur="1.5s" repeatCount="indefinite">
+<mpath xlink:href="#uil-inf-path"/>
+</animateMotion>
+</circle>
+<circle cx="0" cy="0" r="5" fill="#FABA60">
+<animateMotion begin="0.37s" dur="1.5s" repeatCount="indefinite">
+<mpath xlink:href="#uil-inf-path"/>
+</animateMotion>
+</circle>
+<circle cx="0" cy="0" r="5" fill="#FABA60">
+<animateMotion begin="0.5s" dur="1.5s" repeatCount="indefinite">
+<mpath xlink:href="#uil-inf-path"/>
+</animateMotion>
+</circle>
+</svg>
+`;
+
 let app = {
   initialize: function () {
     Handlebars.registerHelper('checkIfYes', checkIfYes);
@@ -193,8 +225,6 @@ let app = {
     const form = $("#survey-form");
     form.on("submit", async(event) => {
       event.preventDefault();
-      const geolocation = {spatialReference: {wkid: 4326}};
-      await this._getGeolocation(geolocation);
       surveyAttributes = formatAttributes(form.serializeArray());
       const baseAttributes = {createdOn: (new Date()).toLocaleDateString()};
       _.extend(surveyAttributes, baseAttributes, miteCountPhotoUri);
@@ -204,7 +234,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      this._syncToGeoPlatform(_.last(profiles), _.last(surveys), geolocation);
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#survey-form-template").hide();
       this.renderReportsView(surveys);
@@ -276,7 +306,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#follow-up-form-template").hide();
       this.renderReportsView(surveys);
@@ -304,7 +334,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#honey-form-template").hide();
       this.renderReportsView(surveys);
@@ -332,7 +362,7 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
 
       $("#overwintering-form-template").hide();
       this.renderReportsView(surveys);
@@ -359,7 +389,15 @@ let app = {
     return profiles.length > 0;
   },
 
-  _syncToGeoPlatform: async function (profile, survey, geolocation) {
+  _syncToGeoPlatform: async function (profile, survey) {
+    $("<div id='loading-spinner' role='alert'>" +
+      "<p>Please wait while your data is being&nbsp;synced</p>" +
+      `<div>${LOADING_IMAGE_SRC}</div>` +
+      "</div>").appendTo($("#main-container"));
+
+    const geolocation = {spatialReference: {wkid: 4326}};
+    await this._getGeolocation(geolocation);
+
     const formatter = new AttributesFormatter(profile, survey, geolocation);
     const geoPlatform = new GeoPlatformGateway(formatter.execute());
     const surveyId = await geoPlatform.syncSurvey();
