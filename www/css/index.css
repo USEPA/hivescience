@@ -447,7 +447,7 @@ ul.surveys {
     font-weight: 600;
 }
 
-#email-error-message {
+.error-message {
     display: none;
     color: red;
 }

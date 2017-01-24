@@ -186,10 +186,21 @@ let app = {
     form.on("submit", (event) => {
       event.preventDefault();
       profileAttributes = formatAttributes(form.serializeArray());
+
+      if (profileAttributes.zipCode == "") {
+        $("#zip-code").css("border", "1px solid red");
+        $("label[for=zip-code]").css("color", "red");
+        $("#zip-code-error-message").fadeIn(300);
+      }
+
       if (profileAttributes.email == "") {
         $("#email").css("border", "1px solid red");
         $("label[for=email]").css("color", "red");
         $("#email-error-message").fadeIn(300);
+      }
+
+      if (profileAttributes.zipCode == "" || profileAttributes.email == "") {
+        this._focusOnPageHeader("h1");
         return;
       }
 

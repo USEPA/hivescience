@@ -34,7 +34,8 @@
                     Please select <strong>only one</strong> hive to report on.
                 </p>
 
-                <label for="zip-code">Zip code of the hive you'll be reporting on</label>
+                <label for="zip-code">Zip code of the hive you'll be reporting on (required)</label>
+                <p id="zip-code-error-message" class="error-message">The zip code field is required.</p>
                 <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code"/>
 
                 <label for="race-of-bees">Race of bees in your hive (e.g., Italian, unknown)</label>
@@ -44,7 +45,7 @@
                 <input id="full-name" type="text" name="fullName" placeholder="Enter full name"/>
 
                 <label for="email">Email Address (required)</label>
-                <p id="email-error-message">The email address field is required.</p>
+                <p id="email-error-message" class="error-message">The email address field is required.</p>
                 <input id="email" type="email" name="email" placeholder="Enter email address" />
 
                 <p>
