@@ -245,14 +245,14 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#survey-form-template").hide();
-      this.renderReportsView(surveys);
+      this.renderReportsView(surveys, syncError);
     });
   },
 
-  renderReportsView: function (surveys) {
+  renderReportsView: function (surveys, syncError = false) {
     body.removeClass("gray-background");
     body.addClass("white-background");
     surveys = surveys.map((survey) => {
@@ -265,7 +265,7 @@ let app = {
       return survey;
     });
 
-    $("#main-container").html(reportsTemplate({surveys: surveys}));
+    $("#main-container").html(reportsTemplate({surveys: surveys, syncError: syncError}));
 
     this._focusOnPageHeader("h1");
 
@@ -317,10 +317,10 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#follow-up-form-template").hide();
-      this.renderReportsView(surveys);
+      this.renderReportsView(surveys, syncError);
     });
   },
 
@@ -345,10 +345,10 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#honey-form-template").hide();
-      this.renderReportsView(surveys);
+      this.renderReportsView(surveys, syncError);
     });
   },
 
@@ -373,10 +373,10 @@ let app = {
 
       const surveys = await surveyRepository.findAll();
       const profiles = await profileRepository.findAll();
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#overwintering-form-template").hide();
-      this.renderReportsView(surveys);
+      this.renderReportsView(surveys, syncError);
     });
   },
 
@@ -512,6 +512,16 @@ let app = {
       defer.reject
     );
     return defer.promise;
+  },
+
+  _attemptSyncToGeoplatform: async function(profiles, surveys) {
+    let syncError = false;
+    try {
+      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+    } catch (error) {
+      syncError = true;
+    }
+    return syncError;
   }
 
 };
