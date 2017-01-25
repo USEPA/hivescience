@@ -5,6 +5,7 @@ import "babel-polyfill";
 import moment from "moment";
 
 let formDataClass;
+let blobClass;
 
 export default class GeoPlatformGateway {
 
@@ -14,6 +15,14 @@ export default class GeoPlatformGateway {
 
   static get formDataClass() {
     return formDataClass ? formDataClass : eval("FormData");
+  }
+
+  static set blobClass(blob) {
+    blobClass = blob;
+  }
+
+  static get blobClass() {
+    return blobClass ? blobClass : eval("Blob");
   }
 
   static get surveyUrl() {
@@ -69,7 +78,7 @@ export default class GeoPlatformGateway {
   _makeForm(type, data, surveyId=null) {
     let form = new GeoPlatformGateway.formDataClass();
     const jsonAttributes = JSON.parse(this.attributes);
-    if(data instanceof Blob) {
+    if(data instanceof GeoPlatformGateway.blobClass) {
       const datePrefix = moment().format("YYYY-MM-DD");
       const isFollowUp = jsonAttributes[0].attributes.follow_up_submitted_on;
       let fileSuffix = isFollowUp ? "follow-up-survey" : "survey";

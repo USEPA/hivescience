@@ -13,7 +13,9 @@ class FakeFormData {
     this.data[key] = value;
   }
 }
+
 GeoPlatformGateway.formDataClass = FakeFormData;
+GeoPlatformGateway.blobClass = Symbol;
 
 describe("GeoPlatformGateway", () => {
   describe("sync", () => {
