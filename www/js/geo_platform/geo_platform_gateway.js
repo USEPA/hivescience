@@ -2,6 +2,7 @@ import "whatwg-fetch";
 import Q from "Q";
 import "babel-core/register";
 import "babel-polyfill";
+import moment from "moment";
 
 let formDataClass;
 
@@ -51,7 +52,7 @@ export default class GeoPlatformGateway {
     fetch(GeoPlatformGateway.photoUrl(surveyId),
       {
         method: "POST",
-        body: this._makeForm("file", photoBlob)
+        body: this._makeForm("file", photoBlob, surveyId)
       }
     ).then((response) => {
       return response.json();
@@ -65,9 +66,18 @@ export default class GeoPlatformGateway {
 
   // private
 
-  _makeForm(type, data) {
+  _makeForm(type, data, surveyId=null) {
     let form = new GeoPlatformGateway.formDataClass();
-    form.append(type, data);
+    const jsonAttributes = JSON.parse(this.attributes);
+    if(data instanceof Blob) {
+      const datePrefix = moment().format("YYYY-MM-DD");
+      const isFollowUp = jsonAttributes[0].attributes.follow_up_submitted_on;
+      let fileSuffix = isFollowUp ? "follow-up-survey" : "survey";
+      const fileName = `${surveyId}_${datePrefix}_${fileSuffix}.jpg`;
+      form.append(type, data, fileName);
+    } else {
+      form.append(type, data);
+    }
     form.append("f", "pjson");
     form.append("rollbackOnFailure", "true");
     return form;
