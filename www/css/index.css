@@ -438,6 +438,20 @@ ul.surveys {
     font-size: 18pt;
 }
 
+.report-button span.failed {
+    color: #870c25;
+}
+
+.report-button span.re-submit-button {
+    color: #ffffff;
+    background-color: #31A68A;
+    border: 1px solid #31A68A;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 2px 5px;
+}
+
 .success-banner {
     background-color: #31A68A;
     color: #ffffff;

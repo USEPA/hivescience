@@ -9,7 +9,7 @@ export default class ProfileRepository extends AbstractRepository {
     return "profiles";
   }
 
-  columns() {
+  initialColumns() {
     return [
       // Note the specific ordering, this is critical for the sql
       // queries to work.
@@ -18,5 +18,9 @@ export default class ProfileRepository extends AbstractRepository {
       ["race_of_bees", "TEXT"],
       ["full_name", "TEXT"]
     ];
+  };
+
+  migratedColumns() {
+    return [];
   };
 }
