@@ -47,7 +47,7 @@
 
                 <label for="email">Email Address (required)</label>
                 <p id="email-error-message" class="error-message">The email address field is required.</p>
-                <input id="email" type="email" name="email" placeholder="Enter email address" />
+                <input id="email" type="email" name="email" placeholder="Enter email address"/>
 
                 <p>
                     If you haven't already received a sample kit package, please email
@@ -328,10 +328,10 @@
     <script id="reports-template" type="text/template">
         <h1 tabindex="0">Reports</h1>
         {{#if syncError}}
-            <div class="error-banner" role="alert">
-                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Unable to connect.</p>
-                <p>Please try again in an hour.</p>
-            </div>
+        <div class="error-banner" role="alert">
+            <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Unable to connect.</p>
+            <p>Please try again in an hour.</p>
+        </div>
         {{/if}}
         <div class="success-banner">Thank you for your submission!</div>
         <div class="container">
@@ -339,14 +339,26 @@
                 {{#each surveys}}
                 <li tabindex="0" class="report-button">
                     <h2>{{created_on}}</h2>
+                    {{#if sync_failed}}
+                    <div class="sub-row">
+                        <span class="failed">Failed to submit</span>
+                        <span tabindex="0" class="re-submit-button" data-survey-id="{{id}}">
+                            <i class="fa fa-refresh" aria-hidden="true"></i> Re-submit Survey</span>
+                    </div>
+                    {{else}}
                     <span>Submitted</span>
+                    {{/if}}
                 </li>
                 {{#if renderFollowUpButton}}
                 {{#if followUpSubmitted}}
                 <li tabindex="0" class="report-button">
                     <h2>{{follow_up_submitted_on}}</h2>
                     <div class="sub-row">
+                        {{#if sync_failed}}
+                        <span class="failed">Failed to Submit</span>
+                        {{else}}
                         <span>Submitted</span>
+                        {{/if}}
                         <span class="report-status">Treatment</span>
                     </div>
                 </li>
@@ -362,7 +374,11 @@
                 <li tabindex="0" class="report-button">
                     <h2>{{honey_report_submitted_on}}</h2>
                     <div class="sub-row">
+                        {{#if sync_failed}}
+                        <span class="failed">Failed to Submit</span>
+                        {{else}}
                         <span>Submitted</span>
+                        {{/if}}
                         <span class="report-status">Honey Sample</span>
                     </div>
                 </li>
@@ -378,7 +394,11 @@
                 <li tabindex="0" class="report-button">
                     <h2>{{overwintering_report_submitted_on}}</h2>
                     <div class="sub-row">
+                        {{#if sync_failed}}
+                        <span class="failed">Failed to Submit</span>
+                        {{else}}
                         <span>Submitted</span>
+                        {{/if}}
                         <span class="report-status">Overwintering</span>
                     </div>
                 </li>

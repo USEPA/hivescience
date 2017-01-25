@@ -11,7 +11,7 @@ export default class AbstractRepository {
     const sqlStatement = `
       CREATE TABLE IF NOT EXISTS ${this.tableName()} (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        ${this.columnsForInsert()}
+        ${this.columnsForCreateTable()}
       );`;
     let defer = Q.defer();
     this.db.executeSql(sqlStatement.replace(/\s+/g, " "), [],
@@ -64,24 +64,28 @@ export default class AbstractRepository {
 
   // Can this be an array instead of a string
   columnNames() {
-    return this.columns().map((column_pair) => column_pair[0]);
+    return this.allColumns().map((column_pair) => column_pair[0]);
+  }
+
+  allColumns() {
+    return this.initialColumns().concat(this.migratedColumns());
   }
 
   updatePreparedStatement() {
     let statement = "";
-    _.times(this.columns().length, () => statement += "?, ");
+    _.times(this.allColumns().length, () => statement += "?, ");
     return statement.slice(0, -2);
   }
 
-  columnsForInsert() {
-    let joinedColumns = this.columns().reduce(
+  columnsForCreateTable() {
+    let joinedColumns = this.initialColumns().reduce(
       (memo, elem) => memo.concat(elem.join(" ") + ", "),
       "");
     return joinedColumns.slice(0, -2);
   }
 
   extractValuesFromAttributes(attributes) {
-    const columnNames = this.columns()
+    const columnNames = this.allColumns()
       .map((column_pair) => toCamelCase(column_pair[0]));
     return columnNames.map((column_name) => attributes[column_name]);
   }

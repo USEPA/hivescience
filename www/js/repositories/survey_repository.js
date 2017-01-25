@@ -9,7 +9,7 @@ export default class SurveyRepository extends AbstractRepository {
     return "surveys";
   }
 
-  columns() {
+  initialColumns() {
     return [
       // Initial survey
       ["queen_right", "VARCHAR(1)"],
@@ -61,6 +61,12 @@ export default class SurveyRepository extends AbstractRepository {
       ["overwintering_report_submitted_on", "TEXT"],
       ["honey_or_pollen", "VARCHAR(1)"],
       ["why_hive_failed", "TEXT"]
+    ];
+  }
+
+  migratedColumns() {
+    return [
+      ["sync_failed", "INTEGER"]
     ];
   }
 }

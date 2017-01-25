@@ -289,6 +289,14 @@ let app = {
       this.renderSurveyForm();
     });
 
+    $(".re-submit-button").on("click", async (event) => {
+      event.preventDefault();
+      const surveyId = Number($(event.currentTarget).data("survey-id"));
+      const filteredSurveys = _.select(surveys, (survey) => survey.id == surveyId);
+      const profiles = await profileRepository.findAll();
+      const syncError = await this._attemptSyncToGeoplatform(profiles, filteredSurveys);
+      this.renderReportsView(surveys, syncError);
+    });
   },
 
   renderFollowUpForm: function (surveyId) {
@@ -386,6 +394,7 @@ let app = {
     db = new DB(window.sqlitePlugin);
     db.initialize();
     await this._setupRepositories(db);
+    await this._runMigrations(db);
   },
 
   _setupRepositories: async function (db) {
@@ -393,6 +402,24 @@ let app = {
     surveyRepository = new SurveyRepository(db);
     await profileRepository.createTable();
     await surveyRepository.createTable();
+  },
+
+  _runMigrations: function (db) {
+    const defer = Q.defer();
+    db.executeSql("PRAGMA user_version;", [],
+      (resultSet) => {
+        const version = resultSet.rows.item(0).user_version;
+        if (version === 0) {
+          db.executeSql("ALTER TABLE surveys ADD COLUMN sync_failed INTEGER DEFAULT 0;", [],
+            () => {
+              db.executeSql("PRAGMA user_version = 1;", [], defer.resolve, defer.reject);
+            },
+            defer.reject);
+        }
+      },
+      defer.reject
+    );
+    return defer;
   },
 
   _profileExists: async function () {
@@ -516,11 +543,18 @@ let app = {
 
   _attemptSyncToGeoplatform: async function(profiles, surveys) {
     let syncError = false;
+    let lastSurvey = _.last(surveys);
     try {
-      await this._syncToGeoPlatform(_.last(profiles), _.last(surveys));
+      await this._syncToGeoPlatform(_.last(profiles), lastSurvey);
+      lastSurvey.sync_failed = 0;
     } catch (error) {
       syncError = true;
+      lastSurvey.sync_failed = 1;
     }
+    await surveyRepository.updateRecord({
+      id: lastSurvey.id,
+      syncFailed: lastSurvey.sync_failed
+    });
     return syncError;
   }
 
