@@ -269,22 +269,22 @@ let app = {
 
     this._focusOnPageHeader("h1");
 
-    $(".follow-up-button").on("click", (event) => {
+    $(".follow-up-button").on("click keypress", (event) => {
       event.preventDefault();
       this.renderFollowUpForm($(event.currentTarget).data("survey-id"));
     });
 
-    $(".honey-report-button").on("click", (event) => {
+    $(".honey-report-button").on("click keypress", (event) => {
       event.preventDefault();
       this.renderHoneyForm($(event.currentTarget).data("survey-id"));
     });
 
-    $(".overwintering-report-button").on("click", (event) => {
+    $(".overwintering-report-button").on("click keypress", (event) => {
       event.preventDefault();
       this.renderOverwinteringForm($(event.currentTarget).data("survey-id"));
     });
 
-    $(".create-report").on("click", (event) => {
+    $(".create-report").on("click keypress", (event) => {
       event.preventDefault();
       this.renderSurveyForm();
     });

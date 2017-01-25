@@ -261,13 +261,18 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .radio-container input[type=radio] {
-    display: none;
+    position: absolute;
+    left: -2000px;
 }
 
 .radio-container input[type=radio]:checked + label {
     border-color: #2799CA;
     background-color: #2799CA;
     color: white;
+}
+
+.radio-container input[type=radio]:focus + label {
+    border: 1px solid orange;
 }
 
 .radio-container input[type=radio]:checked + label[for~=yes] {

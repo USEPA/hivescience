@@ -331,13 +331,13 @@
         <div class="container">
             <ul class="surveys">
                 {{#each surveys}}
-                <li class="report-button">
+                <li tabindex="0" class="report-button">
                     <h2>{{created_on}}</h2>
                     <span>Submitted</span>
                 </li>
                 {{#if renderFollowUpButton}}
                 {{#if followUpSubmitted}}
-                <li class="report-button">
+                <li tabindex="0" class="report-button">
                     <h2>{{follow_up_submitted_on}}</h2>
                     <div class="sub-row">
                         <span>Submitted</span>
@@ -345,7 +345,7 @@
                     </div>
                 </li>
                 {{else}}
-                <li class="follow-up-button additional-report-button" data-survey-id="{{id}}">
+                <li tabindex="0" class="follow-up-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create treatment follow up report</span>
                     <span aria-hidden="true">+</span>
                 </li>
@@ -353,7 +353,7 @@
                 {{/if}}
                 {{#if renderHoneyReportButton}}
                 {{#if honeyReportSubmitted}}
-                <li class="report-button">
+                <li tabindex="0" class="report-button">
                     <h2>{{honey_report_submitted_on}}</h2>
                     <div class="sub-row">
                         <span>Submitted</span>
@@ -361,7 +361,7 @@
                     </div>
                 </li>
                 {{else}}
-                <li class="honey-report-button additional-report-button" data-survey-id="{{id}}">
+                <li tabindex="0" class="honey-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create a honey report</span>
                     <span aria-hidden="true">+</span>
                 </li>
@@ -369,7 +369,7 @@
                 {{/if}}
                 {{#if renderOverwinterReportButton}}
                 {{#if overwinteringReportSubmitted}}
-                <li class="report-button">
+                <li tabindex="0" class="report-button">
                     <h2>{{overwintering_report_submitted_on}}</h2>
                     <div class="sub-row">
                         <span>Submitted</span>
@@ -377,7 +377,7 @@
                     </div>
                 </li>
                 {{else}}
-                <li class="overwintering-report-button additional-report-button" data-survey-id="{{id}}">
+                <li tabindex="0" class="overwintering-report-button additional-report-button" data-survey-id="{{id}}">
                     <span>Create overwintering report</span>
                     <span aria-hidden="true">+</span>
                 </li>
