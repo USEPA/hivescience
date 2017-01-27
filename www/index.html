@@ -83,8 +83,7 @@
                     <input id="queen-right-no" type="radio" name="queenRight" value="N" {{checkIfNo queenRight}}/>
                     <label for="queen-right-no" role="checkbox" aria-checked="{{ariaCheckIfNo queenRight}}">No</label>
                 </div>
-                <label>Do you have evidence of poor queen performance (i.e, spotty brood pattern, supersedure cells,
-                    excessive drone cells)?</label>
+                <label>Do you have evidence of poor queen performance (i.e, supersedure cells, excessive drone cells...)?</label>
                 <div class="radio-container">
                     <input id="queen-poor-performance-yes" type="radio" name="queenPoorPerformance" value="Y"
                            {{checkIfYes
@@ -606,38 +605,6 @@
                        survivedWinter}}/>
                 <label for="survived-winter-no" role="checkbox"
                        aria-checked="{{ariaCheckIfNo survivedWinter}}">No</label>
-            </div>
-            <label>Did you combine the colony with another after sampling in the fall?</label>
-            <div class="radio-container">
-                <input id="split-or-combine-yes" type="radio" name="splitOrCombine" value="Y" {{checkIfYes
-                       splitOrCombine}}/>
-                <label for="split-or-combine-yes" role="checkbox"
-                       aria-checked="{{ariaCheckIfYes splitOrCombine}}">Yes</label>
-                <input id="split-or-combine-no" type="radio" name="splitOrCombine" value="N" {{checkIfNo
-                       splitOrCombine}}/>
-                <label for="split-or-combine-no" role="checkbox"
-                       aria-checked="{{ariaCheckIfNo splitOrCombine}}">No</label>
-            </div>
-            <label>Did you treat your hive for Varroa mites over winter?</label>
-            <div class="radio-container">
-                <input id="winter-treatment-yes" type="radio" name="winterTreatment" value="Y" {{checkIfYes
-                       winterTreatment}}/>
-                <label for="winter-treatment-yes" role="checkbox"
-                       aria-checked="{{ariaCheckIfYes winterTreatment}}">Yes</label>
-                <input id="winter-treatment-no" type="radio" name="winterTreatment" value="N" {{checkIfNo
-                       winterTreatment}}/>
-                <label for="winter-treatment-no" role="checkbox"
-                       aria-checked="{{ariaCheckIfNo winterTreatment}}">No</label>
-            </div>
-            <label>Is there still honey/pollen in the hive?</label>
-            <div class="radio-container">
-                <input id="honey-or-pollen-yes" type="radio" name="honeyOrPollen" value="Y" {{checkIfYes
-                       honeyOrPollen}}/>
-                <label for="honey-or-pollen-yes" role="checkbox"
-                       aria-checked="{{ariaCheckIfYes honeyOrPollen}}">Yes</label>
-                <input id="honey-or-pollen-no" type="radio" name="honeyOrPollen" value="N" {{checkIfNo honeyOrPollen}}/>
-                <label for="honey-or-pollen-no" role="checkbox"
-                       aria-checked="{{ariaCheckIfNo honeyOrPollen}}">No</label>
             </div>
             <label for="why-hive-failed">If your hive failed, why do you think it failed?</label>
             <textarea id="why-hive-failed" name="whyHiveFailed"></textarea>
