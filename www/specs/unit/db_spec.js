@@ -205,11 +205,12 @@ describe("DB", () => {
           winter_treatment,
           overwintering_report_submitted_on,
           honey_or_pollen,
-          why_hive_failed
+          why_hive_failed,
+          sync_failed
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
+          ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`.replace(/\s+/g, " ");
 
         const attributes = {
           queenRight: "Y",
@@ -257,7 +258,8 @@ describe("DB", () => {
           winterTreatment: "N",
           overwinteringReportSubmittedOn: "1/19/17",
           honeyOrPollen: "N",
-          whyHiveFailed:"It failed."
+          whyHiveFailed:"It failed.",
+          syncFailed: 0
         };
 
         surveyRepository.createRecord(attributes);
@@ -308,7 +310,8 @@ describe("DB", () => {
           attributes.winterTreatment,
           attributes.overwinteringReportSubmittedOn,
           attributes.honeyOrPollen,
-          attributes.whyHiveFailed
+          attributes.whyHiveFailed,
+          attributes.syncFailed
         ];
 
         sinon.assert.calledWithMatch(executeSqlSpy, sqlStatement, expectedAttributes);
