@@ -24,10 +24,18 @@ export const checkIfNo = (data) => {
   return data === "N" ? "checked" : "";
 };
 
+export const checkIfUnsure = (data) => {
+  return data === "U" ? "checked" : "";
+};
+
 export const ariaCheckIfYes = (data) => {
   return data === "Y" ? "true" : "false";
 };
 
 export const ariaCheckIfNo = (data) => {
   return data === "N" ? "true" : "false";
+};
+
+export const ariaCheckIfUnsure = (data) => {
+  return data === "U" ? "true" : "false";
 };

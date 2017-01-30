@@ -3,7 +3,8 @@ import $ from "jquery";
 import Q from "Q";
 import Handlebars from "handlebars";
 import DB from "./db";
-import {formatAttributes, checkIfYes, checkIfNo, ariaCheckIfYes, ariaCheckIfNo} from "./helpers";
+import {formatAttributes, checkIfYes, checkIfNo, checkIfUnsure,
+  ariaCheckIfYes, ariaCheckIfNo, ariaCheckIfUnsure} from "./helpers";
 import ProfileRepository from "./repositories/profile_repository";
 import SurveyRepository from "./repositories/survey_repository";
 import GeoPlatformGateway from "./geo_platform/geo_platform_gateway";
@@ -81,8 +82,10 @@ let app = {
   initialize: function () {
     Handlebars.registerHelper('checkIfYes', checkIfYes);
     Handlebars.registerHelper('checkIfNo', checkIfNo);
+    Handlebars.registerHelper('checkIfUnsure', checkIfUnsure);
     Handlebars.registerHelper('ariaCheckIfYes', ariaCheckIfYes);
     Handlebars.registerHelper('ariaCheckIfNo', ariaCheckIfNo);
+    Handlebars.registerHelper('ariaCheckIfUnsure', ariaCheckIfUnsure);
 
     profileFormTemplate = Handlebars.compile($("#profile-form-template").html());
     surveyFormTemplate = Handlebars.compile($("#survey-form-template").html());
@@ -481,7 +484,22 @@ let app = {
       const checked = event.target.checked;
       siblingLabels.attr("aria-checked", !checked);
       label.attr("aria-checked", checked);
-      label.siblings("label:first-of-type").css("border-right", 0);
+      if(label.parent().parent().hasClass("diseases")) {
+        switch(label.text()) {
+          case "Unsure":
+            label.siblings("label:nth-of-type(2)").css("border-right-color", "#2799CA");
+            label.siblings("label:nth-of-type(1)").css("border-right-color", "rgb(218, 220, 228)");
+            break;
+          case "No":
+            label.siblings("label:nth-of-type(1)").css("border-right-color", "#2799CA");
+            break;
+          case "Yes":
+          default:
+            label.siblings("label:nth-of-type(2)").css("border-right-color", "rgb(218, 220, 228)");
+        }
+      } else {
+        label.siblings("label:first-of-type").css("border-right-color", "#2799CA");
+      }
     });
   },
 

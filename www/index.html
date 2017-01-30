@@ -114,7 +114,7 @@
                 </div>
             </section>
 
-            <section id="survey-section-2" class="hidden">
+            <section id="survey-section-2" class="hidden diseases">
                 <h2 tabindex="0">Disease & pest presence</h2>
                 <label>Abnormal brood pattern (e.g., spotty)?</label>
                 <div class="radio-container">
@@ -126,6 +126,10 @@
                            abnormalBroodPattern}}/>
                     <label for="abnormal-brood-pattern-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo abnormalBroodPattern}}">No</label>
+                    <input id="abnormal-brood-pattern-unsure" type="radio" name="abnormalBroodPattern" value="U" {{checkIfUnsure
+                           abnormalBroodPattern}}/>
+                    <label for="abnormal-brood-pattern-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure abnormalBroodPattern}}">Unsure</label>
                 </div>
                 <label>Abnormal cappings (e.g., sunken, perforated, greasy)?</label>
                 <div class="radio-container">
@@ -135,7 +139,11 @@
                            aria-checked="{{ariaCheckIfYes abnormalCappings}}">Yes</label>
                     <input id="abnormal-cappings-no" type="radio" name="abnormalCappings" value="N" {{checkIfNo
                            abnormalCappings}}/>
-                    <label for="abnormal-cappings-no" role="checkbox" aria-checked="{{ariaCheckIfNo abnormalCappings}}">No</label>
+                    <label for="abnormal-cappings-no" role="checkbox"
+                           aria-checked="{{ariaCheckIfNo abnormalCappings}}">No</label>
+                    <input id="abnormal-cappings-unsure" type="radio" name="abnormalCappings" value="U" {{checkIfUnsure
+                           abnormalCappings}}/>
+                    <label for="abnormal-cappings-unsure" role="checkbox" aria-checked="{{ariaCheckIfUnsure abnormalCappings}}">Unsure</label>
                 </div>
                 <label>Abnormal odor?</label>
                 <div class="radio-container">
@@ -144,8 +152,10 @@
                     <label for="abnormal-odor-yes" role="checkbox"
                            aria-checked="{{ariaCheckIfYes abnormalOdor}}">Yes</label>
                     <input id="abnormal-odor-no" type="radio" name="abnormalOdor" value="N" {{checkIfNo abnormalOdor}}/>
-                    <label for="abnormal-odor-no" role="checkbox"
-                           aria-checked="{{ariaCheckIfNo abnormalOdor}}">No</label>
+                    <label for="abnormal-odor-no" role="checkbox" aria-checked="{{ariaCheckIfNo abnormalOdor}}">No</label>
+                    <input id="abnormal-odor-unsure" type="radio" name="abnormalOdor" value="U" {{checkIfUnsure abnormalOdor}}/>
+                    <label for="abnormal-odor-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure abnormalOdor}}">Unsure</label>
                 </div>
                 <label> Small hive beetles (larvae or adult)?</label>
                 <div class="radio-container">
@@ -157,6 +167,10 @@
                            smallHiveBeetles}}/>
                     <label for="small-hive-beetles-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo hiveBeetles}}">No</label>
+                    <input id="small-hive-beetles-unsure" type="radio" name="smallHiveBeetles" value="U" {{checkIfUnsure
+                           smallHiveBeetles}}/>
+                    <label for="small-hive-beetles-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure hiveBeetles}}">Unsure</label>
                 </div>
                 <label>Wax moths (larvae or adult)?</label>
                 <div class="radio-container">
@@ -164,6 +178,8 @@
                     <label for="wax-moths-yes" role="checkbox" aria-checked="{{ariaCheckIfYes waxMoths}}">Yes</label>
                     <input id="wax-moths-no" type="radio" name="waxMoths" value="N" {{checkIfNo waxMoths}}/>
                     <label for="wax-moths-no" role="checkbox" aria-checked="{{ariaCheckIfNo waxMoths}}">No</label>
+                    <input id="wax-moths-unsure" type="radio" name="waxMoths" value="U" {{checkIfUnsure waxMoths}}/>
+                    <label for="wax-moths-unsure" role="checkbox" aria-checked="{{ariaCheckIfUnsure waxMoths}}">Unsure</label>
                 </div>
                 <label>Deformed wings?</label>
                 <div class="radio-container">
@@ -175,6 +191,10 @@
                            deformedWings}}/>
                     <label for="deformed-wings-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo deformedWings}}">No</label>
+                    <input id="deformed-wings-unsure" type="radio" name="deformedWings" value="U" {{checkIfUnsure
+                           deformedWings}}/>
+                    <label for="deformed-wings-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure deformedWings}}">Unsure</label>
                 </div>
                 <label>Black shiny bees (i.e., greasy bees)?</label>
                 <div class="radio-container">
@@ -185,6 +205,10 @@
                            blackShinyBees}}/>
                     <label for="black-shiny-bees-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo blackShinyBees}}">No</label>
+                    <input id="black-shiny-bees-unsure" type="radio" name="blackShinyBees" value="U" {{checkIfUnsure
+                           blackShinyBees}}/>
+                    <label for="black-shiny-bees-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure blackShinyBees}}">Unsure</label>
                 </div>
                 <label>American foulbrood?</label>
                 <div class="radio-container">
@@ -196,6 +220,10 @@
                            americanFoulBrood}}/>
                     <label for="american-foulbrood-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo americanFoulbrood}}">No</label>
+                    <input id="american-foulbrood-unsure" type="radio" name="americanFoulbrood" value="U" {{checkIfUnsure
+                           americanFoulBrood}}/>
+                    <label for="american-foulbrood-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure americanFoulbrood}}">Unsure</label>
                 </div>
                 <label>European foulbrood?</label>
                 <div class="radio-container">
@@ -207,6 +235,10 @@
                            europeanFoulbrood}}/>
                     <label for="european-foulbrood-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo europeanFoulbrood}}">No</label>
+                    <input id="european-foulbrood-unsure" type="radio" name="europeanFoulbrood" value="U" {{checkIfUnsure
+                           europeanFoulbrood}}/>
+                    <label for="european-foulbrood-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure europeanFoulbrood}}">Unsure</label>
                 </div>
                 <label>Chalkbrood (i.e., dried mummies)?</label>
                 <div class="radio-container">
@@ -215,6 +247,8 @@
                            aria-checked="{{ariaCheckIfYes chalkbrood}}">Yes</label>
                     <input id="chalkbrood-no" type="radio" name="chalkbrood" value="N" {{checkIfNo chalkbrood}}/>
                     <label for="chalkbrood-no" role="checkbox" aria-checked="{{ariaCheckIfNo chalkbrood}}">No</label>
+                    <input id="chalkbrood-unsure" type="radio" name="chalkbrood" value="U" {{checkIfUnsure chalkbrood}}/>
+                    <label for="chalkbrood-unsure" role="checkbox" aria-checked="{{ariaCheckIfUnsure chalkbrood}}">Unsure</label>
                 </div>
                 <label>Snotty brood?</label>
                 <div class="radio-container">
@@ -223,6 +257,8 @@
                            aria-checked="{{ariaCheckIfYes snottyBrood}}">Yes</label>
                     <input id="snotty-brood-no" type="radio" name="snottyBrood" value="N" {{checkIfNo snottyBrood}}/>
                     <label for="snotty-brood-no" role="checkbox" aria-checked="{{ariaCheckIfNo snottyBrood}}">No</label>
+                    <input id="snotty-brood-unsure" type="radio" name="snottyBrood" value="U" {{checkIfUnsure snottyBrood}}/>
+                    <label for="snotty-brood-unsure" role="checkbox" aria-checked="{{ariaCheckIfUnsure snottyBrood}}">Unsure</label>
                 </div>
                 <label>Parasitic mite syndrome?</label>
                 <div class="radio-container">
@@ -234,6 +270,10 @@
                            {{checkIfNo parasiticMiteSyndrome}}/>
                     <label for="parasitic-mite-syndrome-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo parasiticMiteSyndrome}}">No</label>
+                    <input id="parasitic-mite-syndrome-unsure" type="radio" name="parasiticMiteSyndrome" value="U"
+                           {{checkIfUnsure parasiticMiteSyndrome}}/>
+                    <label for="parasitic-mite-syndrome-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure parasiticMiteSyndrome}}">Unsure</label>
                 </div>
                 <label>Dried remains of pulpae/larvae (i.e., scales)?</label>
                 <div class="radio-container">
@@ -244,6 +284,9 @@
                     <input id="dried-remains-no" type="radio" name="driedRemains" value="N" {{checkIfNo driedRemains}}/>
                     <label for="dried-remains-no" role="checkbox"
                            aria-checked="{{ariaCheckIfNo driedRemains}}">No</label>
+                    <input id="dried-remains-unsure" type="radio" name="driedRemains" value="U" {{checkIfUnsure driedRemains}}/>
+                    <label for="dried-remains-unsure" role="checkbox"
+                           aria-checked="{{ariaCheckIfUnsure driedRemains}}">Unsure</label>
                 </div>
                 <label>Dysentery (i.e., Nosema)?</label>
                 <div class="radio-container">
@@ -251,6 +294,8 @@
                     <label for="dysentery-yes" role="checkbox" aria-checked="{{ariaCheckIfYes dysentery}}">Yes</label>
                     <input id="dysentery-no" type="radio" name="dysentery" value="N" {{checkIfNo dysentery}}/>
                     <label for="dysentery-no" role="checkbox" aria-checked="{{ariaCheckIfNo dysentery}}">No</label>
+                    <input id="dysentery-unsure" type="radio" name="dysentery" value="U" {{checkIfUnsure dysentery}}/>
+                    <label for="dysentery-unsure" role="checkbox" aria-checked="{{ariaCheckIfUnsure dysentery}}">Unsure</label>
                 </div>
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
