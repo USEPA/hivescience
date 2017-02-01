@@ -85,6 +85,31 @@ h1 {
     letter-spacing: 1.5px;
 }
 
+header {
+    border-bottom: 1px solid rgb(218, 220, 228);
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding-bottom: 7px;
+    display: flex;
+    align-items: baseline;
+}
+
+header h1 {
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+header.completed-survey h1 {
+    position: relative;
+    left: -12px; /* The width of the close button */
+}
+
+header i {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
 h2 {
     color: rgb(48, 50, 68);
     font-family: 'Droid Sans Bold';
@@ -280,9 +305,22 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .radio-container input[type=radio]:checked + label {
-    border-color: #2799CA;
     background-color: #2799CA;
+    border-color: #2799CA;
     color: white;
+}
+
+.completed-survey .radio-container input[type=radio]:checked + label {
+    background-color: #d9dce3;
+    border-color: #d9dce3;
+    color: #000000;
+}
+
+.completed-survey input[type=text]:disabled,
+.completed-survey input[type=number]:disabled {
+    background-color: #d9dce3;
+    color: #000000;
+    opacity: 1;
 }
 
 .radio-container input[type=radio]:focus + label {

@@ -43,6 +43,17 @@ export default class AbstractRepository {
     return defer.promise;
   }
 
+  find(id) {
+    let rows = [];
+    let defer = Q.defer();
+    this.db.connection.executeSql(`SELECT * FROM ${this.tableName()} WHERE id=?;`,
+      [parseInt(id, 10)],
+      (result) => {
+        defer.resolve(result.rows.item(0));
+      }, defer.reject);
+    return defer.promise;
+  }
+
   updateRecord(attributes) {
     let [id, columnsStatement, values] = this.
       extractUpdatePropertiesFromAttributes(attributes);

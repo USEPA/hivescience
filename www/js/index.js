@@ -4,7 +4,7 @@ import Q from "Q";
 import Handlebars from "handlebars";
 import DB from "./db";
 import {formatAttributes, checkIfYes, checkIfNo, checkIfUnsure,
-  ariaCheckIfYes, ariaCheckIfNo, ariaCheckIfUnsure} from "./helpers";
+  ariaCheckIfYes, ariaCheckIfNo, ariaCheckIfUnsure, convertKeysToCamelCase} from "./helpers";
 import ProfileRepository from "./repositories/profile_repository";
 import SurveyRepository from "./repositories/survey_repository";
 import GeoPlatformGateway from "./geo_platform/geo_platform_gateway";
@@ -255,6 +255,31 @@ let app = {
     });
   },
 
+  renderSubmittedSurvey: async function (id) {
+    let surveyAttributes = await surveyRepository.find(id);
+    const additionalAttributes = {
+      currentDate: moment().format("LL"),
+      isCompletedSurvey: true
+    };
+
+    surveyAttributes = convertKeysToCamelCase(surveyAttributes);
+    _.assign(surveyAttributes, additionalAttributes);
+    $("#main-container").html(surveyFormTemplate(surveyAttributes));
+    $("#main-container form input").each((index, elem) => {
+      $(elem).prop('disabled', true);
+    });
+    body.removeClass("white-background");
+    body.addClass("gray-background");
+
+    this._focusOnPageHeader();
+
+    this._setupPagination();
+    $(".fa-times").on("click keypress", async (event) => {
+      const surveys = await surveyRepository.findAll();
+      this.renderReportsView(surveys);
+    });
+  },
+
   renderReportsView: function (surveys, syncError = false) {
     body.removeClass("gray-background");
     body.addClass("white-background");
@@ -299,6 +324,10 @@ let app = {
       const profiles = await profileRepository.findAll();
       const syncError = await this._attemptSyncToGeoplatform(profiles, filteredSurveys);
       this.renderReportsView(surveys, syncError);
+    });
+
+    $(".report-button.submitted").on("click keypress", (event) => {
+      this.renderSubmittedSurvey($(event.currentTarget).data("survey-id"));
     });
   },
 

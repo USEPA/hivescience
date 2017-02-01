@@ -327,6 +327,7 @@ describe("DB", () => {
     afterEach(() => {
       executeSqlSpy.restore();
     });
+
     describe("findAll", () => {
       it("should return an array of all the records for the given repository", async function () {
         const sqlStatement = "SELECT * FROM profiles;";
@@ -341,6 +342,24 @@ describe("DB", () => {
         };
         let profiles = await profileRepository.findAll();
         expect(profiles).to.eql(rowsArray);
+      })
+    })
+
+    describe("find(id)", () => {
+      it("should return an (hash) object of the record for the given id", async function () {
+        const sqlStatement = "SELECT * FROM profiles WHERE id=?;";
+        let rowsArray = [{id: 1, full_name: "Belinda", email: "belinda@gmail.com"}];
+        let rows = {item: (index) => rowsArray[0], length: 1};
+        let sqlResult = {rows: rows, rowsAffected: 0, insertId: 2};
+        let defer = Q.defer();
+        connection.executeSql = (sql, variables, callback) => {
+          expect(sql).to.equal(sqlStatement);
+          expect(variables).to.eql([1]);
+          defer.resolve(callback(sqlResult));
+          return defer.promise;
+        };
+        let profiles = await profileRepository.find(1);
+        expect(profiles).to.eql(rowsArray[0]);
       })
     })
   });

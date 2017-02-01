@@ -16,6 +16,15 @@ export const toCamelCase = (string) => {
   return string.replace(/(\_\w)/g, upperCaseMatcher);
 };
 
+export const convertKeysToCamelCase = (hash) => {
+  for(let key in hash) {
+    hash[toCamelCase(key)] = hash[key];
+    if(key != toCamelCase(key))
+      delete hash[key];
+  }
+  return hash;
+};
+
 export const checkIfYes = (data) => {
   return data === "Y" ? "checked" : "";
 };
