@@ -255,8 +255,9 @@ let app = {
     });
   },
 
-  renderSubmittedSurvey: async function (id) {
+  renderSubmittedSurvey: async function (id, surveyType) {
     let surveyAttributes = await surveyRepository.find(id);
+    let surveyTemplate;
     const additionalAttributes = {
       currentDate: moment().format("LL"),
       isCompletedSurvey: true
@@ -264,7 +265,14 @@ let app = {
 
     surveyAttributes = convertKeysToCamelCase(surveyAttributes);
     _.assign(surveyAttributes, additionalAttributes);
-    $("#main-container").html(surveyFormTemplate(surveyAttributes));
+    switch(surveyType) {
+      case "follow-up":
+        surveyTemplate = followUpFormTemplate;
+        break;
+      default:
+        surveyTemplate = surveyFormTemplate;
+    }
+    $("#main-container").html(surveyTemplate(surveyAttributes));
     $("#main-container form input").each((index, elem) => {
       $(elem).prop('disabled', true);
     });
@@ -327,7 +335,9 @@ let app = {
     });
 
     $(".report-button.submitted").on("click keypress", (event) => {
-      this.renderSubmittedSurvey($(event.currentTarget).data("survey-id"));
+      const target = $(event.currentTarget);
+      const surveyId = target.data("survey-id");
+      this.renderSubmittedSurvey(surveyId, target.data("survey-type"));
     });
   },
 
