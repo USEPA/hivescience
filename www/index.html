@@ -473,7 +473,8 @@
                 {{/if}}
                 {{#if renderOverwinterReportButton}}
                 {{#if overwinteringReportSubmitted}}
-                <li tabindex="0" class="report-button">
+                <li tabindex="0" class="report-button{{#unless sync_failed}} submitted{{/unless}}"
+                    data-survey-id="{{id}}" data-survey-type="overwintering">
                     <h2>{{overwintering_report_submitted_on}}</h2>
                     <div class="sub-row">
                         {{#if sync_failed}}
@@ -485,7 +486,8 @@
                     </div>
                 </li>
                 {{else}}
-                <li tabindex="0" class="overwintering-report-button additional-report-button" data-survey-id="{{id}}">
+                <li tabindex="0" class="overwintering-report-button additional-report-button"
+                    data-survey-id="{{id}}">
                     <span>Create overwintering report</span>
                     <span aria-hidden="true">+</span>
                 </li>
@@ -725,10 +727,16 @@
     </script>
 
     <script id="overwintering-form-template" type="text/template">
-        <header>
+        <header class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
+            {{#if isCompletedSurvey}}
+            <a href="#" aria-label="Close Report" class="close-report">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            {{/if}}
             <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         </header>
-        <form action="#" id="overwintering-form">
+
+        <form action="#" id="overwintering-form" class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
             <input type="hidden" name="id" value="{{surveyId}}">
             <h2 tabindex="0">Overwintering</h2>
             <p>We'll need you to report on the survivorship of your hive over the winter.</p>
@@ -744,9 +752,11 @@
                        aria-checked="{{ariaCheckIfNo survivedWinter}}">No</label>
             </div>
             <label for="why-hive-failed">If your hive failed, why do you think it failed?</label>
-            <textarea id="why-hive-failed" name="whyHiveFailed"></textarea>
+            <textarea id="why-hive-failed" name="whyHiveFailed">{{whyHiveFailed}}</textarea>
             <div class="navigation-footer">
-                <input type="submit" value="Submit" aria-label="Submit the overwintering report"/>
+                {{#unless isCompletedSurvey}}
+                    <input type="submit" value="Submit" aria-label="Submit the overwintering report"/>
+                {{/unless}}
             </div>
         </form>
     </script>

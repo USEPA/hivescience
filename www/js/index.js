@@ -272,11 +272,14 @@ let app = {
       case "honey":
         surveyTemplate = honeyFormTemplate;
         break;
+      case "overwintering":
+        surveyTemplate = overwinteringFormTemplate;
+        break;
       default:
         surveyTemplate = surveyFormTemplate;
     }
     $("#main-container").html(surveyTemplate(surveyAttributes));
-    $("#main-container form input").each((index, elem) => {
+    $("#main-container form input, #main-container form textarea").each((index, elem) => {
       $(elem).prop('disabled', true);
     });
     body.removeClass("white-background");
