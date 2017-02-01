@@ -78,7 +78,11 @@
     <script id="survey-form-template" type="text/template">
 
         <header class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
-            {{#if isCompletedSurvey}}<i class="fa fa-times" aria-label="Close Report"></i>{{/if}}
+            {{#if isCompletedSurvey}}
+            <a href="#" aria-label="Close Report" class="close-report">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            {{/if}}
             <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         </header>
 

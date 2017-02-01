@@ -323,6 +323,10 @@ body:not(:-moz-handler-blocked) fieldset {
     opacity: 1;
 }
 
+.close-report {
+    color: rgb(48, 50, 68);
+}
+
 .radio-container input[type=radio]:focus + label {
     border: 1px solid orange;
 }
@@ -551,4 +555,13 @@ ul.surveys {
     font-size: 14pt;
     font-family: 'Open Sans Semibold';
     text-align: center;
+}
+
+.screenreader-only {
+    position: absolute;
+    left: -1000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
