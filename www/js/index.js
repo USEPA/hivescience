@@ -269,6 +269,9 @@ let app = {
       case "follow-up":
         surveyTemplate = followUpFormTemplate;
         break;
+      case "honey":
+        surveyTemplate = honeyFormTemplate;
+        break;
       default:
         surveyTemplate = surveyFormTemplate;
     }

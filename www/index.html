@@ -452,7 +452,8 @@
                 {{/if}}
                 {{#if renderHoneyReportButton}}
                 {{#if honeyReportSubmitted}}
-                <li tabindex="0" class="report-button">
+                <li tabindex="0" class="report-button{{#unless sync_failed}} submitted{{/unless}}" data-survey-id="{{id}}"
+                    data-survey-type="honey">
                     <h2>{{honey_report_submitted_on}}</h2>
                     <div class="sub-row">
                         {{#if sync_failed}}
@@ -634,10 +635,16 @@
     </script>
 
     <script id="honey-form-template" type="text/template">
-        <header>
+        <header class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
+            {{#if isCompletedSurvey}}
+            <a href="#" aria-label="Close Report" class="close-report">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            {{/if}}
             <h1 aria-label="{{currentDate}} Report">{{currentDate}}</h1>
         </header>
-        <form action="#" id="honey-form">
+
+        <form action="#" id="honey-form" class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
             <input type="hidden" name="id" value="{{surveyId}}">
             <h2 tabindex="0">Honey sample collection</h2>
             <p>Because you've completed your final mite count of the season, we'd like you to provide a honey
@@ -652,9 +659,10 @@
                 <label for="sample-tube-code">Honey sample collection tube code</label>
                 <input id="sample-tube-code"
                        aria-label="Enter the honey sample collection tube code"
-                       placeholder="Enter number"
+                       {{#unless isCompletedSurvey}} placeholder="Enter number" {{/unless}}
                        type="number"
-                       name="sampleTubeCode"/>
+                       name="sampleTubeCode"
+                       value="{{sampleTubeCode}}"/>
             </div>
             <label>Is your hive healthy?</label>
             <div class="radio-container">
@@ -709,7 +717,9 @@
                        aria-checked="{{ariaCheckIfNo honeyFromBrood}}">No</label>
             </div>
             <div class="navigation-footer">
-                <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
+                {{#unless isCompletedSurvey}}
+                    <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
+                {{/unless}}
             </div>
         </form>
     </script>
