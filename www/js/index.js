@@ -328,7 +328,15 @@ let app = {
 
     $(".create-report").on("click keypress", (event) => {
       event.preventDefault();
-      this.renderSurveyForm();
+      // Sadly a JIT is triggered when making the call to render the survey
+      // and ends up blocking the UI thread for ~5 seconds. We improve the
+      // "user-perceived" performance by showing loading screen.
+      this._displayLoadingSpinner("Loading. Please wait.");
+      // So we need to delay the renderSurveyForm call since it ends
+      // up blocking the main loop when updating the #main-container.
+      // If we don't delay it slightly then the user will see the
+      // loading screen flicker.
+      _.delay(() => this.renderSurveyForm(), 10);
     });
 
     $(".re-submit-button").on("click", async (event) => {
@@ -343,7 +351,10 @@ let app = {
     $(".report-button.submitted").on("click keypress", (event) => {
       const target = $(event.currentTarget);
       const surveyId = target.data("survey-id");
-      this.renderSubmittedSurvey(surveyId, target.data("survey-type"));
+      const surveyType = target.data("survey-type");
+      if(surveyType == "main")
+        this._displayLoadingSpinner("Loading. Please wait.");
+      this.renderSubmittedSurvey(surveyId, surveyType);
     });
   },
 
@@ -476,10 +487,7 @@ let app = {
   },
 
   _syncToGeoPlatform: async function (profile, survey) {
-    $("<div id='loading-spinner' role='alert'>" +
-      "<p>Please wait while your data is being&nbsp;synced</p>" +
-      `<div>${LOADING_IMAGE_SRC}</div>` +
-      "</div>").appendTo($("#main-container"));
+    this._displayLoadingSpinner("Please wait while your data is being&nbsp;synced", true);
 
     const geolocation = {spatialReference: {wkid: 4326}};
     await this._getGeolocation(geolocation);
@@ -492,6 +500,15 @@ let app = {
       const photo = await fileService.getBlob(fileUri);
       await geoPlatform.syncPhoto(photo, surveyId);
     }
+  },
+
+  _displayLoadingSpinner: function (message, showAnimation=false) {
+    let loadingScreen = "<div id='loading-spinner' role='alert'>" +
+      `<p>${message}</p>`;
+    if(showAnimation)
+      loadingScreen += `<div>${LOADING_IMAGE_SRC}</div>`;
+    loadingScreen += "</div>";
+    $(loadingScreen).appendTo($("#main-container"));
   },
 
   _setupPagination: function () {
