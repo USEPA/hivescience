@@ -343,7 +343,7 @@ describe("DB", () => {
         let profiles = await profileRepository.findAll();
         expect(profiles).to.eql(rowsArray);
       })
-    })
+    });
 
     describe("find(id)", () => {
       it("should return an (hash) object of the record for the given id", async function () {
