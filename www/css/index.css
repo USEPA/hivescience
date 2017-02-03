@@ -522,6 +522,17 @@ ul.surveys {
     font-weight: 600;
 }
 
+.success-banner .sub-text {
+    font-size: 10pt;
+    margin-bottom: 0;
+    padding: 0 10px
+}
+
+.success-banner .sub-text a {
+    color: white;
+    text-decoration: underline;
+}
+
 .error-banner {
     background-color: #870c25;
     color: #ffffff;
