@@ -427,9 +427,9 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 
 .marker-underline img {
-    left: 79px;
+    left: 105px;
     position: absolute;
-    top: 19px;
+    top: 22px;
     width: 57px;
 }
 
