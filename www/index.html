@@ -412,7 +412,11 @@
             <p>Please try again in an hour.</p>
         </div>
         {{/if}}
+
+        {{#if displayThankYouBanner}}
         <div class="success-banner">Thank you for your submission!</div>
+        {{/if}}
+
         <div class="container">
             <ul class="surveys">
                 {{#each surveys}}

@@ -43,6 +43,7 @@ let surveyAttributes = {};
 let photoButtonKey = null;
 let copiedFileUri = null;
 let miteCountPhotoUri = {};
+let displayThankYouBanner = false;
 
 const APP_STORAGE_KEY = 'epa-beekeeping-survey';
 
@@ -251,6 +252,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#survey-form-template").hide();
+      displayThankYouBanner = true;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -307,8 +309,12 @@ let app = {
       return survey;
     });
 
-    $("#main-container").html(reportsTemplate({surveys: surveys, syncError: syncError}));
-
+    $("#main-container").html(reportsTemplate({
+      surveys: surveys,
+      syncError: syncError,
+      displayThankYouBanner: displayThankYouBanner
+    }));
+    displayThankYouBanner = false;
     this._focusOnPageHeader("h1");
 
     $(".follow-up-button").on("click keypress", (event) => {
@@ -328,7 +334,7 @@ let app = {
 
     $(".create-report").on("click keypress", (event) => {
       event.preventDefault();
-      // Sadly a JIT is triggered when making the call to render the survey
+      // Sadly a JIT compilation is triggered when making the call to render the survey
       // and ends up blocking the UI thread for ~5 seconds. We improve the
       // "user-perceived" performance by showing loading screen.
       this._displayLoadingSpinner("Loading. Please wait.");
@@ -387,6 +393,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#follow-up-form-template").hide();
+      displayThankYouBanner = true;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -415,6 +422,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#honey-form-template").hide();
+      displayThankYouBanner = true;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -430,7 +438,7 @@ let app = {
     this._setupRadioButtons();
 
     const form = $("#overwintering-form");
-    form.on("submit", async(event) => {
+    form.on("submit", async (event) => {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.overwinteringReportSubmittedOn = (new Date()).toLocaleDateString();
@@ -443,6 +451,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#overwintering-form-template").hide();
+      displayThankYouBanner = true;
       this.renderReportsView(surveys, syncError);
     });
   },
