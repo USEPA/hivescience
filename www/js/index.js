@@ -252,7 +252,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#survey-form-template").hide();
-      displayThankYouBanner = true;
+      displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -351,6 +351,7 @@ let app = {
       const filteredSurveys = _.select(surveys, (survey) => survey.id == surveyId);
       const profiles = await profileRepository.findAll();
       const syncError = await this._attemptSyncToGeoplatform(profiles, filteredSurveys);
+      displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
 
@@ -497,9 +498,19 @@ let app = {
 
   _syncToGeoPlatform: async function (profile, survey) {
     this._displayLoadingSpinner("Please wait while your data is being&nbsp;synced", true);
-
     const geolocation = {spatialReference: {wkid: 4326}};
-    await this._getGeolocation(geolocation);
+    // We have to get their coordinates otherwise we can't let them submit the form.
+    let geolocationResponse = await this._getGeolocation(geolocation);
+    if(!geolocationResponse.succeeded) {
+      if(device.platform == "Android") {
+        cordova.dialogGPS();
+        geolocationResponse = await this._getGeolocation(geolocation);
+        if(!geolocationResponse.succeeded)
+            throw "No GPS access";
+      } else {
+        throw "No GPS access";
+      }
+    }
 
     const formatter = new AttributesFormatter(profile, survey, geolocation);
     const geoPlatform = new GeoPlatformGateway(formatter.execute());
@@ -623,9 +634,15 @@ let app = {
       (position) => {
         geolocation.x = position.coords.longitude;
         geolocation.y = position.coords.latitude;
-        defer.resolve();
+        defer.resolve({succeeded: true});
       },
-      defer.reject
+      (positionError) => {
+        // Non-semantic use of resolve, but this is more conducive to our needs.
+        defer.resolve({
+          succeeded: false, errorCode: positionError.code
+        });
+      },
+      {timeout: 10000}
     );
     return defer.promise;
   },

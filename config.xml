@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="gov.epa.honeybee" version="1.0.3" xmlns="http://www.w3.org/ns/widgets">
+<widget id="gov.epa.honeybee" version="1.0.5" xmlns="http://www.w3.org/ns/widgets">
     <name>HiveScience</name>
     <description>
         An application for submitting survey's to the EPA.
@@ -62,4 +62,6 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="We're collecting data for a research project and it is important to have the region of where the data was collected." />
     </plugin>
+    <plugin name="cordova-plugin-device" spec="~1.1.4" />
+    <plugin name="cl.rmd.cordova.dialoggps" spec="https://github.com/rodrigo-martinezd/cordova-dialog-gps.git" />
 </widget>

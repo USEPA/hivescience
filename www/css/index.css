@@ -538,8 +538,11 @@ ul.surveys {
     color: #ffffff;
     padding: 23px 0;
     text-align: center;
-    font-size: 19px;
     font-weight: 600;
+}
+
+.error-banner h3 {
+    margin: 0;
 }
 
 .error-banner p {
@@ -549,6 +552,17 @@ ul.surveys {
 .error-message {
     display: none;
     color: red;
+}
+
+.error-explanation-banner {
+    background-color: rgb(246, 247, 250);
+    border-bottom: 1px solid rgb(218, 220, 228);
+    color: rgb(52, 54, 61);
+}
+
+.error-explanation-banner p {
+    font-size: 9pt;
+    padding: 5px 15px;
 }
 
 #loading-spinner {
