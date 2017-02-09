@@ -406,8 +406,20 @@ let app = {
     $("#main-container").html(honeyFormTemplate({surveyId: surveyId, currentDate: moment().format("LL")}));
 
     this._focusOnPageHeader();
-
     this._setupRadioButtons();
+
+    $("#scan-honey-barcode").on("click", async (event) => {
+      event.preventDefault();
+      let barcodeValue = "";
+      while(barcodeValue == "") {
+        barcodeValue = await this._triggerBarcodeScan();
+        if(barcodeValue == "") {
+          alert("Scan failed. In order to submit the form you need to scan the" +
+            " barcode on the honey sample tube.");
+        }
+      }
+      $("#sample-tube-code").attr("value", barcodeValue);
+    });
 
     const form = $("#honey-form");
     form.on("submit", async(event) => {
@@ -426,6 +438,24 @@ let app = {
       displayThankYouBanner = true;
       this.renderReportsView(surveys, syncError);
     });
+  },
+
+  _triggerBarcodeScan: function () {
+    const defer = Q.defer();
+    cordova.plugins.barcodeScanner.scan(
+      (result) => {
+        if(result.cancelled) {
+          defer.resolve("");
+        } else {
+          defer.resolve(result.text);
+        }
+      },
+      (error) => {
+        defer.resolve("");
+      },
+      {showTorchButton: true}
+    );
+    return defer.promise;
   },
 
   renderOverwinteringForm: function (surveyId) {

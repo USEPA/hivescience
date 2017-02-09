@@ -674,12 +674,15 @@
             </p>
             <div>
                 <label for="sample-tube-code">Honey sample collection tube code</label>
+                {{#unless isCompletedSurvey}}
+                    <button id="scan-honey-barcode" class="add-photo">Scan Barcode</button>
+                {{/unless}}
                 <input id="sample-tube-code"
-                       aria-label="Enter the honey sample collection tube code"
-                       {{#unless isCompletedSurvey}} placeholder="Enter number" {{/unless}}
+                       aria-label="The honey sample collection tube code"
                        type="number"
                        name="sampleTubeCode"
-                       value="{{sampleTubeCode}}"/>
+                       value="{{sampleTubeCode}}"
+                       readonly="readonly"/>
             </div>
             <label>Is your hive healthy?</label>
             <div class="radio-container">
