@@ -431,14 +431,7 @@ let app = {
 
     $("#scan-honey-barcode").on("click", async (event) => {
       event.preventDefault();
-      let barcodeValue = "";
-      while(barcodeValue == "") {
-        barcodeValue = await this._triggerBarcodeScan();
-        if(barcodeValue == "") {
-          alert("Scan failed. In order to submit the form you need to scan the" +
-            " barcode on the honey sample tube.");
-        }
-      }
+      let barcodeValue = await this._attemptBarcodeScan();
       $("#sample-tube-code").attr("value", barcodeValue);
     });
 
@@ -459,6 +452,16 @@ let app = {
       displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
+  },
+
+  _attemptBarcodeScan: async function () {
+    let barcodeValue = await this._triggerBarcodeScan();
+    if(barcodeValue == "") {
+      alert("Scan failed. In order to submit the form you need to scan the" +
+        " barcode on the honey sample tube.");
+      barcodeValue = await this._attemptBarcodeScan();
+    }
+    return barcodeValue;
   },
 
   _triggerBarcodeScan: function () {
