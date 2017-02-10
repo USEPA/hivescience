@@ -551,7 +551,7 @@ let app = {
   },
 
   _syncToGeoPlatform: async function (profile, survey) {
-    this._displayLoadingSpinner("Please wait while your data is being&nbsp;synced", true);
+    this._displayLoadingSpinner("Please wait while your data is being&nbsp;synced.", true);
     const geolocation = {spatialReference: {wkid: 4326}};
     // We have to get their coordinates otherwise we can't let them submit the form.
     let geolocationResponse = await this._getGeolocation(geolocation);
