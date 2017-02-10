@@ -179,15 +179,21 @@ let app = {
     onResumeEvent = event;
   },
 
-  renderProfileForm: function () {
-    $("#main-container").html(profileFormTemplate());
+  renderProfileForm: async function () {
+    const profiles = await profileRepository.findAll();
+    const isUpdate = profiles.length > 0;
+    let templateAttributes = {isUpdate: isUpdate};
+    if(isUpdate) {
+      _.assign(templateAttributes, convertKeysToCamelCase(_.last(profiles)));
+    }
+    $("#main-container").html(profileFormTemplate(templateAttributes));
 
     this._focusOnPageHeader("h1");
 
     this._setupRadioButtons();
 
     const form = $("#profile-form");
-    form.on("submit", (event) => {
+    form.on("submit", async (event) => {
       event.preventDefault();
       profileAttributes = formatAttributes(form.serializeArray());
 
@@ -210,7 +216,12 @@ let app = {
 
       profileRepository.createRecord(profileAttributes);
       $("#profile-form-template").hide();
-      this.renderWelcomeTemplate();
+      const surveys = await surveyRepository.findAll();
+      if(isUpdate && surveys.length > 0) {
+        this.renderReportsView(surveys);
+      } else {
+        this.renderWelcomeTemplate();
+      }
     });
   },
 
@@ -220,6 +231,11 @@ let app = {
     $(".create-report").on("click", (event) => {
       event.preventDefault();
       this.renderSurveyForm();
+    });
+
+    $(".update-profile").on("click keypress", (event) => {
+      event.preventDefault();
+      this.renderProfileForm();
     });
   },
 
@@ -322,6 +338,11 @@ let app = {
       this.renderFollowUpForm($(event.currentTarget).data("survey-id"));
     });
 
+    $(".update-profile").on("click keypress", (event) => {
+      event.preventDefault();
+      this.renderProfileForm();
+    });
+
     $(".honey-report-button").on("click keypress", (event) => {
       event.preventDefault();
       this.renderHoneyForm($(event.currentTarget).data("survey-id"));
@@ -394,7 +415,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#follow-up-form-template").hide();
-      displayThankYouBanner = true;
+      displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -435,7 +456,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#honey-form-template").hide();
-      displayThankYouBanner = true;
+      displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
   },
@@ -482,7 +503,7 @@ let app = {
       const syncError = await this._attemptSyncToGeoplatform(profiles, surveys);
 
       $("#overwintering-form-template").hide();
-      displayThankYouBanner = true;
+      displayThankYouBanner = !syncError;
       this.renderReportsView(surveys, syncError);
     });
   },

@@ -27,36 +27,50 @@
     <script id="profile-form-template" type="text/template">
         <div id="profile-form-page-1">
             <header>
-                <h1 tabindex="0">HiveScience</h1>
+                <h1 tabindex="0">
+                {{#if isUpdate}}
+                    Profile
+                {{else}}
+                    HiveScience
+                {{/if}}
+                </h1>
             </header>
             <form action="#" id="profile-form" novalidate>
-                <h2 class="profile-header">Welcome to the EPA Citizen Scientist Beekeeper Program</h2>
+                <h2 class="profile-header">
+                {{#if isUpdate}}
+                    Update your profile
+                {{else}}
+                    Welcome to the EPA Citizen Scientist Beekeeper Program
+                {{/if}}
+                </h2>
 
+                {{#unless isUpdate}}
                 <p class="marker-underline">
                     <img src="img/marker-underline.png" alt=""/>
                     Please select <strong>only one</strong> hive to report&nbsp;on.
                 </p>
+                {{/unless}}
 
                 <label for="zip-code">Zip code of the hive you'll be reporting on (required)</label>
                 <p id="zip-code-error-message" class="error-message">The zip code field is required.</p>
-                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code"/>
+                <input id="zip-code" type="text" name="zipCode" placeholder="Enter the zip code" value="{{zipCode}}" />
 
                 <label for="race-of-bees">Race of bees in your hive (e.g., Italian, unknown)</label>
-                <input id="race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees"/>
+                <input id="race-of-bees" type="text" name="raceOfBees" placeholder="Enter race of bees" value="{{raceOfBees}}"/>
 
                 <label for="full-name">Full Name</label>
-                <input id="full-name" type="text" name="fullName" placeholder="Enter full name"/>
+                <input id="full-name" type="text" name="fullName" placeholder="Enter full name" value="{{fullName}}"/>
 
                 <label for="email">Email Address (required)</label>
                 <p id="email-error-message" class="error-message">The email address field is required.</p>
-                <input id="email" type="email" name="email" placeholder="Enter email address"/>
+                <input id="email" type="email" name="email" placeholder="Enter email address" value="{{email}}" />
 
                 <p>
                     If you haven't already received a sample kit package, please email
-                    <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team">hivescience@epa.gov</a>.
+                    <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team"><span aria-hidden="true">hivescience</span><span class="screenreader-only">hive science</span>@epa.gov</a><span aria-hidden="true">.</span>
                 </p>
 
-                <input type="submit" value="Get Started"/>
+                <input type="submit" value="{{#if isUpdate}}Update Profile{{else}}Get Started{{/if}}"/>
             </form>
         </div>
     </script>
@@ -68,9 +82,12 @@
         <div class="container">
             <h2>Welcome Beekeeper Citizen Scientist!</h2>
             <p>You can submit reports to the EPA on your chosen hive as often as you like.</p>
-            <p>Questions? Email <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team">hivescience@epa.gov</a>.</p>
+            <p>Questions? Email <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team"><span aria-hidden="true">hivescience</span><span class="screenreader-only">hive science</span>@epa.gov</a><span aria-hidden="true">.</span></p>
             <img src="img/create-a-report.svg" alt="" aria-hidden="true" id="create-report-marker"/>
             <div class="navigation-footer">
+                <a href="" class="update-profile" aria-label="Update your Profile">
+                    <img src="img/edit-profile.svg" aria-hidden="true" />
+                </a>
                 <a href="" class="create-report" aria-label="Create a Report"><span aria-hidden="true">+</span></a>
             </div>
         </div>
@@ -512,9 +529,12 @@
                 {{/each}}
             </ul>
 
-            <p class="help-tagline">Questions? Email <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team">hivescience@epa.gov</a>.</p>
+            <p class="help-tagline">Questions? Email <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team"><span aria-hidden="true">hivescience</span><span class="screenreader-only">hive science</span>@epa.gov</a><span aria-hidden="true">.</span></p>
 
             <div class="navigation-footer">
+                <a href="" class="update-profile" aria-label="Update your Profile">
+                    <img src="img/edit-profile.svg" aria-hidden="true" />
+                </a>
                 <a href="" aria-label="Create a Report" class="create-report"><span aria-hidden="true">+</span></a>
             </div>
         </div>
@@ -671,7 +691,7 @@
             <p>Because you've completed your final mite count of the season, we'd like you to provide a honey
                 sample.</p>
             <p>If you haven't already received a sample kit package please email
-                <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team">hivescience@epa.gov</a>.
+                <a href="mailto:hivescience@epa.gov" title="Email the HiveScience team"><span aria-hidden="true">hivescience</span><span class="screenreader-only">hive science</span>@epa.gov</a><span aria-hidden="true">.</span>
             </p>
             <p>For instructions please
                 <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
