@@ -591,3 +591,9 @@ ul.surveys {
     height: 1px;
     overflow: hidden;
 }
+
+.help-tagline {
+    font-size: 11pt;
+    margin-top: 25px;
+    text-align: center;
+}
