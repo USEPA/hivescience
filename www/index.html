@@ -27,6 +27,12 @@
     <script id="profile-form-template" type="text/template">
         <div id="profile-form-page-1">
             <header>
+                {{#if isUpdate}}
+                    <a href="#" aria-label="Close Profile" class="close-profile">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                {{/if}}
+
                 <h1 tabindex="0">
                 {{#if isUpdate}}
                     Profile

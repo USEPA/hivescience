@@ -192,6 +192,11 @@ let app = {
 
     this._setupRadioButtons();
 
+    $(".close-profile").on("click keypress", async (event) => {
+      const surveys = await surveyRepository.findAll();
+      this.renderReportsView(surveys);
+    });
+
     const form = $("#profile-form");
     form.on("submit", async (event) => {
       event.preventDefault();
@@ -306,7 +311,7 @@ let app = {
     this._focusOnPageHeader();
 
     this._setupPagination();
-    $(".fa-times").on("click keypress", async (event) => {
+    $(".close-report").on("click keypress", async (event) => {
       const surveys = await surveyRepository.findAll();
       this.renderReportsView(surveys);
     });

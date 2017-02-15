@@ -323,7 +323,7 @@ input[readonly] {
     opacity: 1;
 }
 
-.close-report {
+.close-report, .close-profile {
     color: rgb(48, 50, 68);
 }
 
