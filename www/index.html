@@ -484,7 +484,7 @@
                 </li>
                 {{else}}
                 <li tabindex="0" class="follow-up-button additional-report-button" data-survey-id="{{id}}">
-                    <span>Create follow up report</span>
+                    <span>Create treatment effectiveness report</span>
                     <span aria-hidden="true">+</span>
                 </li>
                 {{/if}}
@@ -559,7 +559,7 @@
         <form action="#" id="follow-up-form" class="{{#if isCompletedSurvey}}completed-survey{{/if}}">
             <section id="survey-section-1">
                 <input type="hidden" name="id" value="{{surveyId}}">
-                <h2 tabindex="0">Treatment follow up</h2>
+                <h2 tabindex="0">Treatment Effectiveness Report</h2>
                 <p>Because you performed a treatment on your hive, we'd like you to report on how your hive
                     responded.</p>
                 <label>Did you perform a Varroa mite treatment?</label>
@@ -674,7 +674,7 @@
                     </div>
 
                     {{#unless isCompletedSurvey}}
-                    <input type="submit" value="Submit" aria-label="Submit the follow up report"/>
+                    <input type="submit" value="Submit" aria-label="Submit the treatment effectiveness report"/>
                     {{/unless}}
                 </div>
             </section>
