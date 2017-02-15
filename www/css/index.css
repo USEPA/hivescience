@@ -185,17 +185,12 @@ input[type=number]#number-of-mites {
     -webkit-appearance: none;
 }
 
-input[type=checkbox] {
-    background-color: white;
-    border: 1px rgb(218, 220, 228) solid;
-    height: 20px;
-    margin: 0px 15px 0 0;
-    width: 20px;
-    -webkit-appearance: none;
+#training-copy {
+    display: flex;
 }
 
-input[type=checkbox]:checked {
-    background-color: #31A68A;
+#review-training {
+    min-width: 23px;
 }
 
 legend {

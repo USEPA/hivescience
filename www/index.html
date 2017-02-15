@@ -71,6 +71,14 @@
                 <p id="email-error-message" class="error-message">The email address field is required.</p>
                 <input id="email" type="email" name="email" placeholder="Enter email address" value="{{email}}" />
 
+                {{#unless isUpdate}}
+                <p id="review-training-error-message" class="error-message">You have to agree to review the training materials.</p>
+                <div id="training-copy">
+                    <input id="review-training" type="checkbox" name="reviewTraining" placeholder="" value="true" />
+                    <label for="review-training">By submitting this profile, I agree to review beekeeper training materials. <a href="https://www.epa.gov/citizen-science/honey-bee-hive-data-collection">View Training Materials</a></label>
+                </div>
+                {{/unless}}
+
                 <p>
                     If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/citizen-science/forms/contact-hivescience">Request a Kit</a></span>
                 </p>

@@ -214,9 +214,17 @@ let app = {
         $("#email-error-message").fadeIn(300);
       }
 
-      if (profileAttributes.zipCode == "" || profileAttributes.email == "") {
-        this._focusOnPageHeader("h1");
-        return;
+      if (typeof profileAttributes.reviewTraining == "undefined") {
+        $("#review-training").css("border", "1px solid red");
+        $("#review-training-error-message").fadeIn(300);
+      }
+
+      const invalidTraining = !isUpdate && (typeof profileAttributes.reviewTraining == "undefined");
+      if (profileAttributes.zipCode == "" ||
+          profileAttributes.email == "" ||
+          invalidTraining) {
+          this._focusOnPageHeader("h1");
+          return;
       }
 
       profileRepository.createRecord(profileAttributes);
