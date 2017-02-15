@@ -440,6 +440,15 @@ let app = {
       event.preventDefault();
       surveyAttributes = formatAttributes(form.serializeArray());
       surveyAttributes.honeyReportSubmittedOn = (new Date()).toLocaleDateString();
+
+      if (surveyAttributes.sampleTubeCode == "") {
+        $("#sample-tube-code").css("border", "1px solid red");
+        $("label[for=sample-tube-code]").css("color", "red");
+        $("#sample-tube-code-error-message").fadeIn(300);
+        this._focusOnPageHeader("h1");
+        return;
+      }
+
       await surveyRepository.updateRecord(surveyAttributes);
 
       surveyAttributes = {};
@@ -457,9 +466,9 @@ let app = {
   _attemptBarcodeScan: async function () {
     let barcodeValue = await this._triggerBarcodeScan();
     if(barcodeValue == "") {
-      alert("Scan failed. In order to submit the form you need to scan the" +
-        " barcode on the honey sample tube.");
-      barcodeValue = await this._attemptBarcodeScan();
+      alert("Scan failed. In order to submit the form you need to either: 1. scan the" +
+        " barcode on the honey sample tube, or 2. enter the number on the sample tube manually.");
+      $("#sample-tube-code").attr("readonly", false);
     }
     return barcodeValue;
   },
