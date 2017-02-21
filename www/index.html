@@ -434,7 +434,7 @@
 
     <script id="reports-template" type="text/template">
         <header>
-            <h1 tabindex="0">Reports</h1>
+            <h1 tabindex="0">Reports Home</h1>
         </header>
         {{#if syncError}}
         <div class="error-banner" role="alert">
@@ -460,6 +460,8 @@
         {{/if}}
 
         <div class="container">
+            <p><a href="https://www.epa.gov/pollinator-protection/hivescience">EPA HiveScience Project Website</a></p>
+            <p><a href="https://epa.maps.arcgis.com/home/webmap/viewer.html?webmap=0beb2860f8b84076a3acb4c097b649e5">Citizen Science Public Facing Map</a></p>
             <ul class="surveys">
                 {{#each surveys}}
                 <li tabindex="0" data-survey-id="{{id}}" data-survey-type="main"
