@@ -117,6 +117,11 @@ let app = {
       return;
     }
 
+    // We want to ensure the user has GPS enabled from the start.
+    // If they are on Android then it'll show a dialog window asking to
+    // take the user to the location settings screen.
+    this._checkGPS();
+
     if (await this._profileExists()) {
       const surveys = await surveyRepository.findAll();
       if (surveys.length > 0) {
@@ -161,6 +166,14 @@ let app = {
     let pageNumber = Number(currentSection.match(/(\d)$/)[0]);
     $(`#survey-section-${pageNumber} .section-indicator`).children().eq(pageNumber - 1)
       .css("background-color", "rgba(255,255,255,1.0)");
+  },
+
+  _checkGPS: async function () {
+    const geolocation = {spatialReference: {wkid: 4326}};
+    let geolocationResponse = await this._getGeolocation(geolocation);
+    if(!geolocationResponse.succeeded) {
+      cordova.dialogGPS();
+    }
   },
 
   onPause: function () {
@@ -578,14 +591,7 @@ let app = {
     // We have to get their coordinates otherwise we can't let them submit the form.
     let geolocationResponse = await this._getGeolocation(geolocation);
     if(!geolocationResponse.succeeded) {
-      if(device.platform == "Android") {
-        cordova.dialogGPS();
-        geolocationResponse = await this._getGeolocation(geolocation);
-        if(!geolocationResponse.succeeded)
-            throw "No GPS access";
-      } else {
-        throw "No GPS access";
-      }
+      throw "No GPS access";
     }
 
     const formatter = new AttributesFormatter(profile, survey, geolocation);
