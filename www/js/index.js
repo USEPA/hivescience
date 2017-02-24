@@ -594,8 +594,15 @@ let app = {
     const surveyId = await geoPlatform.syncSurvey();
     if (survey["mite_count_photo_uri"] !== null || survey["follow_up_mite_count_photo_uri"] !== null) {
       let fileUri = survey["follow_up_mite_count_photo_uri"] || survey["mite_count_photo_uri"];
-      const photo = await fileService.getBlob(fileUri);
-      await geoPlatform.syncPhoto(photo, surveyId);
+      // Just in case the image was corrupted, wrap these calls in a try statement.
+      // Out of hundreds of test runs I've seen the image get corrupted once.
+      // This is mainly done out of paranoia.
+      try {
+        const photo = await fileService.getBlob(fileUri);
+        await geoPlatform.syncPhoto(photo, surveyId);
+      } catch(error) {
+        console.log(error);
+      }
     }
   },
 
