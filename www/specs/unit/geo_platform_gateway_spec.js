@@ -132,5 +132,49 @@ describe("GeoPlatformGateway", () => {
 
       fetchMock.restore();
     });
+
+    it("throws an error with the error code and message if the request fails in geoplatform", async() => {
+      fetchMock.post(
+        GeoPlatformGateway.surveyUrl,
+        {
+          "addResults": [
+            {
+              "objectId": "null objectId", // Makes the failing assertion easier to understand.
+              "globalId": "C9F9EB0F-B4F5-4910-B62B-CD913B4BE9FC",
+              "success": false,
+              "error": {
+                "code": 1000,
+                "description": "Arithmetic overflow error converting expression to data type int.\r\nThe statement has been terminated."
+              }
+            }
+          ]
+        }
+      );
+
+      let requestError;
+      let formatter = new AttributesFormatter(profile, survey, geolocation);
+      let formattedAttributes = formatter.execute();
+
+      let fakeBlob = Symbol("fakeBlob");
+
+      const geoPlatform = new GeoPlatformGateway(formattedAttributes, fakeBlob);
+
+      let fakeSurveyData = new FakeFormData();
+      fakeSurveyData.append("features", JSON.stringify(surveyJSON));
+      fakeSurveyData.append("f", "pjson");
+      fakeSurveyData.append("rollbackOnFailure", "true");
+
+      try {
+        requestError = await geoPlatform.syncSurvey();
+      } catch(error) {
+        expect(error).to.equal("Error code: 1000. " +
+         "Arithmetic overflow error converting expression to data type int.\n" +
+         "The statement has been terminated.");
+        expect(fetchMock.called(GeoPlatformGateway.surveyUrl)).to.be(true);
+        fetchMock.restore();
+        return;
+      }
+      expect().fail("The call to syncSurvey should have thrown an error");
+    });
   });
 });

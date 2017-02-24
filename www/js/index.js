@@ -354,6 +354,7 @@ let app = {
     $("#main-container").html(reportsTemplate({
       surveys: surveys,
       syncError: syncError,
+      syncErrorMessage: _.isString(syncError) ? syncError : false,
       displayThankYouBanner: displayThankYouBanner
     }));
     displayThankYouBanner = false;
@@ -736,7 +737,7 @@ let app = {
       await this._syncToGeoPlatform(_.last(profiles), lastSurvey);
       lastSurvey.sync_failed = 0;
     } catch (error) {
-      syncError = true;
+      syncError = error.match(/^Error code:/i) ? error : true;
       lastSurvey.sync_failed = 1;
     }
     await surveyRepository.updateRecord({

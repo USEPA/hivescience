@@ -49,7 +49,12 @@ export default class GeoPlatformGateway {
     ).then((response) => {
       return response.json();
     }).then((json) => {
-      defer.resolve(json.addResults[0].objectId);
+      if(json.addResults[0].success) {
+        defer.resolve(json.addResults[0].objectId);
+      } else {
+        const error = json.addResults[0].error;
+        defer.reject(`Error code: ${error.code}. ${error.description.replace("\r", "")}`);
+      }
     }).catch((error) => {
       defer.reject(error);
     });
