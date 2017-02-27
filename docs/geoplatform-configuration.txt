@@ -1,0 +1,28 @@
+When configuring the Geoplatform to accept data from a mobile application, the first step is to create a custome Featured Service.
+
+Creating a custom feature service can only be achived under https://developers.arcgis.com/layers/. 
+When creating a new layer, you must define the fields and field types.
+Once a featured service is created, it cannot be updated.
+
+After creating a new featured service, adjust the settings as follows:
+Enabling Editing
+<enabled>
+
+Keep track of who created and last updated features
+<enabled>
+
+What kind of editing is allowed?
+<Only add new features>
+
+What features can editores see?
+<Editors can't see any features, even those they add>
+
+What features can editors edit? 
+<Editors can only edit thier own features (requires tracking)
+
+What access do anonymous editors (not signed in) have?
+<Only add new features, if allowed above (requires tracking)
+
+Ensure that the new featured service is shared with Everyone (Public)
+
+Create a new view that shares the columns that you want shared. You can now create maps based on that view.
