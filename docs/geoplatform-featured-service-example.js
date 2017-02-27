@@ -57,6 +57,24 @@ request.then((response) => {
   // { "addResults" : [ {
   //    "objectId" : 217, "globalId" : "13B7EDC0-0735-4B11-931E-51FAB0092239", "success" : true
   // } ] }
+  
+  
+// Check to ensure that "success" is not false. 
+// If "success" is false then present user with the error code and error description
+  // NOTE: When the addFeatures operation from the ArcGIS Online REST endpoint fails
+  // to add the feature to the feature layer, it returns a response header status of "200 OK" 
+  // (which the Fetch method interprets as a success), 
+  // but inside the response JSON the key "success" will have a value of "false".
+  // The below code accounts for this behavior.
+  // NOTE: Intgers fields cannot exceed 10 integers in length.
+  
+if(json.addResults[0].success) {
+        defer.resolve(json.addResults[0].objectId);
+      } else {
+        const error = json.addResults[0].error;
+        defer.reject(`Error code: ${error.code}. ${error.description.replace("\r", "")}`);
+      }
+ 
 }).catch((error) => {
   // The request failed, insert error handling code that would be
   // appropriate for your app.
