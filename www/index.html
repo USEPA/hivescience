@@ -469,13 +469,12 @@
                 {{#each surveys}}
                 <li tabindex="0" data-survey-id="{{id}}" data-survey-type="main"
                     class="report-button{{#unless sync_failed}} submitted{{/unless}}">
-                    <h2>{{created_on}}</h2>
+                    <h2>{{created_on}}</h2> <span class="report-status">Hive Health</span>
                     {{#if sync_failed}}
                     <div class="sub-row">
                         <span class="failed">Failed to submit</span>
                         <span tabindex="0" class="re-submit-button" data-survey-id="{{id}}">
                             <i class="fa fa-refresh" aria-hidden="true"></i> Re-submit</span>
-                         <span class="report-status">Hive Health</span>
                     </div>
                     {{else}}
                     <span>Submitted</span>
@@ -485,14 +484,13 @@
                 {{#if followUpSubmitted}}
                 <li tabindex="0" class="report-button{{#unless sync_failed}} submitted{{/unless}}"
                     data-survey-id="{{id}}" data-survey-type="follow-up">
-                    <h2>{{follow_up_submitted_on}}</h2>
+                    <h2>{{follow_up_submitted_on}}</h2> <span class="report-status">Treatment</span>
                     <div class="sub-row">
                         {{#if sync_failed}}
                         <span class="failed">Failed to Submit</span>
                         {{else}}
                         <span>Submitted</span>
                         {{/if}}
-                        <span class="report-status">Treatment</span>
                     </div>
                 </li>
                 {{else}}
@@ -506,14 +504,13 @@
                 {{#if honeyReportSubmitted}}
                 <li tabindex="0" class="report-button{{#unless sync_failed}} submitted{{/unless}}" data-survey-id="{{id}}"
                     data-survey-type="honey">
-                    <h2>{{honey_report_submitted_on}}</h2>
+                    <h2>{{honey_report_submitted_on}}</h2> <span class="report-status">Honey</span>
                     <div class="sub-row">
                         {{#if sync_failed}}
                         <span class="failed">Failed to Submit</span>
                         {{else}}
                         <span>Submitted</span>
                         {{/if}}
-                        <span class="report-status">Honey</span>
                     </div>
                 </li>
                 {{else}}
@@ -527,14 +524,13 @@
                 {{#if overwinteringReportSubmitted}}
                 <li tabindex="0" class="report-button{{#unless sync_failed}} submitted{{/unless}}"
                     data-survey-id="{{id}}" data-survey-type="overwintering">
-                    <h2>{{overwintering_report_submitted_on}}</h2>
+                    <h2>{{overwintering_report_submitted_on}}</h2> <span class="report-status">Overwintering</span>
                     <div class="sub-row">
                         {{#if sync_failed}}
                         <span class="failed">Failed to Submit</span>
                         {{else}}
                         <span>Submitted</span>
                         {{/if}}
-                        <span class="report-status">Overwintering</span>
                     </div>
                 </li>
                 {{else}}
