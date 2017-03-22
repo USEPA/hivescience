@@ -471,6 +471,8 @@ ul.surveys {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     padding: 2px 5px;
+    width: 100x;
+    text-align: center;
 }
 
 .additional-report-button {
