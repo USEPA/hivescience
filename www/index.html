@@ -371,7 +371,7 @@
                 <h2 tabindex="0">Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count using the powdered sugar shake method. For instructions
                     please
-                    <a href="https://www.epa.gov/node/171243">view this webpage</a>.
+                    <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
@@ -644,8 +644,8 @@
             </section>
 
             <section id="survey-section-2" class="hidden">
-                <h2 tabindex="0">Evaluate the effectiveness of your Varroa mite management strategy</h2>
-                <p>Because you performed a treatment on your hive, we'd like you to report on how your hive responded. For instructions please 
+                <h2 tabindex="0">Varroa mite treatment effectiveness</h2>
+                <p>Evaluate the effectiveness of your mite tratment by counting mites again using the powdered sugar shake method. For instructions please 
                     <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
                 </p>
                 <div>
@@ -669,6 +669,10 @@
                 <img id="mites-photo-preview" class="hidden">
                 {{/if}}
 
+				{{#unless isCompletedSurvey}}
+                 <input type="submit" class="submit-form" value="Submit" aria-label="Submit the treatment effectiveness report"/>
+                {{/unless}}
+					
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="1" aria-label="Go to the previous section">
                         Back
@@ -677,10 +681,6 @@
                         <span class="circle"></span>
                         <span class="circle"></span>
                     </div>
-
-                    {{#unless isCompletedSurvey}}
-                    <input type="submit" value="Submit" aria-label="Submit the treatment effectiveness report"/>
-                    {{/unless}}
                 </div>
             </section>
         </form>
@@ -705,7 +705,7 @@
                 If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/node/171317">Request a honey sampling kit</a></span>
             </p>
             <p>For instructions please
-                <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
+                <a href="https://www.epa.gov/node/170441">view visit this webpage</a>.
             </p>
             <div>
                 <label for="sample-tube-code">Honey sample collection tube code</label>
@@ -806,11 +806,9 @@
             </div>
             <label for="why-hive-failed">If your hive failed, why do you think it failed?</label>
             <textarea id="why-hive-failed" name="whyHiveFailed">{{whyHiveFailed}}</textarea>
-            <div class="navigation-footer">
                 {{#unless isCompletedSurvey}}
-                    <input type="submit" value="Submit" aria-label="Submit the overwintering report"/>
+                    <input type="submit" class="submit-form" value="Submit" aria-label="Submit the overwintering report"/>
                 {{/unless}}
-            </div>
         </form>
     </script>
 
