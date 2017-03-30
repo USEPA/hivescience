@@ -162,7 +162,6 @@ describe("DB", () => {
         INSERT INTO surveys (
           queen_right,
           queen_poor_performance,
-          age_of_queen,
           abnormal_brood_pattern,
           abnormal_cappings,
           abnormal_odor,
@@ -214,7 +213,6 @@ describe("DB", () => {
         const attributes = {
           queenRight: "Y",
           queenPoorPerformance: "N",
-          ageOfQueen: 8,
           abnormalBroodPattern: "N",
           abnormalCappings: "N",
           abnormalOdor: "N",
@@ -266,7 +264,6 @@ describe("DB", () => {
         const expectedAttributes = [
           attributes.queenRight,
           attributes.queenPoorPerformance,
-          attributes.ageOfQueen,
           attributes.abnormalBroodPattern,
           attributes.abnormalCappings,
           attributes.abnormalOdor,
