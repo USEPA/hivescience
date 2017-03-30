@@ -221,7 +221,7 @@ body:not(:-moz-handler-blocked) fieldset {
     justify-content: center;
 }
 
-#profile-form input[type=submit], .submit-form input[type=submit] {
+#profile-form input[type=submit], .submit-form {
     background-color: #31A68A;
     border: none;
     border-radius: 5px;
