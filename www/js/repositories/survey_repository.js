@@ -14,7 +14,7 @@ export default class SurveyRepository extends AbstractRepository {
       // Initial survey
       ["queen_right", "VARCHAR(1)"],
       ["queen_poor_performance", "VARCHAR(1)"],
-      ["age_of_queen", "INTEGER"],
+      //["age_of_queen", "INTEGER"],
       ["abnormal_brood_pattern", "VARCHAR(1)"],
       ["abnormal_cappings", "VARCHAR(1)"],
       ["abnormal_odor", "VARCHAR(1)"],
