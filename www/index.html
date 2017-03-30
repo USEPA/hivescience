@@ -75,12 +75,12 @@
                 <p id="review-training-error-message" class="error-message">You have to agree to review the training materials.</p>
                 <div id="training-copy">
                     <input id="review-training" type="checkbox" name="reviewTraining" placeholder="" value="true" />
-                    <label for="review-training">By submitting this profile, I agree to review beekeeper training materials. <a href="https://www.epa.gov/citizen-science/honey-bee-hive-data-collection">View Training Materials</a></label>
+                    <label for="review-training">By submitting this profile, I agree to review beekeeper training materials. <a href="https://www.epa.gov/node/171243">View Training Materials</a></label>
                 </div>
                 {{/unless}}
 
                 <p>
-                    If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/citizen-science/forms/contact-hivescience">Request a Kit</a></span>
+                    If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/node/171317">Request a honey sampling kit</a></span>
                 </p>
 
                 <input type="submit" value="{{#if isUpdate}}Update Profile{{else}}Get Started{{/if}}"/>
@@ -141,10 +141,10 @@
                            aria-checked="{{ariaCheckIfNo queenPoorPerformance}}">No</label>
                 </div>
 
-                <label for="age-of-queen">Age of queen (months)?</label>
+               <!--  <label for="age-of-queen">Age of queen (months)?</label>
                 <input id="age-of-queen" type="number" name="ageOfQueen"
                        {{#unless isCompletedSurvey}} placeholder="Enter age" {{/unless}}
-                       value="{{ageOfQueen}}"/>
+                       value="{{ageOfQueen}}"/> -->
                 <div class="navigation-footer">
                     <div class="section-indicator">
                         <span class="circle"></span>
@@ -329,7 +329,7 @@
                     <label for="parasitic-mite-syndrome-unsure" role="radio"
                            aria-checked="{{ariaCheckIfUnsure parasiticMiteSyndrome}}">Unsure</label>
                 </div>
-                <label>Dried remains of pulpae/larvae (i.e., scales)?</label>
+                <label>Dried remains of pupae/larvae (i.e., scales)?</label>
                 <div class="radio-container">
                     <input id="dried-remains-yes" type="radio" aria-hidden="true" name="driedRemains" value="Y" {{checkIfYes
                            driedRemains}}/>
@@ -343,7 +343,7 @@
                     <label for="dried-remains-unsure" role="radio"
                            aria-checked="{{ariaCheckIfUnsure driedRemains}}">Unsure</label>
                 </div>
-                <label>Dysentery (i.e., Nosema)?</label>
+                <label>Nosema?</label>
                 <div class="radio-container">
                     <input id="dysentery-yes" type="radio" aria-hidden="true" name="dysentery" value="Y" {{checkIfYes dysentery}}/>
                     <label for="dysentery-yes" role="radio" aria-checked="{{ariaCheckIfYes dysentery}}">Yes</label>
@@ -371,7 +371,7 @@
                 <h2 tabindex="0">Varroa mite count</h2>
                 <p>We'll need you to perform a Varroa mite count using the powdered sugar shake method. For instructions
                     please
-                    <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
+                    <a href="https://www.epa.gov/node/171243">view this webpage</a>.
                 </p>
                 <div>
                     <label for="number-of-mites">Total number of mites after powdered sugar shake</label>
@@ -415,6 +415,9 @@
                     <label for="final-mite-count-of-season-no" role="radio"
                            aria-checked="{{ariaCheckIfNo finalMiteCountOfSeason}}">No</label>
                 </div>
+				{{#unless isCompletedSurvey}}
+                    <input type="submit" value="Submit" aria-label="Submit the report"/>
+				{{/unless}}
                 <div class="navigation-footer">
                     <button class="previous-section-button" data-next-page="2" aria-label="Go to the previous section">
                         Back
@@ -424,9 +427,6 @@
                         <span class="circle"></span>
                         <span class="circle"></span>
                     </div>
-                    {{#unless isCompletedSurvey}}
-                    <input type="submit" value="Submit" aria-label="Submit the report"/>
-                    {{/unless}}
                 </div>
             </section>
         </form>
@@ -463,7 +463,7 @@
         {{/if}}
 
         <div class="container">
-            <p><a href="https://www.epa.gov/pollinator-protection/hivescience">EPA HiveScience Project Website</a></p>
+            <p><a href="https://www.epa.gov/node/171227">EPA HiveScience Project Website</a></p>
             <p><a href="https://epa.maps.arcgis.com/apps/webappviewer/index.html?id=f5efad01ba634525998370f62f6fc1e7">See what other beekeepers are doing</a></p>
             <ul class="surveys">
                 {{#each surveys}}
@@ -567,8 +567,7 @@
             <section id="survey-section-1">
                 <input type="hidden" name="id" value="{{surveyId}}">
                 <h2 tabindex="0">Treatment Effectiveness Report</h2>
-                <p>Because you performed a treatment on your hive, we'd like you to report on how your hive
-                    responded.</p>
+                <p>Because you performed a treatment on your hive, we'd like you to tell us how you manage Varroa mites.</p>
                 <label>Did you perform a Varroa mite treatment?</label>
                 <div class="radio-container">
                     <input id="did-you-perform-treatment-yes" type="radio" aria-hidden="true" name="didYouPerformTreatment" value="Y"
@@ -598,7 +597,7 @@
                     <label for="remove-drone-brood-no" role="radio"
                            aria-checked="{{ariaCheckIfNo removeDroneBrood}}">No</label>
                 </div>
-                <label>Did you interrupt drone brood?</label>
+                <label>Did you apply powdered sugar?</label>
                 <div class="radio-container">
                     <input id="brood-interruption-yes" type="radio" aria-hidden="true" name="broodInterruption" value="Y" {{checkIfYes
                            broodInterruption}}/>
@@ -620,7 +619,7 @@
                     <label for="screen-bottom-board-no" role="radio"
                            aria-checked="{{ariaCheckIfNo screenBottomBoard}}">No</label>
                 </div>
-                <label>Did you apply a chemical treatment?</label>
+                <label>Did you perform a chemical treatment (natural or synthetic)?</label>
                 <div class="radio-container">
                     <input id="soft-or-hard-treatment-yes" type="radio" aria-hidden="true" name="softOrHardTreatment" value="Y"
                            {{checkIfYes softOrHardTreatment}}/>
@@ -645,9 +644,8 @@
             </section>
 
             <section id="survey-section-2" class="hidden">
-                <h2 tabindex="0">Varroa mite count</h2>
-                <p>We'll need you to perform a Varroa mite count by doing a powdered sugar shake. For instructions
-                    please
+                <h2 tabindex="0">Evaluate the effectiveness of your Varroa mite management strategy</h2>
+                <p>Because you performed a treatment on your hive, we'd like you to report on how your hive responded. For instructions please 
                     <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
                 </p>
                 <div>
@@ -704,7 +702,7 @@
             <p>Because you've completed your final mite count of the season, we'd like you to provide a honey
                 sample.</p>
             <p>
-                If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/citizen-science/forms/contact-hivescience">Request a Kit</a></span>
+                If you haven't already received a Honey Sampling Kit, you can request one. <a href="https://www.epa.gov/node/171317">Request a honey sampling kit</a></span>
             </p>
             <p>For instructions please
                 <a href="https://www.youtube.com/watch?v=IgPfT9FQxLc&feature=youtu.be">view this video</a>.
@@ -774,11 +772,10 @@
                 <label for="honey-from-brood-no" role="radio"
                        aria-checked="{{ariaCheckIfNo honeyFromBrood}}">No</label>
             </div>
-            <div class="navigation-footer">
-                {{#unless isCompletedSurvey}}
-                    <input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
-                {{/unless}}
-            </div>
+			{{#unless isCompletedSurvey}}
+				<input type="submit" value="Submit" aria-label="Submit the honey sample report"/>
+			{{/unless}}
+           <!--  <div class="navigation-footer"></div> -->
         </form>
     </script>
 
@@ -832,7 +829,7 @@
             <div><strong>Do you have evidence of poor queen performance (i.e, spotty brood pattern, supersedure cells,
                 excessive drone cells)?</strong> {{queen_drone_laying}}
             </div>
-            <div><strong>Age of queen?</strong> {{age_of_queen}}</div>
+            <!-- <div><strong>Age of queen?</strong> {{age_of_queen}}</div> -->
             <div><strong>Abnormal brood pattern (e.g., spotty)?</strong> {{abnormal_brood_pattern}}</div>
             <div><strong>Abnormal cappings (e.g., sunken, perforated, greasy)?</strong> {{abnormal_cappings}}</div>
             <div><strong>Abnormal odor?</strong> {{abnormal_odor}}</div>
@@ -845,8 +842,8 @@
             <div><strong>Chalkbrood (i.e., dried mummies)?</strong> {{chalkbrood}}</div>
             <div><strong>Snotty brood?</strong> {{snotty_brood}}</div>
             <div><strong>Parasitic mite syndrome?</strong> {{parasitic_mite_syndrome}}</div>
-            <div><strong>Dried remains of pulpae/larvae (i.e., scales)?</strong> {{dried_remains}}</div>
-            <div><strong>Dysentery (i.e., Nosema)?</strong> {{dysentery}}</div>
+            <div><strong>Dried remains of pupae/larvae (i.e., scales)?</strong> {{dried_remains}}</div>
+            <div><strong>Nosema?</strong> {{dysentery}}</div>
             <div><strong>Total number of mites after powdered sugar shake</strong> {{number_of_mites}}</div>
             <div><strong>Will you perform a Varroa mite treatment?</strong> {{will_perform_treatment}}</div>
             <div><strong>Is this your final mite count of the season?</strong> {{final_mite_count_of_season}}</div>
@@ -855,9 +852,9 @@
             <div><strong>Did you perform a Varroa mite treatment?</strong> {{did_you_perform_treatment}}</div>
             <div><strong>Requeen with resistant stock?</strong> {{requeen}}</div>
             <div><strong>Did you remove drone brood?</strong> {{remove_drone_brood}}</div>
-            <div><strong>Did you interrupt drone brood?</strong> {{brood_interruption}}</div>
+            <div><strong>Did you apply powdered sugar?</strong> {{brood_interruption}}</div>
             <div><strong>Did you use a screen bottom board?</strong> {{screen_bottom_board}}</div>
-            <div><strong>Did you apply a chemical treatment?</strong> {{soft_or_hard_treatment}}</div>
+            <div><strong>Did you perform a chemical treatment (natural or synthetic)?</strong> {{soft_or_hard_treatment}}</div>
             <div><strong>If yes, which chemical(s)?</strong> {{kind_of_chemical}}</div>
             <div><strong>Total number of mites after powdered sugar shake:</strong> {{follow_up_number_of_mites}}</div>
 
